@@ -67,19 +67,24 @@ h2 { font-size:23px; line-height:1.25; letter-spacing:-.5px; font-weight:700; ma
 .grid-heading { display:flex; align-items:center; justify-content:space-between; margin:18px 0; color:var(--muted); font-size:12px; }
 .grid-heading p { margin:0; }
 .grid-heading>span { font-size:10px; letter-spacing:1.2px; }
-.card-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px 16px; }
+.card-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px 8px; }
 .card-tile { min-width:0; }
 .card-image { position:relative; aspect-ratio:2.5/3.5; border-radius:7px; overflow:hidden; border:1px solid #d4ddd3; background:#e7ece3; }
 .card-image img { object-fit:contain; }
 .image-placeholder { height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; color:#687d69; font-size:12px; gap:12px; background:repeating-linear-gradient(135deg,transparent,transparent 15px,#e0e7dc 15px,#e0e7dc 16px); }
 .placeholder-mark { font-size:32px; line-height:1; }
-.card-number { font-size:11px; color:var(--muted); margin:10px 0 3px; }
-.card-tile h3 { font-size:15px; line-height:1.25; font-weight:700; margin:0; min-height:38px; overflow-wrap:anywhere; }
-.country { font-size:11px; color:var(--muted); margin:4px 0 10px; }
-.card-controls { display:flex; gap:5px; }
-.card-controls button { flex:1; display:flex; align-items:center; justify-content:center; gap:4px; min-width:0; min-height:44px; border:1px solid #cbd6cd; background:#fff; border-radius:5px; color:#4b6358; font-size:12px; }
-.card-controls button[aria-pressed=true] { background:#e0eecb; border-color:#7da15c; color:#234b26; font-weight:700; }
-.card-controls button:disabled { opacity:.5; cursor:wait; }
+.card-visual { position:relative; }
+.card-tile .card-caption { font-size:13px; line-height:1.35; font-weight:700; margin:6px 0 0; overflow-wrap:anywhere; }
+.card-number { color:var(--muted); font-weight:400; white-space:nowrap; }
+.card-toggle { position:absolute; top:0; width:50%; max-width:44px; height:44px; padding:0; display:grid; place-items:center; border:0; background:transparent; border-radius:6px; touch-action:manipulation; }
+.card-owned { left:0; }
+.card-watching { right:0; }
+.card-toggle>span { width:24px; height:24px; display:grid; place-items:center; border:1px solid #7e8e82; border-radius:50%; color:#536458; background:#f8faf5; box-shadow:0 1px 3px #182b2826; }
+.card-toggle svg { width:16px; height:16px; }
+.card-owned[aria-pressed=true]>span { color:#fff; background:#164f40; border-color:#164f40; }
+.card-watching[aria-pressed=true]>span { color:#503a00; background:#f7d55b; border-color:#7a5b13; }
+.card-toggle:focus-visible { outline:3px solid #164f40; outline-offset:-3px; }
+.card-toggle:disabled { opacity:.5; cursor:wait; }
 .empty-state { text-align:center; padding:45px 10px; border:1px dashed var(--line); border-radius:10px; }
 .empty-state h3 { font-weight:700; }
 .site-footer { display:flex; justify-content:space-between; gap:20px; border-top:1px solid var(--line); padding-top:25px; padding-bottom:30px; margin-top:48px; color:var(--muted); font-size:11px; }
@@ -105,12 +110,8 @@ h2 { font-size:23px; line-height:1.25; letter-spacing:-.5px; font-weight:700; ma
   .facts { font-size:13px; }
   .checklist-callout { padding:22px; display:block; }
   .checklist-callout .button { margin-top:20px; }
-  .card-grid { gap:22px 7px; }
-  .card-tile h3 { font-size:11px; min-height:42px; }
-  .card-number { margin-top:7px; font-size:10px; }
-  .country { font-size:10px; margin:3px 0 7px; }
-  .card-controls { flex-direction:column; gap:5px; }
-  .card-controls button { font-size:10px; gap:3px; width:100%; }
+  .card-grid { gap:12px 4px; }
+  .card-tile .card-caption { font-size:11px; margin-top:5px; }
   .image-placeholder { font-size:9px; gap:8px; }
   .placeholder-mark { font-size:24px; }
   .collection-summary { gap:12px; font-size:11px; }

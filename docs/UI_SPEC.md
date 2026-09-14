@@ -59,7 +59,7 @@ Requirements:
 - filter controls
 - Owned state
 - Watching state
-- card tap opens detail
+- future card-body detail navigation (not implemented by tile refinement)
 
 Initial filters:
 - All
@@ -80,13 +80,20 @@ First functional target:
 
 Placeholders must not look like a failed image request.
 
-## Card interaction
+## Canonical visual-checklist tile
 
-Default recommendation:
+The CardBrowser tile is the canonical Phase 1 component. Future agents must extend it rather than redesign it during checklist expansion.
 
-- tapping the card body opens details
-- Owned and Watching use separate clear controls
-- Owned and Watching can both be true
+- Dense image-led gallery, four columns on mobile, with narrow horizontal gaps and no surrounding information panels.
+- Card image or intentional placeholder dominates the tile. Immediately beneath it, show only card number and player name (for example, #10 Lionel Messi), wrapping naturally for long names.
+- No country/team labels, verification badges, per-card status text, redundant metadata or full-width controls beneath the image.
+- Owned: checkmark icon overlaid top-left; subtle inactive appearance and solid green/white active appearance.
+- Watching: star icon overlaid top-right; outlined inactive star and filled gold active appearance.
+- Compact 24px visible icons sit inside larger hit areas: 44px high, up to 44px wide, limited to half the image width so the two controls never overlap at four-column mobile sizes. At the narrow tested width this is approximately 40px wide. Native buttons expose descriptive labels, aria-pressed, keyboard activation and visible focus.
+- Stable toggle labels such as “Mark Lionel Messi as owned” and “Watch Lionel Messi” combine with aria-pressed to communicate state. Owned and Watching are independent and may both be active.
+- Preserve stable IDs and boxscout:collection:v1 persistence. Do not tie collection state to tile index or search result order.
+
+Overlay buttons are siblings of the image/body, not children of a clickable detail link; their click events do not bubble into a future body action. A future detail feature should make only the image/body its own link. No card-detail route or interaction is added by this refinement.
 
 ## Card detail — Phase 1 direction
 

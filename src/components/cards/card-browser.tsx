@@ -39,11 +39,17 @@ export function CardBrowser({ cards }: { cards: readonly Card[] }) {
       <div className="card-grid">{visible.map(card => {
         const state = collection[card.id] ?? emptyCardState;
         return <article className="card-tile" key={card.id} aria-label={card.playerName + ' card ' + card.cardNumber}>
-          <CardImage card={card} /><p className="card-number">#{card.cardNumber}</p><h3>{card.playerName}</h3><p className="country">{card.country}</p>
-          <div className="card-controls">
-            <button disabled={!ready} aria-label={'Owned: ' + card.playerName + ' #' + card.cardNumber} aria-pressed={state.owned} onClick={() => toggle(card.id, 'owned')}><span aria-hidden="true">{state.owned ? '✓' : '+'}</span> Owned</button>
-            <button disabled={!ready} aria-label={'Watching: ' + card.playerName + ' #' + card.cardNumber} aria-pressed={state.watched} onClick={() => toggle(card.id, 'watched')}><span aria-hidden="true">{state.watched ? '★' : '☆'}</span> Watch</button>
+          <div className="card-visual">
+            <CardImage card={card} />
+            {/* Sibling controls leave the image/body free for future detail navigation. */}
+            <button className="card-toggle card-owned" disabled={!ready} aria-label={'Mark ' + card.playerName + ' as owned'} aria-pressed={state.owned} onClick={event => { event.stopPropagation(); toggle(card.id, 'owned'); }}>
+              <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
+            </button>
+            <button className="card-toggle card-watching" disabled={!ready} aria-label={'Watch ' + card.playerName} aria-pressed={state.watched} onClick={event => { event.stopPropagation(); toggle(card.id, 'watched'); }}>
+              <span aria-hidden="true"><svg viewBox="0 0 20 20" fill={state.watched ? 'currentColor' : 'none'}><path d="m10 2 2.5 5.1 5.6.8-4.05 3.95.95 5.6-5-2.65-5 2.65.95-5.6L1.9 7.9l5.6-.8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg></span>
+            </button>
           </div>
+          <h3 className="card-caption"><span className="card-number">#{card.cardNumber}</span> {card.playerName}</h3>
         </article>;
       })}</div>}
   </>;

@@ -180,3 +180,7 @@ Start with the existing grid and search. If a meaningful regression is measured,
 No new product decision is needed for this conservative proposal. Approval authorizes the bounded workflow, not invented records or silent source-conflict resolution. If required source access fails or evidence cannot substantiate all 500, keep the current canonical sample and explain the blocker.
 
 This planning task changes only this document. Implementation, application/data/test changes and the AGENTS active-plan pointer wait for Justin's approval.
+
+## Approved tile prerequisite
+
+The Card Grid Tile Refinement prerequisite establishes the canonical image-led tile in UI_SPEC.md: corner Owned/Watching icons and number/name-only captions. Plan 003 must preserve that component. Its 500-card data scope is unchanged; checklist ingestion has not started.
