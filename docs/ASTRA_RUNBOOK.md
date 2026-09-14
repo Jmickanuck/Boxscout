@@ -256,3 +256,7 @@ Prefer free/low-cost hosting early and minimal paid infrastructure. Use determin
 Use data/imports/golden-product-images/README.md for the small offline image process. Run images:check before builds (prebuild enforces it). Review candidate provenance, exact match and rights independently. Only explicit grants permitting this static/Git distribution can produce public images. Do not persist unknown-rights binaries or put private grant documents in Git. Zero public images is a valid foundation result. New acquisition still requires adequate rights and approved scope.
 
 Future supervised Add Product must reuse candidate normalization and review, not build a new catalogue/UI per sealed configuration. Preserve the approved long-term product directions in PRODUCT.md while keeping current feature scope bounded.
+
+## Variant import workflow
+
+Use data/imports/golden-product-variants/README.md. Run variants:check (also enforced by prebuild), checklist:check and images:check. Review exact family coverage and discrepancies before generation. Never promote release membership to box eligibility. Base/default IDs preserve collection v1 compatibility. Future variant-detail and finite-copy work requires a separate approved task.

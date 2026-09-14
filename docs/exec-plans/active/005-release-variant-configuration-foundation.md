@@ -1,3 +1,9 @@
+# Approved implementation amendments — 2026-09-14
+
+Justin approved implementation with these superseding decisions: existing v1 ownership means Base/default, never variant unspecified; retain stable keys without destructive migration. Use complete source-verified pilot families, including unnumbered and /99, /25, /5 and 1/1 variants. The implemented bounded selection is 559 entries / 1,643 variants (see GOLDEN_PRODUCT.md); Aces Orange/Green replace the proposed larger Base Pink Disco family, keeping every included family complete. No physical-copy expansion. Eight release configurations share the same universe; missing eligibility remains unknown. Preserve future dedicated variant pages and Variant → FiniteInstance → SurfaceObservation → Evidence in canonical docs without implementing those features. No Supabase, images, accounts, sales/values, depletion or scores.
+
+The original proposal below is retained as history; its unspecified-ownership and numeric pilot proposal are superseded by this section.
+
 # Execution Plan 005 — Release, Variant and Configuration Foundation
 
 ## Status and approval boundary
@@ -154,3 +160,15 @@ Completion after implementation: review diff, coherent commit(s), push origin/ma
 ## Planning-task verification
 
 For this prose-only task, review document consistency, source links, whitespace and the single-file diff. Application tests/build are not rerun because no application or data files change. Commit this plan only, push normally, fetch and compare main, origin/main and live remote main; confirm clean working tree. Stop for explicit approval. The pilot scope, grouping UX and legacy unspecified ownership treatment above are proposals for that approval, not implemented behavior.
+
+## Implementation verification — 2026-09-14
+
+Implemented 559 entries, 1,643 variants, eight configuration records and 500 evidenced NPP Red Disco inclusion edges. Base/default variant IDs are identical to prior storage keys; all existing 500 base records remain unchanged. Full named pilot subsets and parallel families are documented in GOLDEN_PRODUCT.md and the import README. No new images, physical-instance records, accounts, market features or services.
+
+Lint, typecheck, 44 tests and production build pass; prebuild enforces base replay, variant replay and image checks. Import review must be explicitly approved with no unresolved conflicts. Source refresh adapter emits unapproved output. Git/Windows line endings are normalized when checking generated output.
+
+Local production checks: 375×812 and 390×844 preserve four columns (79px and 82.75px), no horizontal overflow; desktop columns 242px. Base/Messi search, Red Disco, autograph groups, /25+Aces intersection, probable Mastermind eligibility, unknown Hobby eligibility and independent Base/parallel Owned/Watching passed. Refresh preserved both editions separately. Test flags restored. Both palettes remained readable. Scrolling through the 500-tile family showed no visible degradation or console warnings/errors.
+
+Measured on this PC: generated server fixture 1,005,948 bytes; factual input approximately 377 KB. Browser projection 512,360 bytes / 26,038 gzip estimate. Local production HTML+React payload before 1,213,676 bytes / 45,230 gzip; pilot 1,132,166 bytes / 52,795 gzip (about 7.6 KB compressed increase). These are controlled local size estimates, not CDN transfer/LCP measurements. Across 100 domain filter runs: p95 default 0.46ms, Red Disco 0.73ms, probable eligibility 4.38ms, all pilot variants 0.52ms. Browser heap and navigation timing APIs were unavailable through the inspection tool; no field-memory/INP claim. Default renders 500, never the future 55K universe.
+
+The final completion report records GitHub SHA synchronization and Vercel Ready verification after push. Further work requires a new approval.

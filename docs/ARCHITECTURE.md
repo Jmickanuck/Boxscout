@@ -219,3 +219,9 @@ Image metadata lives in a separate manifest and generated public sidecar; the ch
 Approved pilot binaries are content-hashed, bounded WebP masters in public/card-images; Next.js handles responsive lazy delivery. The offline processor uses the pinned Sharp version already present through Next.js. Original/private source files never belong in public/ or Git. Storage keys and metadata are separate so object storage can later replace local delivery without replacing the grid. See [ADR 005](decisions/005-image-asset-rights-and-delivery.md).
 
 Future Add Product remains supervised and adapter-based: discovery → candidates → shared validation/review → canonical records. A Release owns shared Cards and multiple Configurations; eligibility belongs to Configuration/Variant relationships. Future accounts/collections, sales/valuations and finite surfaced evidence use separate repositories referencing Card → Variant → FiniteInstance. No new product-specific copy of catalogue identity or UI.
+
+## Plan 005 reusable fixture pipeline
+
+Reviewed factual import → shared checklist/variant validation → generated server fixture → repository browsing projection → existing Cards grid. Product-specific workbook extraction remains outside shared normalization. The compact browser projection omits evidence text and locators; full provenance stays in the canonical fixture and linked source inventory. No live ingestion during requests and no new service/dependency.
+
+The image pipeline validates exact variants from the same canonical targets. Collection storage remains the existing v1 repository keyed by collectible variant identity, with default IDs deliberately preserving old keys. Dedicated variant pages, account adapters, sale/value observations and finite-instance evidence are later vertical slices. Future supervised Add Product should reuse these boundaries, not clone a checklist per sealed box.

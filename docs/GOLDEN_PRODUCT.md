@@ -98,3 +98,11 @@ The lightweight, offline replayable importer validates coverage, base membership
 ## Plan 004 image foundation
 
 One Panini promotional image URL was screened as a discovery reference; no exact base identity or public reuse permission was established. No third-party image binary was retained. Zero card-target candidates were promoted and zero public card images are approved. All 500 cards retain placeholders; source coverage is not fabricated. See data/imports/golden-product-images/discovery.json. The reusable approval/generation/rendering path is exercised with synthetic test pixels in temporary directories, never presented as real cards. Configuration mapping and eligibility remain unchanged.
+
+## Plan 005 reviewed pilot
+
+559 checklist entries: Base 500, Base Variations 25, Aces 25, 1994 Team USA Signatures nine. 1,643 variants: 559 defaults; Base Red Disco /99 (500); Base Black /1 (500); Aces Silver unnumbered (25), Orange /25 (25), Green /5 (25); Team USA Silver (nine, Tony Meola /199 and eight /75). Each imported family is complete, not first-N sampling. Original 500 Base IDs and local flags remain compatible.
+
+Eight release configuration records: NPP Mega, Hobby, FOTL, Choice, Hobby Mega, DSG Mega, NPP Blaster and NPP Counter Display. The last two Mega channel families (Hobby Mega/DSG) remain PROBABLE at registry level; supported manufacturer families are VERIFIED. Only 500 Base Red Disco → NPP Mega inclusion claims are promoted here. Other mappings remain UNKNOWN; no unsupported exclusions. The exact Mastermind listing remains PROBABLE NPP.
+
+All 59 new entry names/countries agree across GTS and Checklist Insider after whitespace normalization. The manufacturer workbook supplies per-record parallel existence and sequence; secondary lists corroborate family structure. Team USA Silver has legitimate mixed print runs, not a conflict. Existing Plan 003 name resolutions remain unchanged. No images acquired; all imagery remains placeholders. The full release and other eligibility relationships remain incomplete by design.

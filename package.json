@@ -13,7 +13,9 @@
     "checklist:check": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json --check",
     "images:generate": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json",
     "images:check": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json --check",
-    "prebuild": "npm run images:check"
+    "prebuild": "npm run checklist:check && npm run variants:check && npm run images:check",
+    "variants:generate": "node scripts/checklists/generate-variants.ts",
+    "variants:check": "node scripts/checklists/generate-variants.ts --check"
   },
   "dependencies": {
     "next": "16.3.5",

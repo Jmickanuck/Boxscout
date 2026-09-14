@@ -1,0 +1,13 @@
+import type { Card, VerificationState } from './catalog.ts';
+export const entryTypes = ['BASE','INSERT','AUTOGRAPH','RELIC','MEMORABILIA','VARIATION','OTHER'] as const;
+export type EntryType = typeof entryTypes[number];
+export type ChecklistEntry = Card & { entryType: EntryType; variationOfEntryId: string | null };
+export type Variant = Readonly<{ id: string; entryId: string; parallelName: string; isDefault: boolean; numbering: 'NUMBERED'|'UNNUMBERED'|'UNKNOWN'; serialTotal: number|null; autograph: boolean; relic: boolean|null; verificationState: VerificationState; sourceIds: readonly string[]; locator: string; checkedAt: string }>;
+export type Confidence = 'VERIFIED'|'PROBABLE'|'UNKNOWN';
+export type ReleaseConfiguration = Readonly<{ id:string; releaseId:string; name:string; confidence:Confidence; sourceIds:readonly string[] }>;
+export type VariantEligibility = Readonly<{ id:string; configurationId:string; variantId:string; status:'INCLUDED'|'EXCLUDED'|'UNKNOWN'|'CONFLICTING'; confidence:Confidence; sourceIds:readonly string[]; locator:string; rationale:string; checkedAt:string }>;
+export type CatalogueSource = Readonly<{ id:string; name:string; url:string; checkedAt:string }>;
+export type VariantData = { entries: ChecklistEntry[]; variants: Variant[]; configurations: ReleaseConfiguration[]; eligibility: VariantEligibility[]; sources: CatalogueSource[] };
+export type BrowseEntry = Pick<ChecklistEntry,'id'|'releaseId'|'cardNumber'|'playerName'|'country'|'subset'|'entryType'|'sortOrder'>;
+export type BrowseVariant = Pick<Variant,'id'|'entryId'|'parallelName'|'isDefault'|'numbering'|'serialTotal'>;
+export type BrowseData = { entries: BrowseEntry[]; variants: BrowseVariant[]; configurations: ReleaseConfiguration[]; eligibility: Pick<VariantEligibility,'configurationId'|'variantId'|'status'|'confidence'>[] };

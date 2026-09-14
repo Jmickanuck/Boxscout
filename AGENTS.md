@@ -70,7 +70,7 @@ If a command does not yet exist, do not invent a passing result. State that it i
 
 Read:
 
-`docs/exec-plans/active/004-card-image-asset-foundation.md`
+`docs/exec-plans/active/005-release-variant-configuration-foundation.md`
 
 ## Monetization and cost principles
 

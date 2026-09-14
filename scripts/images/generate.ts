@@ -77,7 +77,9 @@ export async function generateImages(options: GenerationOptions): Promise<readon
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const manifestPath = process.argv[2]; if (!manifestPath) throw new Error('Usage: generate.ts manifest.json [--check] [--input-dir=PATH]');
   const { cards } = await import('../../src/data/fixtures/generated/golden-product-base.ts');
+  const { variantData } = await import('../../src/data/fixtures/generated/golden-product-variants.ts');
+  const targets = [...cards,...variantData.entries].map(card=>({...card,variantIds:variantData.variants.filter(v=>v.entryId===card.id).map(v=>v.id)}));
   const inputArg = process.argv.find(arg=>arg.startsWith('--input-dir='));
-  const images = await generateImages({manifestPath:resolve(manifestPath),inputDirectory:resolve(inputArg?.slice(12) ?? '.image-inputs'),publicDirectory:resolve('public/card-images'),outputPath:resolve('src/data/fixtures/generated/golden-product-images.ts'),targets:cards,check:process.argv.includes('--check') || process.argv.includes('--replay'),replay:process.argv.includes('--replay')});
+  const images = await generateImages({manifestPath:resolve(manifestPath),inputDirectory:resolve(inputArg?.slice(12) ?? '.image-inputs'),publicDirectory:resolve('public/card-images'),outputPath:resolve('src/data/fixtures/generated/golden-product-images.ts'),targets,check:process.argv.includes('--check') || process.argv.includes('--replay'),replay:process.argv.includes('--replay')});
   console.log('Image assets verified: '+images.length+' public primaries; '+images.reduce((n,i)=>n+i.bytes,0)+' bytes');
 }

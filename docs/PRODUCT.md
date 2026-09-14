@@ -155,3 +155,9 @@ Future risk/reward intelligence combines dated sealed price, configuration-eligi
 Scale through a supervised Add Product/import workflow: identify release/configuration → source observations → normalize candidates → validate/review → promote canonical records → verify the existing product surfaces. Reuse the ingestion pattern instead of one-off product scripts. These directions are not permission to implement accounts, sales, valuation, tracking or risk/reward during Plan 004.
 
 Plan 004 image success is a reusable, rights-controlled foundation. Zero cleared public images is acceptable; counts never weaken publication requirements.
+
+## Plan 005 approved direction
+
+The Cards pilot now separates release checklist entries, exact collectible variants and configuration eligibility. Base/default ownership preserves all prior local flags. The bounded pilot is not the complete insert/autograph/parallel release universe.
+
+Every exact variant should eventually have a dedicated detail page with identity, imagery, serial edition, eligible configurations, sightings/listings, confirmed sales, raw/graded context, values/history, surfaced serial evidence, factual context and personal collection controls. Future configuration intelligence combines current sealed price, box rules, exact eligible variants, market values, surfaced finite instances and confidence. No EV, Remaining Chase Index, ranking score, detail page, accounts or market ingestion is added now.
