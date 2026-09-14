@@ -1,0 +1,110 @@
+[
+  {
+    "id": "base-93-name",
+    "cardNumber": "93",
+    "field": "playerName",
+    "observed": {
+      "gts": "Marquinhos (D)",
+      "ci": "Marquinhos",
+      "tcdb": "Marquinhos"
+    },
+    "value": "Marquinhos",
+    "status": "RESOLVED",
+    "rationale": "Workbook includes a player-disambiguation suffix. CI and TCDB agree on the display name at the same base number and country. Preserve the suffix in source evidence, not in the player display name.",
+    "evidenceSourceIds": [
+      "ci",
+      "tcdb"
+    ],
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "base-105-name",
+    "cardNumber": "105",
+    "field": "playerName",
+    "observed": {
+      "gts": "Anthony rdon",
+      "ci": "Anthony Gordon",
+      "tcdb": "Anthony Gordon"
+    },
+    "value": "Anthony Gordon",
+    "status": "RESOLVED",
+    "rationale": "GTS truncates the name as Anthony rdon. CI and TCDB base #105 independently list Anthony Gordon, England; retain the workbook spelling as evidence, use the corroborated complete name.",
+    "evidenceSourceIds": [
+      "ci",
+      "tcdb"
+    ],
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "base-139-name",
+    "cardNumber": "139",
+    "field": "playerName",
+    "observed": {
+      "gts": "Aiden Oâ€™Neill",
+      "ci": "Aiden O’Neill",
+      "tcdb": "Aiden O'Neill"
+    },
+    "value": "Aiden O’Neill",
+    "status": "RESOLVED",
+    "rationale": "GTS has mojibake in the apostrophe. CI prints a curly apostrophe; TCDB base #139 prints a straight apostrophe. Retain source strings; use the intact CI spelling. No general encoding-repair rule.",
+    "evidenceSourceIds": [
+      "ci",
+      "tcdb"
+    ],
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "base-186-name",
+    "cardNumber": "186",
+    "field": "playerName",
+    "observed": {
+      "gts": "Luis Suarez (COL)",
+      "ci": "Luis Suarez",
+      "tcdb": "Luis Suarez"
+    },
+    "value": "Luis Suarez",
+    "status": "RESOLVED",
+    "rationale": "Workbook includes a player-disambiguation suffix. CI and TCDB agree on the display name at the same base number and country. Preserve the suffix in source evidence, not in the player display name.",
+    "evidenceSourceIds": [
+      "ci",
+      "tcdb"
+    ],
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "base-483-name",
+    "cardNumber": "483",
+    "field": "playerName",
+    "observed": {
+      "gts": "Ladislav Krejci (D)",
+      "ci": "Ladislav Krejci",
+      "tcdb": "Ladislav Krejci"
+    },
+    "value": "Ladislav Krejci",
+    "status": "RESOLVED",
+    "rationale": "Workbook includes a player-disambiguation suffix. CI and TCDB agree on the display name at the same base number and country. Preserve the suffix in source evidence, not in the player display name.",
+    "evidenceSourceIds": [
+      "ci",
+      "tcdb"
+    ],
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "base-483-country",
+    "cardNumber": "483",
+    "field": "country",
+    "observed": {
+      "gts": "Czechia",
+      "ci": "Czechia",
+      "tcdb": "Czech Republic"
+    },
+    "value": "Czechia",
+    "status": "RESOLVED",
+    "rationale": "Alternative country labels refer to the same team. Preserve TCDB wording; retain the matching distributor and CI label. No global country alias rewriting.",
+    "evidenceSourceIds": [
+      "gts",
+      "ci"
+    ],
+    "checkedAt": "2026-09-14"
+  }
+]

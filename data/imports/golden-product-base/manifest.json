@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "panini-prizm-fifa-world-cup-2026",
+  "subset": "Base",
+  "idPrefix": "panini-prizm-fifa-world-cup-2026-base-",
+  "expectedCount": 500,
+  "checkedAt": "2026-09-14",
+  "reviewStatus": "REVIEWED",
+  "sources": [
+    {
+      "id": "gts",
+      "sourceName": "GTS Distribution",
+      "authority": "OFFICIAL_DISTRIBUTOR",
+      "complete": true,
+      "sourceUrl": "https://gogts.net/wp-content/uploads/2026/06/2026-Panini-Prizm-FIFA-World-Cup-Soccer-Cards-Checklist.xls",
+      "checkedAt": "2026-09-14",
+      "retrievedAt": "2026-09-14T21:31:21.269Z",
+      "sha256": "640b016bb22918df24f87a99c78573dfcd778ef05cab5605c63677b371d7b52f",
+      "extract": "raw/gts.json",
+      "extractSha256": "6278e0e7c5e24038b2b3cb2eec5c198318d2205a93dd261c1ce4900614d4e94e"
+    },
+    {
+      "id": "ci",
+      "sourceName": "Checklist Insider",
+      "authority": "CHECKLIST_DATABASE",
+      "complete": true,
+      "sourceUrl": "https://www.checklistinsider.com/2026-panini-prizm-fifa-world-cup-soccer",
+      "checkedAt": "2026-09-14",
+      "retrievedAt": "2026-09-14T21:31:21.596Z",
+      "sha256": "d41917029507e9f4fb689037ac0cf8f706bf58c266c403fe14605b1c2c64b7d4",
+      "extract": "raw/ci.json",
+      "extractSha256": "1f0c2f5333e416de47f881031bd125938c6e3e1d952d02b9d6938d17bfb3ccf6"
+    },
+    {
+      "id": "tcdb",
+      "sourceName": "Trading Card Database",
+      "authority": "CHECKLIST_DATABASE",
+      "complete": false,
+      "sourceUrl": "https://www.tcdb.com/Checklist.cfm/sid/614170/2026-Panini-Prizm-FIFA-World-Cup",
+      "checkedAt": "2026-09-14",
+      "retrievedAt": "2026-09-14T21:38:30.669Z",
+      "sha256": null,
+      "extract": "raw/tcdb.json",
+      "extractSha256": "29b8c574ce5eb3bf1a213bb7eeb21c9ddfe9f1a5dd46d2b1aadf4fd8e7f7384c"
+    }
+  ],
+  "output": "../../../src/data/fixtures/generated/golden-product-base.ts"
+}

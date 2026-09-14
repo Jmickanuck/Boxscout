@@ -46,16 +46,16 @@ test('storage failures propagate instead of claiming a save succeeded', () => {
 });
 test('search handles case, whitespace, card number, no matches and reset', () => {
   assert.deepEqual(searchCards(goldenCards,'  mEsSi ').map(c=>c.cardNumber),['10']);
-  assert.deepEqual(searchCards(goldenCards,'#24').map(c=>c.playerName),['Rayan Cherki']);
+  assert.deepEqual(searchCards(goldenCards,'#24').map(c=>c.cardNumber),['24','124','224','240','241','242','243','244','245','246','247','248','249','324','424']);
   assert.equal(searchCards(goldenCards,'not-a-player').length,0);
-  assert.equal(searchCards(goldenCards,'').length,24);
+  assert.equal(searchCards(goldenCards,'').length,500);
 });
-test('sample identities have stable unique IDs, source scope, and honest unknowns', () => {
-  assert.equal(goldenCards.length,24);
-  assert.equal(new Set(goldenCards.map(c=>c.id)).size,24);
+test('base identities have stable unique IDs, source scope, and honest unknowns', () => {
+  assert.equal(goldenCards.length,500);
+  assert.equal(new Set(goldenCards.map(c=>c.id)).size,500);
   for(const card of goldenCards) {
     assert.equal(card.releaseId,goldenProduct.release.id);
-    assert.equal(card.provenance.length,2);
+    assert.ok(card.provenance.length >= 2);
     for(const source of card.provenance) {
       assert.equal(source.verificationState,'VERIFIED');
       assert.ok(source.sourceUrl.startsWith('https://'));

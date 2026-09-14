@@ -2,7 +2,7 @@
 
 ## Status and authorization
 
-PROPOSED — awaiting Justin's implementation approval. Planning researched on 2026-09-14. Plan 002 and the deployment are accepted as complete. This task creates only this proposal; it does not implement ingestion, expand fixtures, or change the application.
+IMPLEMENTED — local verification passed on 2026-09-14; remote/deployment verification is required before task completion. Planning researched on 2026-09-14. Plan 002 and the deployment are accepted as complete. This task creates only this proposal; it does not implement ingestion, expand fixtures, or change the application.
 
 Baseline: main at 89702c8ff4eabc85c05e2a76529be35d66e87af2, synchronized with origin/main and clean before planning. Existing production site: https://boxscout.vercel.app, with GitHub main connected to automatic Vercel deployments. Follow the permanent GitHub push/verification completion gate in AGENTS.md and ASTRA_RUNBOOK.md.
 
@@ -168,7 +168,7 @@ Start with the existing grid and search. If a meaningful regression is measured,
 7. Required commands pass; full diff is reviewed; coherent commits are pushed normally to GitHub. Fetch and compare local main, origin/main and live remote main; working tree is clean. Stop on unexpected remote divergence, never force-push.
 8. Because main deploys automatically, verify Vercel production Ready at the implementation commit and smoke-test Products → Overview → Cards/search/flags on the deployed origin. Report commit, data sources, reconciliation results, tests, performance observations and remaining gaps. Stop after Plan 003.
 
-## Unresolved issues and approval boundary
+## Planning-stage evidence gaps (historical; resolution below)
 
 - A Panini-hosted exact release export has not been located; official selector access needs another bounded attempt.
 - GTS download format, worksheet layout and 500-row contents are not yet inspected; direct article access encountered a challenge. No bypass is proposed.
@@ -179,8 +179,27 @@ Start with the existing grid and search. If a meaningful regression is measured,
 
 No new product decision is needed for this conservative proposal. Approval authorizes the bounded workflow, not invented records or silent source-conflict resolution. If required source access fails or evidence cannot substantiate all 500, keep the current canonical sample and explain the blocker.
 
-This planning task changes only this document. Implementation, application/data/test changes and the AGENTS active-plan pointer wait for Justin's approval.
+The initial planning task changed only this document. Justin subsequently approved implementation with the amendments below.
 
 ## Approved tile prerequisite
 
-The Card Grid Tile Refinement prerequisite establishes the canonical image-led tile in UI_SPEC.md: corner Owned/Watching icons and number/name-only captions. Plan 003 must preserve that component. Its 500-card data scope is unchanged; checklist ingestion has not started.
+The Card Grid Tile Refinement prerequisite establishes the canonical image-led tile in UI_SPEC.md: corner Owned/Watching icons and number/name-only captions. Plan 003 must preserve that component. Its 500-card data scope is unchanged; the implemented import preserves that component.
+
+## Approved implementation amendments
+
+Preserve the approved tile markup/styles, stable card IDs, collection v1 state, routes and search. Use reusable normalization, validation, provenance and canonical output with a product-specific source adapter. Retain factual extracts, manifests, hashes and discrepancies, not complete third-party pages. Keep downloaded workbooks/pages temporary unless retention is justified. Maintain Card → Variant → FiniteInstance and separate personal collection boundaries without adding speculative fields, market/valuation/ownership features or risk/reward calculations. No excluded scope additions. Measure the full 500-card local/deployed experience; verify GitHub and Vercel at completion.
+
+
+## Implementation and local verification — 2026-09-14
+
+- Complete 500 base records from GTS XLS plus an independent CI factual extract. Six explicit reviewed resolutions (five player-name differences, one equivalent country label), corroborated through targeted TCDB base rows; no unresolved substantive conflicts in the imported observations. Full source evidence and limitations: `data/imports/golden-product-base/README.md`.
+- `scripts/checklists/normalize.ts` and `generate.ts` provide reusable, release-independent validation, normalization, resolution gating, provenance and canonical serialization. A separate Prizm adapter reads temporary source files. No application dependency was added. A temporary xlrd 2.0.2 parser is used only for source extraction.
+- Original source downloads stay outside Git. Committed factual extracts have SHA-256 pins and locators; generation uses no network. Re-extracting both full sources reproduced the pinned factual-extract hashes. LF attributes protect hash and generated-file replay across Windows/Linux.
+- All 24 original IDs/names/countries checked against the saved legacy baseline; collection v1 is unchanged. Existing Messi Owned + Watching flags saved before expansion survived a local refresh with 500 cards. New #500 flags also persisted independently.
+- Cards/Overview copy reflects complete base coverage; the tile markup/styles, routes, storage, search domain, images, configuration and price fixtures are unchanged. Card → Variant → FiniteInstance and canonical/user-state separation remain intact.
+- `npm run lint`, `npm run typecheck`, `npm test` (27 tests) and `npm run build` passed. Tests include invalid membership, duplicate/missing numbers, missing provenance/names/country, changed evidence, unresolved disputes, legacy compatibility, full-range search, byte reproducibility, alternate-release reuse and fail-before-write behavior.
+- Local production smoke: 500 rendered cards; search Messi, Ronaldo, Svensson, #500 and no-match/reset; early/late independent flags and refresh persistence; intentional placeholders; no console warnings/errors. 375×812 and 390×844 retain four columns, with no horizontal overflow. Desktop 1280×900 also passed. Mid-grid and end-of-grid scrolling inspected without obvious stalls.
+- Measured on this Windows desktop in the in-app Chromium browser, with mobile viewport sizing (no hardware or network throttling): local search input-to-status automation round trips 10–47 ms; repeated full-grid toggle round trips 293–306 ms versus 267–282 ms for the deployed 24-card baseline. Browser automation/actionability overhead is included, so these are not isolated React timings. The small difference did not justify pagination, virtualization or new libraries.
+- Three local HTTP page reads completed in 51–86 ms. 500-card HTML including hydration data is about 1.21 MB uncompressed / 44.5 KB estimated gzip, compared with roughly 47.5 KB / 5.25 KB for 24 cards. Eight JS scripts total about 595 KB / 184 KB estimated gzip, essentially unchanged from baseline. These gzip figures are local compression estimates, not measured network transfer sizes. The full grid contains roughly 8,565 DOM nodes; no obvious memory-related instability appeared during repeated interactions. Exact heap usage, sustained real-iPhone performance and slow-network behavior are not measured.
+
+Required final steps: review the entire diff, commit coherently, push main without rewriting history, compare live GitHub main with local main, verify Vercel Ready for that commit, repeat deployed smoke tests and confirm a clean tree. The final task report records the resulting SHA, deployment status and deployed observations. No follow-on work is authorized by this plan.

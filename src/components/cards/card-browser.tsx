@@ -34,8 +34,8 @@ export function CardBrowser({ cards }: { cards: readonly Card[] }) {
     {error && <p role="alert" className="notice">{error}</p>}
     <label className="search-label" htmlFor="card-search">Search checklist</label>
     <div className="search-box"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Player or card number" value={query} onChange={event => setQuery(event.target.value)} /></div>
-    <div className="grid-heading"><p role="status">{visible.length} of {cards.length} cards</p><span>BASE · SAMPLE</span></div>
-    {visible.length === 0 ? <div className="empty-state"><h3>No matching cards</h3><p>Try another player or card number in this sample.</p><button className="button" onClick={() => setQuery('')}>Clear search</button></div> :
+    <div className="grid-heading"><p role="status">{visible.length} of {cards.length} cards</p><span>BASE</span></div>
+    {visible.length === 0 ? <div className="empty-state"><h3>No matching cards</h3><p>Try another player or card number in this checklist.</p><button className="button" onClick={() => setQuery('')}>Clear search</button></div> :
       <div className="card-grid">{visible.map(card => {
         const state = collection[card.id] ?? emptyCardState;
         return <article className="card-tile" key={card.id} aria-label={card.playerName + ' card ' + card.cardNumber}>

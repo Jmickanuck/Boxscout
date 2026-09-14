@@ -8,7 +8,9 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/*.test.ts"
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "checklist:generate": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json",
+    "checklist:check": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json --check"
   },
   "dependencies": {
     "next": "16.3.5",

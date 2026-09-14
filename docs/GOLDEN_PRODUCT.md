@@ -86,3 +86,10 @@ Golden Product #1 is successful when Justin can use the real product page on his
 - Six packs × seven cards = 42 is qualified as probable applicability, with source-specific specifications retained. The five retailer average claims are separate from sell-sheet guarantee claims; exact-box guarantees remain unresolved. SCHEELS' eight Prizms includes six Disco, never eight plus six.
 - Two genuine Mastermind checks recorded CAD $119.99 for one box at 2026-09-14T20:20:41.132Z and 2026-09-14T20:30:25.573Z. Both are retained. Conflicting stock signals mean availability UNKNOWN; shipping is separate and tax treatment unknown. These are dated listing observations.
 - The existing 24 base cards, placeholders and independent local flags are unchanged. Full checklist, variant eligibility, images and other Golden Product completion items above remain deferred beyond this plan.
+
+
+## Plan 003 reviewed base coverage — 2026-09-14
+
+The base sample is replaced by 500 verified release-level base identities (#1–500). All 24 prior stable IDs are unchanged. Distributor GTS and Checklist Insider supply complete factual extracts; TCDB supplies targeted discrepancy corroboration. Five name differences and one equivalent country-label difference are explicitly reviewed in `data/imports/golden-product-base/discrepancies.json`. No unresolved substantive differences remain in those imported observations. Future source corrections must be reviewed rather than silently applied.
+
+The lightweight, offline replayable importer validates coverage, base membership, provenance, numeric order, source hashes and legacy identity compatibility. The canonical mobile tile, search and browser-local collection v1 remain unchanged. Placeholders remain intentional. This completes base coverage only; Mega mapping remains PROBABLE, individual-card eligibility UNKNOWN, and images/variants/chases and other completion goals above remain out of scope.

@@ -1,6 +1,6 @@
 # BoxScout
 
-Plans 001–002: a mobile-first Golden Product slice using Next.js, React, TypeScript, App Router and Tailwind. No database or authentication.
+Plans 001–003: a mobile-first Golden Product slice using Next.js, React, TypeScript, App Router and Tailwind. No database or authentication.
 
 ## Run locally
 
@@ -29,23 +29,28 @@ The test command uses Node's built-in test runner and TypeScript stripping. No e
 ## Boundaries
 
 - Server routes read catalogue data through `src/repositories/catalog-repository.ts`.
-- Typed facts and per-record provenance live in `src/data/fixtures/golden-product.ts`.
+- Typed facts are composed in `src/data/fixtures/golden-product.ts`; the reviewed base checklist is generated under `src/data/fixtures/generated/`.
 - Domain functions implement search, image publication checks and independent collection flags.
 - Browser storage is confined to the collection repository. Versioned saved data is validated; corrupt/unavailable storage produces a visible warning and is never silently overwritten.
 - The Cards client component handles interaction; canonical fixtures remain separate and immutable by type.
 
 ## Fixture provenance and limits
 
-24 base identities (#1–24), manually cross-checked on 2026-09-14:
+500 base identities (#1–500), cross-checked on 2026-09-14 through a reproducible import:
 
+- [GTS distributor workbook](https://gogts.net/wp-content/uploads/2026/06/2026-Panini-Prizm-FIFA-World-Cup-Soccer-Cards-Checklist.xls)
 - [Trading Card Database](https://www.tcdb.com/Checklist.cfm/sid/614170/2026-Panini-Prizm-FIFA-World-Cup)
 - [Checklist Insider](https://www.checklistinsider.com/2026-panini-prizm-fifa-world-cup-soccer)
 
-VERIFIED applies only to release/base checklist identity, number, player and country. This is not a full checklist, a variant list or a list of confirmed Mega pulls. Plan 002 adds sourced Mastermind SKU 256877 and retailer-reported UPC 746134202520. NPP mapping is PROBABLE: matching-UPC retailer descriptions corroborate the Panini NPP sell sheet, but no authoritative exact UPC-to-NPP bridge was found. Canonical manufacturer SKU/UPC and pack-count scalar fields remain null; attributed candidate specifications are separate. No card eligibility is inferred.
+VERIFIED applies only to release/base checklist identity, number, player and country. This is the complete base checklist, not a variant/insert list or a list of confirmed Mega pulls. Plan 002 adds sourced Mastermind SKU 256877 and retailer-reported UPC 746134202520. NPP mapping is PROBABLE: matching-UPC retailer descriptions corroborate the Panini NPP sell sheet, but no authoritative exact UPC-to-NPP bridge was found. Canonical manufacturer SKU/UPC and pack-count scalar fields remain null; attributed candidate specifications are separate. No card eligibility is inferred.
 
 No external product/card images are copied or loaded. Missing-image metadata and deliberate placeholders are used until publication rights and exact matching are established. The green product illustration is an abstract BoxScout placeholder, not product packaging.
 
-Card details, filters beyond search, Chases, Compare, other products and ingestion are deferred.
+Card details, filters beyond search, Chases, Compare, other products and image ingestion are deferred.
+
+## Checklist import (Plan 003)
+
+Run `npm run checklist:generate` to replay reviewed factual extracts offline, or `npm run checklist:check` to detect drift without writing. No new runtime dependency, network or Python is needed for replay. See [the import guide](data/imports/golden-product-base/README.md) for sources, six explicit resolutions, pinned hashes, temporary source extraction and reuse for future releases. All 24 existing IDs and `boxscout:collection:v1` are preserved. Canonical Card identity remains separate from personal ownership. The approved tile, search semantics and routes are unchanged.
 
 ## Configuration intelligence (Plan 002)
 

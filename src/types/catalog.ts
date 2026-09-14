@@ -1,6 +1,7 @@
 export type VerificationState = 'RAW' | 'CANDIDATE' | 'REVIEWED' | 'VERIFIED';
 export type Provenance = Readonly<{
   sourceName: string; sourceUrl: string; checkedAt: string;
+  sourceId?: string; locator?: string;
   verificationState: VerificationState; scope: string;
 }>;
 export type CardImage = Readonly<{
@@ -11,6 +12,7 @@ export type CardImage = Readonly<{
 export type Card = Readonly<{
   id: string; releaseId: string; cardNumber: string; playerName: string;
   country: string; subset: string; sortOrder: number;
+  verificationState: VerificationState; checkedAt: string; discrepancyIds: readonly string[];
   provenance: readonly Provenance[]; image: CardImage;
 }>;
 export type Release = Readonly<{
