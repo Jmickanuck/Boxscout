@@ -87,7 +87,7 @@ The CardBrowser tile is the canonical Phase 1 component. Future agents must exte
 - Dense image-led gallery, four columns on mobile, with narrow horizontal gaps and no surrounding information panels.
 - Card image or intentional placeholder dominates the tile. Immediately beneath it, show only card number and player name (for example, #10 Lionel Messi), wrapping naturally for long names.
 - No country/team labels, verification badges, per-card status text, redundant metadata or full-width controls beneath the image.
-- Owned: checkmark icon overlaid top-left; subtle inactive appearance and solid green/white active appearance.
+- Owned: checkmark icon overlaid top-left; subtle inactive appearance and solid green active fill with a contrasting checkmark.
 - Watching: star icon overlaid top-right; outlined inactive star and filled gold active appearance.
 - Compact 24px visible icons sit inside larger hit areas: 44px high, up to 44px wide, limited to half the image width so the two controls never overlap at four-column mobile sizes. At the narrow tested width this is approximately 40px wide. Native buttons expose descriptive labels, aria-pressed, keyboard activation and visible focus.
 - Stable toggle labels such as “Mark Lionel Messi as owned” and “Watch Lionel Messi” combine with aria-pressed to communicate state. Owned and Watching are independent and may both be active.
@@ -143,3 +143,14 @@ Only add virtualization/pagination if real performance testing shows it is neede
 Once Justin approves a Product page, Cards page, and Card tile, treat those as canonical references.
 
 Future agents should extend the established design rather than redesigning the product from scratch.
+
+
+## Canonical theme system
+
+Dark is BoxScout's primary appearance and the first-visit default, independent of system theme. Light is a polished alternative selected through the compact header control on every route. The control shows the current mode and exposes an accessible label naming the current mode and the switch action; keyboard focus remains visible.
+
+All component colors use shared semantic CSS variables in globals.css. Dark and Light use the same hierarchy, spacing, four-column grid and interaction structure. Text, forms, notices, provenance, placeholders and active/inactive collection controls must remain readable in both palettes. Owned uses a filled green treatment with a contrasting checkmark; Watching remains filled gold with a star. Keep 44px-high control targets and visible focus.
+
+Theme preference is separate from catalogue facts and boxscout:collection:v1. A reusable ThemePreferenceRepository validates and persists dark/light under boxscout:theme:v1. Missing, invalid or unreadable storage defaults to Dark; storage failure must not crash the app or claim persistence. The chosen mode still works for the current page when saving fails, with a visible status message. Other tabs synchronize via the storage event. Future account-backed preferences belong behind this boundary, not in components or catalogue data.
+
+Server HTML and default CSS are Dark. A small synchronous head script applies validated saved preference before body paint, using the repository's parser/key. No system-theme fallback, color transition, external theme dependency or hydration-time palette switch. Only the intentional root theme attribute hydration difference is suppressed. With JavaScript disabled, Dark remains readable; the toggle requires JavaScript.

@@ -70,7 +70,7 @@ If a command does not yet exist, do not invent a passing result. State that it i
 
 Read:
 
-`docs/exec-plans/active/003-complete-golden-product-base-checklist.md`
+`docs/exec-plans/active/theme-system.md`
 
 ## Monetization and cost principles
 
