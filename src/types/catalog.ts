@@ -1,10 +1,11 @@
+import type { PublicImage } from './images.ts';
 export type VerificationState = 'RAW' | 'CANDIDATE' | 'REVIEWED' | 'VERIFIED';
 export type Provenance = Readonly<{
   sourceName: string; sourceUrl: string; checkedAt: string;
   sourceId?: string; locator?: string;
   verificationState: VerificationState; scope: string;
 }>;
-export type CardImage = Readonly<{
+export type CardImage = Partial<Omit<PublicImage, 'assetUrl' | 'sourceUrl' | 'matchStatus' | 'usageStatus'>> & Readonly<{
   assetUrl: string | null; sourceUrl: string | null;
   matchStatus: 'CANDIDATE' | 'REVIEWED' | 'VERIFIED' | 'MISSING';
   usageStatus: 'INTERNAL_REFERENCE' | 'PUBLIC_ALLOWED' | 'USER_SUBMITTED' | 'OWNED_ASSET' | 'UNKNOWN_RIGHTS';

@@ -50,7 +50,7 @@ Before calling the Golden Product dataset complete:
 4. Model insert/subset structure.
 5. Model relevant variant/parallel structure.
 6. Map configuration eligibility.
-7. Add first 24–40 usable card image records.
+7. Add rights-cleared imagery through the reusable pipeline; coverage is conditional on permission, never a quota.
 8. Identify manually curated major chases.
 9. Add sealed-price observations.
 10. Preserve uncertainty where evidence conflicts.
@@ -93,3 +93,8 @@ Golden Product #1 is successful when Justin can use the real product page on his
 The base sample is replaced by 500 verified release-level base identities (#1–500). All 24 prior stable IDs are unchanged. Distributor GTS and Checklist Insider supply complete factual extracts; TCDB supplies targeted discrepancy corroboration. Five name differences and one equivalent country-label difference are explicitly reviewed in `data/imports/golden-product-base/discrepancies.json`. No unresolved substantive differences remain in those imported observations. Future source corrections must be reviewed rather than silently applied.
 
 The lightweight, offline replayable importer validates coverage, base membership, provenance, numeric order, source hashes and legacy identity compatibility. The canonical mobile tile, search and browser-local collection v1 remain unchanged. Placeholders remain intentional. This completes base coverage only; Mega mapping remains PROBABLE, individual-card eligibility UNKNOWN, and images/variants/chases and other completion goals above remain out of scope.
+
+
+## Plan 004 image foundation
+
+One Panini promotional image URL was screened as a discovery reference; no exact base identity or public reuse permission was established. No third-party image binary was retained. Zero card-target candidates were promoted and zero public card images are approved. All 500 cards retain placeholders; source coverage is not fabricated. See data/imports/golden-product-images/discovery.json. The reusable approval/generation/rendering path is exercised with synthetic test pixels in temporary directories, never presented as real cards. Configuration mapping and eligibility remain unchanged.

@@ -7,3 +7,5 @@ coverage/
 !.env.example
 next-env.d.ts
 *.log
+
+.image-inputs/

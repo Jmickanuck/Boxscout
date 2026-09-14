@@ -142,3 +142,16 @@ See [MONETIZATION.md](MONETIZATION.md) for the full strategy and [ADR 004](decis
 Basic product information, visual checklists, basic configuration information, basic current pricing, basic chase information and normal comparisons should remain free. Pro candidates provide additional depth, history, alerts and personalization; do not cripple the free product or immediately build subscriptions. Tentative US$8–12/month pricing may be tested later and is not committed.
 
 This strategy does not expand current Phase 1 scope or authorize affiliate routes, tracking, billing, B2B tools, data licensing or other implementation. Phase 1 still does not require revenue. Keep operating costs low until demand is proven and keep development subscriptions separate from runtime costs.
+
+
+## Approved long-term direction (deferred implementation)
+
+One Release supports multiple sealed Configurations. Configurations share canonical cards but differ in eligible variants; adding a configuration must not duplicate checklist identities. Future catalogue identity proceeds Card → Variant → FiniteInstance.
+
+Approved future capabilities include user accounts, variant-level collection ownership, recent card sales and valuation history, collection value by release/configuration, verified finite-card surfaced evidence and confirmed 1/1 depletion. Personal quantities, grading and ownership remain separate from canonical facts. A configuration collection-value view needs an explicit membership/eligibility rule and must not double-count shared cards.
+
+Future risk/reward intelligence combines dated sealed price, configuration-eligible chases/hit structure, supported market values and verified surfaced/depletion evidence with confidence. Confirmed depletion of a specific 1/1 requires verified unique identity and surfaced evidence; it says nothing about other unobserved chases. No fake EV or certainty from absence of evidence.
+
+Scale through a supervised Add Product/import workflow: identify release/configuration → source observations → normalize candidates → validate/review → promote canonical records → verify the existing product surfaces. Reuse the ingestion pattern instead of one-off product scripts. These directions are not permission to implement accounts, sales, valuation, tracking or risk/reward during Plan 004.
+
+Plan 004 image success is a reusable, rights-controlled foundation. Zero cleared public images is acceptable; counts never weaken publication requirements.

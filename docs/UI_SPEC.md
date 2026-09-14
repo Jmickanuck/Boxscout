@@ -75,7 +75,7 @@ Do not wait for full image coverage.
 
 First functional target:
 - complete structured checklist records
-- approximately 24–40 genuine usable images
+- approved real images when rights and exact matches are established; zero is acceptable for the foundation
 - honest placeholders for missing imagery
 
 Placeholders must not look like a failed image request.
@@ -154,3 +154,10 @@ All component colors use shared semantic CSS variables in globals.css. Dark and 
 Theme preference is separate from catalogue facts and boxscout:collection:v1. A reusable ThemePreferenceRepository validates and persists dark/light under boxscout:theme:v1. Missing, invalid or unreadable storage defaults to Dark; storage failure must not crash the app or claim persistence. The chosen mode still works for the current page when saving fails, with a visible status message. Other tabs synchronize via the storage event. Future account-backed preferences belong behind this boundary, not in components or catalogue data.
 
 Server HTML and default CSS are Dark. A small synchronous head script applies validated saved preference before body paint, using the repository's parser/key. No system-theme fallback, color transition, external theme dependency or hydration-time palette switch. Only the intentional root theme attribute hydration difference is suppressed. With JavaScript disabled, Dark remains readable; the toggle requires JavaScript.
+
+
+## Image asset foundation
+
+Preserve the canonical tile and both themes. The repository supplies only approved exact base-front images; all others remain intentional placeholders. Images use object-fit:contain, fixed aspect ratio, responsive sizes, explicit lazy loading and async decoding. The grid never uses source/original URLs. Error fallback is scoped to the failed asset URL, so a later replacement can load. Number/name and Owned/Watching overlays are unchanged.
+
+Required public credits appear below the gallery without adding tile metadata. Before accepting a license, verify it permits this placement. Test actual bright and dark imagery against overlay/focus contrast when cleared imagery becomes available. No real-image visual coverage is claimed when zero public assets qualify.

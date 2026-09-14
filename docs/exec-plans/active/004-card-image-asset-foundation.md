@@ -1,3 +1,7 @@
+# Approved implementation amendments
+
+Justin approved implementation on 2026-09-14. This supersedes the original planning-only status and image-count acceptance below. Success is the reusable model, pipeline, validation, rendering and independent rights controls. Zero public images is acceptable. No new storage service/backend or bulk acquisition. Update canonical long-term product direction now. Use targeted verification and complete the GitHub/Vercel publication gates. The original proposal below remains research context, not an image quota.
+
 # Execution Plan 004 — Card Image Asset Foundation
 
 ## Status, authority and scope
@@ -150,3 +154,14 @@ Image sizes above are planning assumptions until real cleared samples are proces
 ## Planning-task verification
 
 Only this proposed plan is authorized for the planning commit. Review document consistency, source links and Git whitespace diff; verify no application changes. Application tests are not rerun for this prose-only task. Commit, push origin/main normally, fetch and compare local/tracking/live remote SHA, confirm clean tree, then stop for approval. Do not start implementation automatically.
+
+
+## Implementation verification — 2026-09-14
+
+The amended foundation is implemented with zero public images. One official promotional URL was screened as an unassigned reference, no exact card-target candidate was established and no third-party binary was retained. Candidate/review normalization, explicit match/rights/approval gates, primary selection, content-hashed WebP generation and an isolated public projection are reusable. Synthetic test pixels prove positive generation/replay and actual component responsive/lazy markup without being published as card data.
+
+Targeted local browser checks passed at 375×812 and 390×844: 500 tiles, four columns (79px and 82.75px), no horizontal overflow, intentional placeholders, search for Messi/#500, independent flags and refresh persistence. Test flags restored. No console warnings/errors. There are no real image requests to measure; real-image loading, visual quality and long-scroll image memory remain unmeasured until rights-cleared assets exist.
+
+Route payload baseline (local production HTTP HTML, including embedded React payload): before 1,213,588 bytes, gzip estimate 45,176; after 1,213,676 bytes, gzip estimate 45,230 (+54 compressed bytes). Eight referenced script resources total 597,074 bytes uncompressed / 184,850 bytes independently gzipped. These are transfer-size estimates, not measured browser transfer or timings. Public pilot image payload: 0 bytes. Existing search/toggle unit checks are sub-millisecond on this PC; no field INP/LCP claim.
+
+Required lint, typecheck, 38 tests, checklist:check and production build passed; image checks are part of prebuild. Full replay requires permitted local originals, while deployment validates approved public output without those private files. The same processor already used by Next.js is explicitly pinned as a development dependency. Canonical long-term direction and ADR 005 are updated; no future features are implemented. Final GitHub/Vercel verification is recorded in the completion report.

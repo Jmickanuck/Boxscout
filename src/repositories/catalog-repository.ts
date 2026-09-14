@@ -1,3 +1,4 @@
+import { cardImageRepository } from './card-image-repository.ts';
 import { goldenCards, goldenProduct } from '../data/fixtures/golden-product.ts';
 import { configurationIntelligence, sealedPriceObservations } from '../data/fixtures/golden-product-configuration.ts';
 import { assessNppMapping } from '../domain/catalog/configuration-intelligence.ts';
@@ -19,5 +20,8 @@ export const catalogRepository: CatalogRepository = {
   listSealedPrices: productId => sealedPriceObservations.filter(item => item.productId === productId),
   listProducts: () => [reviewedProduct()],
   findProduct: slug => slug === goldenProduct.slug ? reviewedProduct() : undefined,
-  listReleaseCards: releaseId => goldenCards.filter(card => card.releaseId === releaseId),
+  listReleaseCards: releaseId => goldenCards.filter(card => card.releaseId === releaseId).map(card => {
+    const image = cardImageRepository.findPrimary(card.id);
+    return image ? { ...card, image } : card;
+  }),
 };

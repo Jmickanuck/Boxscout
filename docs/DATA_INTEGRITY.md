@@ -116,3 +116,12 @@ Owned/Watching is personal state, not catalogue truth.
 ## Rule 10 — No fake precision
 
 Do not produce EV, probability, market value, or chase-depletion metrics beyond what the source quality supports.
+
+
+## Image publication enforcement — Plan 004
+
+Exact matching, usage rights and approval are separate. Official hosting, public access, an own scan or a user submission cannot alone satisfy publication rights. Unknown rights remains reference metadata or absent; no unlicensed binary is persisted. Generated public paths must be on the approved inventory, and builds reject orphan/stale files. Only public-safe review metadata may be committed; private permissions/contracts are not a GitHub asset.
+
+This static/Git pilot cannot safely enforce expiring grants, so it rejects them for publication. Withdrawal requires explicit removal of the reviewed public file, regeneration, deployment and cache/old-deployment review; no automatic shared-history rewrite. Public availability must be checked directly, not inferred from a hidden UI URL. Confirm restore/retention policy separately before future object storage.
+
+Future confirmed 1/1 depletion requires the exact verified variant/finite instance and verified surfaced evidence. Deduplicate repeated listings/photos of the same card. No verified public evidence does not mean a card is definitely available. Eligible-chase/market-value/sealed-price intelligence must preserve scope, date and confidence, and must not convert asking prices into sales or uncertain evidence into fake EV.

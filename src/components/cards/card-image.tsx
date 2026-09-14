@@ -4,10 +4,10 @@ import { useState } from 'react';
 import type { Card } from '@/types/catalog';
 import { displayableImage } from '@/domain/catalog/images';
 export function CardImage({ card }: { card: Card }) {
-  const [failed, setFailed] = useState(false);
-  const src = displayableImage(card.image);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const src = displayableImage(card.image, card.id);
   return <div className="card-image">
-    {src && !failed ? <Image src={src} alt={card.playerName + ' — card ' + card.cardNumber} fill sizes="(max-width: 600px) 23vw, 180px" onError={() => setFailed(true)} /> :
+    {src && src !== failedSrc ? <Image src={src} alt={card.playerName + ' — card ' + card.cardNumber} fill sizes="(max-width: 600px) calc((100vw - 44px) / 4), (max-width: 1040px) calc((100vw - 72px) / 4), 242px" loading="lazy" decoding="async" onError={() => setFailedSrc(src)} /> :
       <div className="image-placeholder" role="img" aria-label={'Image unavailable for ' + card.playerName}>
         <span className="placeholder-mark" aria-hidden="true">◇</span><span>Image<br />pending</span>
       </div>}

@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-09-14",
+  "references": [
+    {
+      "sourceName": "Panini America",
+      "sourceUrl": "https://blog.paniniamerica.net/panini-prizm-fifa-world-cup-2026-hits-the-net/",
+      "candidateUrl": "https://blog.paniniamerica.net/wp-content/uploads/2026/06/26_prizm_wc_sc_hobby_c2049-i_1-1-1024x683.png",
+      "status": "REFERENCE_ONLY",
+      "rationale": "One promotional image URL screened from the official release article. No exact base-card identity or republication grant established. No binary retained; not promoted into a card asset."
+    }
+  ],
+  "rightsSources": [
+    "https://www.paniniamerica.net/terms-conditions",
+    "https://www.tcdb.com/TermsOfUse.cfm"
+  ],
+  "publicApproved": 0
+}

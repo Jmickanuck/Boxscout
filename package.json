@@ -10,7 +10,10 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "checklist:generate": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json",
-    "checklist:check": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json --check"
+    "checklist:check": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json --check",
+    "images:generate": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json",
+    "images:check": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json --check",
+    "prebuild": "npm run images:check"
   },
   "dependencies": {
     "next": "16.3.5",
@@ -25,7 +28,8 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5"
+    "eslint-config-next": "16.3.5",
+    "sharp": "0.35.4"
   },
   "type": "module",
   "engines": {

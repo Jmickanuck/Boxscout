@@ -249,3 +249,10 @@ Read `docs/MONETIZATION.md` and ADR 004 before proposing commercial work. Follow
 Do not let commissions or commercial relationships affect factual analysis, rankings or recommendations. No pay-to-rank, commission-influenced recommendations, banner-ad-first strategy, early owned physical inventory, weakly supported EV/fair-value metrics, intentionally crippled free tier, premature subscription billing or invasive monetization tracking. Affiliate disclosures belong near purchase links when implemented.
 
 Prefer free/low-cost hosting early and minimal paid infrastructure. Use deterministic processing before expensive AI, and AI only for meaningful value. Scale runtime costs with actual usage/revenue and keep development subscription costs conceptually separate. Future concepts such as RetailOffer, attribution or `/go/{offerId}` remain documentation until separately approved.
+
+
+## Image workflow
+
+Use data/imports/golden-product-images/README.md for the small offline image process. Run images:check before builds (prebuild enforces it). Review candidate provenance, exact match and rights independently. Only explicit grants permitting this static/Git distribution can produce public images. Do not persist unknown-rights binaries or put private grant documents in Git. Zero public images is a valid foundation result. New acquisition still requires adequate rights and approved scope.
+
+Future supervised Add Product must reuse candidate normalization and review, not build a new catalogue/UI per sealed configuration. Preserve the approved long-term product directions in PRODUCT.md while keeping current feature scope bounded.

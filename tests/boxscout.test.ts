@@ -71,7 +71,7 @@ test('base identities have stable unique IDs, source scope, and honest unknowns'
 test('image publication requires both a verified match and allowed rights', () => {
   const image={assetUrl:'/approved.jpg',sourceUrl:null,matchStatus:'VERIFIED',usageStatus:'UNKNOWN_RIGHTS'} as const;
   assert.equal(displayableImage(image),null);
-  assert.equal(displayableImage({...image,usageStatus:'PUBLIC_ALLOWED'}),'/approved.jpg');
+  assert.equal(displayableImage({...image,usageStatus:'PUBLIC_ALLOWED'}),null); // No explicit approval/identity projection.
   assert.equal(displayableImage({...image,usageStatus:'PUBLIC_ALLOWED',matchStatus:'CANDIDATE'}),null);
   assert.equal(displayableImage({...image,usageStatus:'USER_SUBMITTED'}),null);
 });
