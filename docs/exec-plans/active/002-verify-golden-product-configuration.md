@@ -2,9 +2,9 @@
 
 ## Status and authorization
 
-PROPOSED — awaiting Justin's explicit implementation approval.
+COMPLETE — implemented and verified on 2026-09-14 under Justin’s approval and source-hierarchy amendment.
 
-Research and this proposal are authorized. Do not modify application code or promote the proposed observations into application fixtures until approval. Justin accepted Plan 001 as complete. This plan does not reopen or expand that bootstrap.
+Implementation was explicitly approved by Justin with the source-hierarchy amendment below. The proposal sections retain the original review rationale. Justin accepted Plan 001 as complete. This plan does not reopen or expand that bootstrap.
 
 Repository inspected on 2026-09-14: main at 8bc0794, clean before this proposal; documentation baseline 45197ff. Use C:\Program Files\Git\cmd\git.exe explicitly; do not alter PATH. The local origin/main tracking reference is missing; remote synchronization is outside this task.
 
@@ -192,4 +192,29 @@ No package or lockfile change is expected. No changes to collection repositories
 - Availability conflicts, tax treatment and delivered shipping cost are unresolved. Price is dated, not continuously updated.
 - There is no evidence here to verify each checklist card or variant's Mega eligibility; keep existing eligibility unknown.
 
-No new product decision is required to implement the conservative behavior above. Justin's approval of this plan authorizes implementation, not stronger factual claims or contacting third parties. If a material UX/scope decision arises, pause that decision and explain the concrete choice. Until explicit approval, leave application code unchanged.
+No new product decision is required to implement the conservative behavior above. Justin's approval of this plan authorizes implementation, not stronger factual claims or contacting third parties. If a material UX/scope decision arises, pause that decision and explain the concrete choice. Approval was received; stop after the bounded implementation and verification.
+
+## Approved source-hierarchy amendment
+
+Prefer Panini official pages and Panini-hosted material for canonical release/configuration facts, then official distributor/manufacturer sell sheets, then exact-UPC/SKU retailers, then secondary databases. Preserve useful retailer evidence if Panini does not expose the exact Mega. Mastermind represents the Canadian listing/identifiers/CAD observations. Source priority is not permission to erase conflicting wording: store source-specific averages and guarantees and show the conservative interpretation. No scope additions or dependencies.
+
+Implementation review: Panini's official release article supports release identity but does not establish the exact UPC-to-NPP link. Panini soccer catalogue/targeted UPC search yielded no authoritative bridge. NPP remains PROBABLE. Mastermind rechecked at 2026-09-14T20:30:25.573Z: SKU 256877, GTIN 746134202520, CAD 119.99; earlier observation retained. No final packaging imagery acquired.
+
+
+## Completion record
+
+Implemented the approved Overview slice with five source records, 11 source-specific content claims, three specification observations and two genuine Mastermind CAD observations. NPP remains PROBABLE; the authoritative exact UPC bridge and final packaging wording remain unresolved. Panini's official article supports release identity only. All factual sources are linked and scoped in the fixture and UI.
+
+The change retains stable catalogue/card IDs, canonical null manufacturer identity/count fields, all 24 card records, image placeholders and independent browser storage. Tests are consolidated in tests/configuration.test.ts rather than the two initially proposed filenames. Cards-page source selection was adjusted to preserve its checklist provenance after release identity moved to Panini's official source. No package/lockfile, route, collection-storage, product or image additions.
+
+Verification:
+- npm run lint: passed, zero warnings.
+- npm run typecheck: passed.
+- npm test: 18 passed (8 existing regression tests and 10 focused configuration/price tests), zero failures/skips.
+- npm run build: passed production compilation and route generation.
+- Local production app inspected at 390×844 and 375×812. Price, identifiers, probable mapping, counts and nearby average/conflict wording wrap correctly. Source/price disclosures open and close; both dated observations remain visible. Measured scrollWidth equals clientWidth (375/375 and 360/360 with Windows scrollbar); no horizontal overflow. Desktop layout also measured 1265/1265 at a 1280 viewport.
+- Products → Overview → Cards passed. Messi search, no-match state and clearing passed. Owned alone, both flags, turning Owned off with Watching still on, and refresh persistence passed. Test flags restored to their initial false state. All 24 placeholders remain; no external images loaded.
+- Browser warning/error log empty during production checks. No real iPhone/Safari device test performed; these are browser viewport checks.
+- Full changed-code/data/documentation review and Git whitespace diff check completed before commit. Source-specific guarantee/average semantics and unchanged excluded areas were reviewed. No dependencies installed.
+
+Next bounded recommendation: review an authoritative exact-identifier/packaging-text evidence record when available, then revise only the configuration assessment and associated claims if warranted. No automatic next implementation or third-party contact.

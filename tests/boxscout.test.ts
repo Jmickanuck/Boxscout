@@ -66,7 +66,7 @@ test('sample identities have stable unique IDs, source scope, and honest unknown
   }
   assert.ok(goldenEligibility.every(e=>e.status==='UNKNOWN' && e.provenance.length===0));
   assert.equal(goldenProduct.configuration.sku,null);
-  assert.equal(goldenProduct.configuration.nppMappingStatus,'UNKNOWN');
+  assert.equal(goldenProduct.configuration.nppMappingStatus,'PROBABLE');
 });
 test('image publication requires both a verified match and allowed rights', () => {
   const image={assetUrl:'/approved.jpg',sourceUrl:null,matchStatus:'VERIFIED',usageStatus:'UNKNOWN_RIGHTS'} as const;

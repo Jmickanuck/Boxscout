@@ -174,3 +174,13 @@ Use PostgreSQL when persistent canonical storage is introduced.
 Canonical catalogue data is relational and should benefit from relational constraints.
 
 Do not select a document database merely because it is easy to prototype.
+
+
+## Implemented Plan 002 refinement
+
+- RetailerListing keeps Mastermind SKU, reported UPC, and storefront variant identifier distinct from Configuration manufacturer identity. Identifiers are strings with evidence references. Existing Configuration.sku/upc and scalar pack counts remain null while candidate specifications are shown with qualified applicability.
+- SourceEvidence extends Provenance with source kind, source locator, source wording/summary, qualification, optional precise observation time and ID. Authority order is Panini official, official manufacturer/distributor sell sheet, exact-identifier retailer, secondary source. Evidence lifecycle describes the observation; it never alone verifies exact-box applicability.
+- ConfigurationLink records exact-UPC/family linkage separately from matching contents, family-only facts or release-only evidence. The reviewed assessment is bounded by supporting evidence; retailer links yield at most PROBABLE. VERIFIED requires both an explicit reviewed decision and a verified authoritative UPC/family bridge. Conflicting explicit family assignments produce UNKNOWN.
+- PackagingSpecification records packs/cards and optional source-stated total; disagreements stay unresolved. BoxContentClaim records matching-UPC versus family scope, source, quantity, semantics (nullable), published odds (nullable), included subcounts, conflict IDs and qualifications. Average and guarantee records coexist. Grouped counts are not added to headline totals. No individual-card eligibility is inferred.
+- SealedPriceObservation stores integer minor units, explicit currency, listing/product IDs, UTC observedAt, LISTING_PRICE/ONE_SEALED_BOX, availability, tax/shipping states and provenance. Actual observations are appended even when unchanged. The domain selects latest verified, valid, nonfuture matching-listing CAD data; equal-time conflicts yield no single quote. No delivered-total or sale-value inference.
+- These small readonly local records remain separate from browser-local Owned/Watching state. Catalogue repository access and pure domain selection preserve the modular-monolith boundary. No ingestion or database layer was added.

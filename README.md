@@ -1,6 +1,6 @@
 # BoxScout
 
-Plan 001: a mobile-first Golden Product slice using Next.js, React, TypeScript, App Router and Tailwind. No database or authentication.
+Plans 001–002: a mobile-first Golden Product slice using Next.js, React, TypeScript, App Router and Tailwind. No database or authentication.
 
 ## Run locally
 
@@ -41,11 +41,19 @@ The test command uses Node's built-in test runner and TypeScript stripping. No e
 - [Trading Card Database](https://www.tcdb.com/Checklist.cfm/sid/614170/2026-Panini-Prizm-FIFA-World-Cup)
 - [Checklist Insider](https://www.checklistinsider.com/2026-panini-prizm-fifa-world-cup-soccer)
 
-VERIFIED applies only to release/base checklist identity, number, player and country. This is not a full checklist, a variant list or a list of confirmed Mega pulls. Mastermind configuration, SKU/UPC, NPP mapping, price and content rules remain unknown in this build. Repository working notes alone are not promoted to sourced product facts.
+VERIFIED applies only to release/base checklist identity, number, player and country. This is not a full checklist, a variant list or a list of confirmed Mega pulls. Plan 002 adds sourced Mastermind SKU 256877 and retailer-reported UPC 746134202520. NPP mapping is PROBABLE: matching-UPC retailer descriptions corroborate the Panini NPP sell sheet, but no authoritative exact UPC-to-NPP bridge was found. Canonical manufacturer SKU/UPC and pack-count scalar fields remain null; attributed candidate specifications are separate. No card eligibility is inferred.
 
 No external product/card images are copied or loaded. Missing-image metadata and deliberate placeholders are used until publication rights and exact matching are established. The green product illustration is an abstract BoxScout placeholder, not product packaging.
 
 Card details, filters beyond search, Chases, Compare, other products and ingestion are deferred.
+
+## Configuration intelligence (Plan 002)
+
+The Overview shows sourced identifiers, qualified 6 × 7 packaging counts, source-specific average content claims, conflicting sell-sheet guarantee wording, and two real CAD $119.99 listing-price observations from Mastermind on 2026-09-14 (20:20:41.132Z and 20:30:25.573Z). Availability is unresolved, tax treatment unknown, and shipping is separate. These are dated quotes, not live prices or completed sales.
+
+Panini's official release article is preferred for release identity. The distributor-hosted Panini NPP sell sheet supports family facts; matching-UPC retailers support probable exact-box applicability. Full links, checked dates and source-specific qualifications are in the Overview and golden-product-configuration fixture. Conflicting wording is retained, never merged into a stronger promise.
+
+Configuration/price data is exposed through the catalogue repository; domain functions control mapping confidence, source priority, claim applicability, and latest valid CAD observation selection. Personal collection storage is unchanged. No packages, routes, images, products, or background data fetching were added.
 
 ## Git on this PC
 

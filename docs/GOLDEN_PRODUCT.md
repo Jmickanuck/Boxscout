@@ -34,7 +34,7 @@ Treat these as working facts with provenance, not permanent truth without source
 - 7 cards per pack
 - 6 packs per box
 - 42 cards total
-- product packaging uses “per box, on average” wording for expected contents
+- matching-UPC retailer descriptions use “per box, on average”; final physical packaging has not been independently inspected
 - multiple Mega configurations exist
 - the Mastermind Mega appears likely to correspond to the NPP Mega configuration, but exact SKU/UPC verification should be completed before setting canonical VERIFIED status
 - the base checklist contains 500 base cards
@@ -76,3 +76,13 @@ Golden Product #1 is successful when Justin can use the real product page on his
 - mark Owned/Watching
 - inspect major chases
 - make a more informed purchase decision
+
+
+## Plan 002 reviewed state — 2026-09-14
+
+- Exact Canadian listing: [Mastermind Toys](https://www.mastermindtoys.com/products/2026-panini-soccer-prizm-world-cup-mega-box), SKU 256877, retailer-reported UPC 746134202520, variant 41821202317445. UPC-A check digit passes, which is syntax validation only.
+- Release authority: [Panini official release article](https://blog.paniniamerica.net/panini-prizm-fifa-world-cup-2026-hits-the-net/). It does not identify this Mega UPC; other configuration counts are not borrowed.
+- NPP mapping is PROBABLE, supported by [Collectors Emporium's same-UPC NPP description](https://collectorsemporium.com/en-ca/products/2026-panini-prizm-fifa-world-cup-trading-cards-mega-box), [SCHEELS matching-UPC contents](https://www.scheels.com/p/18467-2-20253-20mo20/74613420252), and the [Panini NPP sell sheet hosted by GTS, page 5](https://gogts.net/wp-content/uploads/2026/06/2026-Panini-Prizm-World-Cup-Soccer-Cards-Sell-Sheet-Retail.pdf). No authoritative UPC-to-NPP bridge was established in the bounded review.
+- Six packs × seven cards = 42 is qualified as probable applicability, with source-specific specifications retained. The five retailer average claims are separate from sell-sheet guarantee claims; exact-box guarantees remain unresolved. SCHEELS' eight Prizms includes six Disco, never eight plus six.
+- Two genuine Mastermind checks recorded CAD $119.99 for one box at 2026-09-14T20:20:41.132Z and 2026-09-14T20:30:25.573Z. Both are retained. Conflicting stock signals mean availability UNKNOWN; shipping is separate and tax treatment unknown. These are dated listing observations.
+- The existing 24 base cards, placeholders and independent local flags are unchanged. Full checklist, variant eligibility, images and other Golden Product completion items above remain deferred beyond this plan.

@@ -1,4 +1,5 @@
 import type { Card, ConfigurationEligibility, Product, Provenance } from '../../types/catalog.ts';
+import { configurationEvidence, configurationIntelligence } from './golden-product-configuration.ts';
 
 export const checklistSources: readonly Provenance[] = [
   { sourceName: 'Trading Card Database', sourceUrl: 'https://www.tcdb.com/Checklist.cfm/sid/614170/2026-Panini-Prizm-FIFA-World-Cup', checkedAt: '2026-09-14', verificationState: 'VERIFIED', scope: 'Release identity and base checklist numbers 1–24: player and country. Excludes variations and configuration eligibility.' },
@@ -7,10 +8,10 @@ export const checklistSources: readonly Provenance[] = [
 const releaseId = 'panini-prizm-fifa-world-cup-2026';
 export const goldenProduct: Product = {
   id: 'golden-product-1', slug: '2026-panini-prizm-world-cup-mega',
-  release: { id: releaseId, name: '2026 Panini Prizm FIFA World Cup', year: 2026, manufacturer: 'Panini', provenance: checklistSources },
+  release: { id: releaseId, name: '2026 Panini Prizm FIFA World Cup', year: 2026, manufacturer: 'Panini', provenance: [configurationEvidence[0]] },
   configuration: {
     id: 'mastermind-mega-unresolved', releaseId, name: 'Mega Box', sku: null, upc: null,
-    identificationStatus: 'UNKNOWN', nppMappingStatus: 'UNKNOWN', packsPerBox: null, cardsPerPack: null,
+    identificationStatus: 'UNKNOWN', nppMappingStatus: configurationIntelligence.assessment.reviewedStatus, packsPerBox: null, cardsPerPack: null,
     provenance: [],
   },
 };
