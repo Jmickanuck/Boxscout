@@ -17,6 +17,8 @@ inspect
 → test
 → review
 → commit
+→ push to GitHub
+→ verify remote and clean working tree
 → show Justin
 → receive feedback
 → repeat
@@ -118,27 +120,38 @@ When Astra can interact with Justin's PC:
 
 When a visual change is made, show Justin the result before making large aesthetic follow-up changes.
 
-## Git discipline
+## Git discipline and completion gate
 
-Work should happen in Git.
+GitHub is the canonical backup/history for BoxScout code and documentation. Local commits alone are not enough. Every execution plan and task must finish with:
 
-For each coherent task:
+1. Required checks passing.
+2. A reviewed diff confined to approved scope.
+3. One or more coherent local commits.
+4. A successful push to GitHub.
+5. Verification that the remote branch contains the latest commit.
+6. A clean working tree.
 
-1. check status
-2. make bounded change
-3. run checks
-4. review diff
-5. commit with a clear message
+Before changes, inspect status, current branch/upstream, local history and remote URL; fetch and check for unexpected remote work. Use `C:\Program Files\Git\cmd\git.exe` on this PC without modifying PATH or repairing devkitPro Git. If certificate-store selection is necessary, use Windows trust through a command-scoped `-c http.sslBackend=schannel`; never disable certificate verification.
 
-Do not lump unrelated features into one commit.
+For approved main work, push normally to origin/main, establishing upstream tracking when needed. After pushing, fetch, compare full local main and origin/main SHAs, and check the live remote main SHA with ls-remote. They must match. Verify git status is clean, with no ahead/behind discrepancy. Report the SHA and remote verification result.
 
-Do not force-push or rewrite history unless explicitly approved.
+No force-pushing main. No rewriting shared history without explicit approval. If the remote unexpectedly diverges or contains unexpected commits, stop and investigate before changing history; never overwrite it to make the check pass. Do not delete branches or working code as a shortcut. Do not lump unrelated changes into one commit or leave completed work only on the local PC.
 
-Do not delete large portions of working code without a clear reason.
+If push/authentication/verification fails, report the blocker and keep the task incomplete until resolved. Do not claim that GitHub has a backup merely because a local commit exists.
+
+### Future persistent-data backups
+
+| Material | Backup responsibility |
+| --- | --- |
+| Code and documentation | GitHub history, pushed and verified. |
+| PostgreSQL/live data | Separate database backups/exports and recovery verification. |
+| Images/evidence assets | Separate object-storage backup/versioning and recovery verification. |
+
+GitHub source history is not a live-data or object-storage backup. Browser-local Owned/Watching state is not backed up by Git push. Define the separate strategy when persistent data services are introduced; do not add them as part of documentation work.
 
 ## Required checks
 
-As soon as supported:
+For coding tasks, as soon as supported:
 
 ```bash
 npm run lint
@@ -147,7 +160,9 @@ npm test
 npm run build
 ```
 
-Do not report success unless commands actually succeed.
+For documentation-only tasks, review document consistency and relative links, run the Git diff whitespace check, and verify only authorized documentation changed. Do not modify application files or dependencies just to validate prose. Report application tests as not rerun when they were not needed.
+
+Do not report success unless the required checks actually succeed.
 
 If a test fails:
 - investigate
@@ -201,6 +216,7 @@ At the end of a task, tell Justin:
 - what changed
 - what he can now test
 - files/areas changed
+- commit SHA, branch pushed, GitHub remote verification and clean working-tree status
 - tests/checks run and results
 - assumptions or unresolved issues
 - recommended next task
@@ -225,3 +241,11 @@ Stop and ask Justin before:
 Astra's job is not to maximize the amount of code written.
 
 Astra's job is to steadily produce a trustworthy, maintainable BoxScout that Justin actually wants to use.
+
+## Monetization strategy discipline
+
+Read `docs/MONETIZATION.md` and ADR 004 before proposing commercial work. Follow the approved sequence: free purchase intelligence → affiliate commerce → Pro demand validation → BoxScout Pro → retailer/B2B intelligence → API/data licensing. Useful public coverage precedes the first affiliate experiment; demonstrated willingness to pay precedes subscription billing. These are strategy gates, not permission to start implementation.
+
+Do not let commissions or commercial relationships affect factual analysis, rankings or recommendations. No pay-to-rank, commission-influenced recommendations, banner-ad-first strategy, early owned physical inventory, weakly supported EV/fair-value metrics, intentionally crippled free tier, premature subscription billing or invasive monetization tracking. Affiliate disclosures belong near purchase links when implemented.
+
+Prefer free/low-cost hosting early and minimal paid infrastructure. Use deterministic processing before expensive AI, and AI only for meaningful value. Scale runtime costs with actual usage/revenue and keep development subscription costs conceptually separate. Future concepts such as RetailOffer, attribution or `/go/{offerId}` remain documentation until separately approved.

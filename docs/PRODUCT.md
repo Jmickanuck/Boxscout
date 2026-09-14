@@ -120,13 +120,25 @@ Unless explicitly approved, do not add:
 - microservices
 - speculative EV scores
 
-## Long-term context only
+## Long-term strategy — trusted intelligence before revenue
 
-Potential future monetization:
-1. affiliate commerce
-2. BoxScout Pro
-3. retailer/hobby-shop tools
-4. API/data licensing
-5. carefully labeled sponsorships
+BoxScout aims to become the decision layer immediately before a sealed-card transaction:
 
-Do not let future monetization distort Phase 1 product decisions.
+```text
+discover → understand → inspect cards → assess chase/upside → compare products → compare retailers → purchase
+```
+
+The approved sequence is:
+
+1. Free purchase intelligence.
+2. Affiliate commerce, as the first revenue experiment after useful public product coverage.
+3. Pro demand validation.
+4. BoxScout Pro, only after willingness to pay is demonstrated.
+5. Retailer / B2B intelligence.
+6. API / data licensing.
+
+See [MONETIZATION.md](MONETIZATION.md) for the full strategy and [ADR 004](decisions/004-trust-first-monetization.md) for the trust boundary. Monetization must not influence factual analysis, rankings or recommendations. Affiliate commission is never a ranking factor; purchase links require nearby disclosure when implemented.
+
+Basic product information, visual checklists, basic configuration information, basic current pricing, basic chase information and normal comparisons should remain free. Pro candidates provide additional depth, history, alerts and personalization; do not cripple the free product or immediately build subscriptions. Tentative US$8–12/month pricing may be tested later and is not committed.
+
+This strategy does not expand current Phase 1 scope or authorize affiliate routes, tracking, billing, B2B tools, data licensing or other implementation. Phase 1 still does not require revenue. Keep operating costs low until demand is proven and keep development subscriptions separate from runtime costs.
