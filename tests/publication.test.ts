@@ -1,11 +1,19 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import test from 'node:test';
 import { fixtureSource } from '../scripts/database/fixture-source.ts';
-import { manifestText, publicationManifest, snapshotText } from '../scripts/database/operations.ts';
+import {
+  manifestText,
+  publicationManifest,
+  snapshotText,
+  writeSnapshot,
+} from '../scripts/database/operations.ts';
 import { assertParity, digest, flatten, inflate } from '../scripts/database/records.ts';
 import { publication } from '../src/data/published/catalogue.ts';
 import { createCatalogRepository } from '../src/repositories/catalog-repository.ts';
+import type { Publication } from '../src/types/publication.ts';
 
 test('publication preserves all domain fields, provenance and stable identities', async () => {
   const expected = await fixtureSource.read();
@@ -45,6 +53,49 @@ test('snapshot and compact manifest serialization are deterministic', () => {
   assert.throws(() => assertParity(publication.data, changed));
 });
 
+test('publication writer emits compact release shards without changing compatibility output', () => {
+  const product = publication.data.products[0];
+  const entry = publication.data.entries[0];
+  const variant = publication.data.variants.find((item) => item.entryId === entry.id)!;
+  const eligibility = publication.data.eligibility.filter((item) => item.variantId === variant.id).slice(0, 1);
+
+  const mini: Publication = {
+    schemaVersion: 1,
+    revision: 'test-publication-revision',
+    data: {
+      products: [product],
+      entries: [entry],
+      variants: [variant],
+      configurations: publication.data.configurations.slice(0, 1),
+      eligibility,
+      sources: publication.data.sources.slice(0, 1),
+      intelligence: publication.data.intelligence.filter((item) => item.productId === product.id),
+      prices: publication.data.prices.filter((item) => item.productId === product.id).slice(0, 1),
+    },
+  };
+
+  const dir = mkdtempSync(join(tmpdir(), 'boxscout-publication-'));
+  try {
+    writeSnapshot(mini, dir);
+
+    assert.equal(readFileSync(join(dir, 'catalogue.ts'), 'utf8'), snapshotText(mini));
+    assert.equal(readFileSync(join(dir, 'manifest.json'), 'utf8'), manifestText(mini));
+
+    const releaseDir = join(dir, 'releases', product.release.id);
+    const entries = JSON.parse(readFileSync(join(releaseDir, 'entries.json'), 'utf8'));
+    const variants = JSON.parse(readFileSync(join(releaseDir, 'variants.json'), 'utf8'));
+    const releaseManifest = JSON.parse(readFileSync(join(releaseDir, 'manifest.json'), 'utf8'));
+
+    assert.equal(entries.length, 1);
+    assert.equal(variants.length, 1);
+    assert.equal(releaseManifest.release.id, product.release.id);
+    assert.equal(releaseManifest.counts.entries, 1);
+    assert.equal(releaseManifest.counts.variants, 1);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('set navigation deduplicates releases and keeps box formats and products within their release', () => {
   const data = structuredClone(publication.data);
   const first = data.products[0];
@@ -63,7 +114,7 @@ test('set navigation deduplicates releases and keeps box formats and products wi
 
   const mega = repo.listFormatProducts(first.release.id, 'NPP Mega');
   assert.deepEqual(
-    mega.map((product) => product.id),
+    mega.map((item) => item.id),
     [first.id],
   );
   assert.equal(mega[0].configuration.nppMappingStatus, 'PROBABLE');
