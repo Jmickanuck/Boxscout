@@ -212,3 +212,24 @@ h2 { font-size:23px; line-height:1.25; letter-spacing:-.5px; font-weight:700; ma
 .box-product .product-cta { min-height:44px; margin-top:14px; padding:12px 0 0; gap:12px; }
 .box-pending { color:var(--muted); font-size:13px; margin:12px 0 0; }
 @media(min-width:601px) { .box-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+.box-overview { display:grid; gap:20px; }
+.retailer-list { list-style:none; padding:0; margin:20px 0 0; }
+.retailer-list li { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; border-top:1px solid var(--line); }
+.retailer-list li:last-child { padding-bottom:0; }
+.retailer-list h3 { margin:0; font-size:17px; font-weight:700; }
+.retailer-price { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; margin:6px 0 0; }
+.retailer-price strong { font-size:18px; }
+.retailer-price span { color:var(--muted); font-size:12px; }
+.retailer-link { display:inline-flex; align-items:center; gap:12px; min-height:44px; padding:10px 14px; border:1px solid var(--input-line); border-radius:7px; color:var(--green); font-size:13px; font-weight:700; }
+.retailer-link:hover { background:var(--art-bg); }
+.packaging-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:20px 0 28px; }
+.packaging-stats>div { display:flex; flex-direction:column-reverse; gap:5px; padding:14px 6px; background:var(--price-bg); border-radius:8px; text-align:center; }
+.packaging-stats dt { font-size:12px; color:var(--muted); }
+.packaging-stats dd { margin:0; font-size:30px; line-height:1.2; font-weight:750; color:var(--green); }
+.contents-heading { font-size:17px; font-weight:700; margin:0 0 8px; }
+.box-contents { list-style:none; padding:0; margin:0; }
+.box-contents li { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-top:1px solid var(--line); }
+.box-contents strong { flex-shrink:0; }
+.box-qualification { margin:18px 0 0; }
+@media(max-width:600px) { .retailer-list li { display:block; } .retailer-link { margin-top:12px; } }

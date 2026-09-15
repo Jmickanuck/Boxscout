@@ -177,3 +177,9 @@ A future /99 detail may report 18 verified surfaced copies without claiming the 
 Homepage release cards preserve the established appearance and open /sets/[releaseId]. The set page lists known published configuration formats; only an existing supported product has an Explore link. Other formats say Details coming soon and have no dead links. Probable formats and the test Mega's probable NPP association stay visibly qualified. This list does not claim complete format coverage or shared variant eligibility.
 
 Navigation is Home → set → box → Overview/Cards. Existing product and Cards URLs remain valid; their back link returns to all boxes in the set. Release cards are deduplicated by existing release ID. No catalogue identities, publication, backend, filters or collection storage change.
+
+## Retailer-focused box overview — Plan 008
+
+The box Overview leads with Where to buy: reviewed matching-product retailer links, recorded prices only where available, and a short instruction to check retailers for current price/stock/delivery. It does not imply in-stock availability or live prices. Packaging uses three compact totals (packs, cards per pack, total cards), followed by average contents and a short qualification where necessary.
+
+Remove retailer-identity tables, SKU/UPC, repeated source/date labels, public evidence/history disclosures and the overview source footer. These facts remain in the canonical data and operator records. Links serve shopping; no factual data or provenance is deleted. The Cards source section is unchanged.

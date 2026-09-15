@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { configurationIntelligence as fixture, sealedPriceObservations as prices } from '../src/data/fixtures/golden-product-configuration.ts';
-import { assessNppMapping, buildConfigurationOverview, claimText, rankSources, validUpc } from '../src/domain/catalog/configuration-intelligence.ts';
+import { assessNppMapping, buildConfigurationOverview, claimText, rankSources, validUpc, listBoxRetailers } from '../src/domain/catalog/configuration-intelligence.ts';
 import { isValidObservationDate, selectSealedPrice, formatCad } from '../src/domain/market/sealed-price.ts';
 import { goldenProduct, goldenEligibility } from '../src/data/fixtures/golden-product.ts';
 import { catalogRepository } from '../src/repositories/catalog-repository.ts';
@@ -117,4 +117,14 @@ test('equal-timestamp conflicting quotes stay unresolved and retain both sources
   assert.equal(result.observation,null);
   assert.equal(result.history.length,2);
   assert.equal(select([base,{...base,id:'matching'}]).conflict,false);
+});
+
+test('shopping links include only reviewed retailers tied to the exact box', () => {
+  assert.deepEqual(listBoxRetailers(fixture).map(r=>r.name), ['Mastermind Toys','Collectors Emporium','SCHEELS']);
+  assert.deepEqual(listBoxRetailers(fixture).filter(r=>r.listingId).map(r=>r.listingId),[fixture.listing.id]);
+  const wrongUpc=intel({links:fixture.links.map(link=>link.evidenceId==='scheels-mega'?{...link,upc:'012345678905'}:link)});
+  assert.ok(!listBoxRetailers(wrongUpc).some(r=>r.name==='SCHEELS'));
+  const candidate=intel({evidence:fixture.evidence.map(source=>source.id==='emporium-mega'?{...source,verificationState:'CANDIDATE'}:source)});
+  assert.ok(!listBoxRetailers(candidate).some(r=>r.name==='Collectors Emporium'));
+  assert.deepEqual(listBoxRetailers(intel({listing:{...fixture.listing,reportedUpc:{...fixture.listing.reportedUpc,value:'invalid'}}})),[]);
 });

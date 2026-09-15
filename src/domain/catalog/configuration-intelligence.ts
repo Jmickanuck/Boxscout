@@ -65,3 +65,23 @@ export function buildConfigurationOverview(intel: ConfigurationIntelligence) {
     hasClaimConflict: claims.some(claim => claim.conflictIds.some(id => claims.some(other => other.id === id && other.claimSemantics !== claim.claimSemantics))),
   };
 }
+
+/** Shopping links from reviewed evidence for this listing's exact UPC. */
+export function listBoxRetailers(intel: ConfigurationIntelligence) {
+  if (!validListing(intel)) return [];
+  const linkedIds = new Set(intel.links.filter(link =>
+    link.upc === intel.listing.reportedUpc.value &&
+    link.family === intel.assessment.family &&
+    ['EXPLICIT_UPC_FAMILY', 'MATCHING_UPC_CONTENTS'].includes(link.linkKind)
+  ).map(link => link.evidenceId));
+  const retailers = intel.evidence.filter(source =>
+    source.sourceKind === 'EXACT_RETAILER' && reviewed(source) &&
+    (linkedIds.has(source.id) || intel.listing.reportedUpc.evidenceIds.includes(source.id))
+  ).map(source => ({
+    id: source.id,
+    name: source.sourceName,
+    url: source.sourceUrl,
+    listingId: source.sourceUrl === intel.listing.listingUrl ? intel.listing.id : null,
+  }));
+  return [...new Map(retailers.map(retailer => [retailer.url, retailer])).values()];
+}
