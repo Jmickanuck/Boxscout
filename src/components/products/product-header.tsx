@@ -4,7 +4,7 @@ import type { Product } from '@/types/catalog';
 export function ProductHeader({ product, active }: { product: Product; active: 'overview' | 'cards' }) {
   const base = '/products/' + product.slug;
   return <>
-    <Link href="/" className="back-link">← Products</Link>
+    <Link href={'/sets/' + product.release.id} className="back-link">← All boxes in this set</Link>
     <p className="eyebrow">GOLDEN PRODUCT 01 · SOCCER</p>
     <h1>{product.release.name}</h1>
     <div className="product-meta"><span>{product.configuration.name}</span><span className="badge">{mappingLabel(product.configuration.nppMappingStatus)}</span></div>

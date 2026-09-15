@@ -202,3 +202,13 @@ h2 { font-size:23px; line-height:1.25; letter-spacing:-.5px; font-weight:700; ma
 .filter-flags label { display:flex; align-items:center; gap:6px; min-height:44px; }
 .variant-heading { font-size:13px; font-weight:700; margin:16px 0 10px; }
 .grid-heading button { font-size:12px; min-height:44px; text-decoration:underline; }
+
+/* Set selection reuses the established product palette and mobile spacing. */
+.box-options { display:grid; grid-template-columns:1fr; gap:12px; }
+.box-option { min-width:0; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:12px; }
+.box-option h3 { font-size:19px; font-weight:700; margin:0; }
+.box-option-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; }
+.box-product { margin-top:12px; }
+.box-product .product-cta { min-height:44px; margin-top:14px; padding:12px 0 0; gap:12px; }
+.box-pending { color:var(--muted); font-size:13px; margin:12px 0 0; }
+@media(min-width:601px) { .box-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }

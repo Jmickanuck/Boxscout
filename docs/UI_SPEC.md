@@ -171,3 +171,9 @@ Keep four mobile columns, image-dominant tiles, the same overlay controls and on
 Every user-facing variant must eventually have a dedicated detail page. Its future content includes exact imagery, player/card/checklist identity, subset/type, parallel and serial total, eligible configurations, recent sightings/listings, confirmed sales with graded/raw context, supported market-value estimates/history, finite surfaced counts and known serial numbers, evidence/provenance, interesting factual context, Owned/Watching and eventual personal collection information. Unknown information remains unknown. No detail route or market feature is implemented now; the image/body remains structurally separate from overlay controls.
 
 A future /99 detail may report 18 verified surfaced copies without claiming the other 81 are still sealed. A verified genuine surfaced 1/1 can later be classified fully surfaced/unavailable from unopened product, subject to correct identity and evidence review. No surfaced counters or depletion calculations are present now.
+
+## Set to box navigation — Plan 007
+
+Homepage release cards preserve the established appearance and open /sets/[releaseId]. The set page lists known published configuration formats; only an existing supported product has an Explore link. Other formats say Details coming soon and have no dead links. Probable formats and the test Mega's probable NPP association stay visibly qualified. This list does not claim complete format coverage or shared variant eligibility.
+
+Navigation is Home → set → box → Overview/Cards. Existing product and Cards URLs remain valid; their back link returns to all boxes in the set. Release cards are deduplicated by existing release ID. No catalogue identities, publication, backend, filters or collection storage change.
