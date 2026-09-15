@@ -84,6 +84,28 @@ Missing eligibility means UNKNOWN, not EXCLUDED.
 - No public-evidence record does not mean a finite card is definitely still sealed.
 - Do not publish opaque EV/fair-value claims before inputs are defensible.
 - Preserve stable IDs and browser-local Owned/Watching semantics.
+- Manufacturer-supplied data is a source type, not a bypass around review/canonical integrity.
+- Official manufacturer facts and BoxScout intelligence should remain distinguishable.
+- Licensing/affiliate/manufacturer relationships must not silently alter rankings or evidence states.
+
+## Manufacturer-readiness direction
+
+Approved product direction is documented in `docs/MANUFACTURER_INTEGRATIONS.md`.
+
+BoxScout should evolve so manufacturers such as Topps/Fanatics and Panini can safely supply assets/data, review product representation and receive aggregate value from BoxScout without controlling independent analysis.
+
+Approved future capabilities include:
+
+- official-source attribution;
+- richer asset-rights metadata and deterministic withdrawal/removal;
+- reviewed manufacturer correction/replacement-asset intake;
+- official-store destinations separate from generic retailer offers;
+- structured manufacturer release/checklist/odds/asset intake;
+- privacy-safe outbound purchase-intent measurement;
+- later private preview/embargo launch support only after security is adequate;
+- later aggregate manufacturer analytics after meaningful traffic.
+
+Do not interrupt the current Plan 010 work to build portals, dashboards or embargo infrastructure. If current provenance/rights/publication work naturally touches these concerns, design it so it remains compatible with the manufacturer-readiness spec.
 
 ## AI/token efficiency rules
 
@@ -142,6 +164,8 @@ Do not undo these changes casually. If a future approach replaces them, it must 
 - database/publication/backups -> `docs/PERSISTENCE_RUNBOOK.md`
 - local implementation workflow -> `docs/ASTRA_RUNBOOK.md`
 - monetization -> `docs/MONETIZATION.md` and ADR 004
+- manufacturer integrations / rights / corrections / partner workflows -> `docs/MANUFACTURER_INTEGRATIONS.md`
+- manufacturer/Topps presentation -> `docs/MANUFACTURER_PITCH_DECK_BRIEF.md`
 - AI/data-processing efficiency -> `docs/decisions/007-ai-efficient-data-processing.md`
 - publication scaling -> `docs/PUBLICATION_SHARDING.md`
 
