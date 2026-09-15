@@ -25,7 +25,7 @@ export default async function SetPage({ params }: { params: Promise<{ releaseId:
       {formats.map(format => {
         const available = catalogRepository.listFormatProducts(releaseId, format.name);
         return <article className="box-option" key={format.id}>
-          <div className="box-option-heading"><h3>{format.name}</h3>{format.confidence !== 'VERIFIED' && <span className="badge">Format {format.confidence.toLowerCase()}</span>}</div>
+          <div className="box-option-heading"><h3>{format.id === 'npp-mega' ? 'Retail Mega Box' : format.name}</h3>{format.confidence !== 'VERIFIED' && <span className="badge">Format {format.confidence.toLowerCase()}</span>}</div>
           {available.length ? available.map(productLink) : <p className="box-pending">Details coming soon</p>}
         </article>;
       })}

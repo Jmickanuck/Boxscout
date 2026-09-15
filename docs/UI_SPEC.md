@@ -183,3 +183,5 @@ Navigation is Home → set → box → Overview/Cards. Existing product and Card
 The box Overview leads with Where to buy: reviewed matching-product retailer links, recorded prices only where available, and a short instruction to check retailers for current price/stock/delivery. It does not imply in-stock availability or live prices. Packaging uses three compact totals (packs, cards per pack, total cards), followed by average contents and a short qualification where necessary.
 
 Remove retailer-identity tables, SKU/UPC, repeated source/date labels, public evidence/history disclosures and the overview source footer. These facts remain in the canonical data and operator records. Links serve shopping; no factual data or provenance is deleted. The Cards source section is unchanged.
+
+The set-selection card for configuration `npp-mega` displays **Retail Mega Box**, as requested by Justin. This is a display label only; it does not merge other retail Mega configurations or change the stored NPP identity/eligibility.
