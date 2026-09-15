@@ -14,7 +14,9 @@ export function normalizeVariants(input: unknown, base: readonly Card[]): Varian
   // Shape validation precedes typed processing, including every imported row.
   type Row = {sourceLabel:string;number:string;name:string;country:string;sequence:number|string;locator:string};
   const rows = d.rows as Row[];
-  for(const r of rows) requireValue(r && [r.sourceLabel,r.number,r.name,r.country,r.locator].every(text) && (r.sequence === '' || Number.isInteger(r.sequence) && Number(r.sequence)>0), 'Invalid source row');
+  const identityRows = (d.identityRows ?? d.rows) as Row[];
+  requireValue(Array.isArray(identityRows),'Invalid identity rows');
+  for(const r of [...rows,...identityRows]) requireValue(r && [r.sourceLabel,r.number,r.name,r.country,r.locator].every(text) && (r.sequence === '' || Number.isInteger(r.sequence) && Number(r.sequence)>0), 'Invalid source row');
   type Subset = {name:string;slug:string;type:EntryType;count:number};
   const subsets=d.subsets as Subset[];
   for(const s of subsets) requireValue(s && text(s.name) && /^[a-z0-9-]+$/.test(s.slug) && entryTypes.includes(s.type) && Number.isInteger(s.count) && s.count>0,'Invalid subset');
@@ -28,7 +30,7 @@ export function normalizeVariants(input: unknown, base: readonly Card[]): Varian
   const entryId=(subset:Subset,number:string)=>d.releaseId+'-'+subset.slug+'-'+number;
   const corroboration=d.corroboration as {subset:string;number:string;name:string;country:string}[];
   for(const s of subsets) {
-    const standard=rows.filter(r=>r.sourceLabel===s.name);
+    const standard=identityRows.filter(r=>r.sourceLabel===s.name);
     requireValue(standard.length===s.count,'Incomplete subset '+s.name);
     for(const r of standard) {
       const id=entryId(s,r.number); const existing=base.find(b=>b.id===id);
@@ -46,7 +48,7 @@ export function normalizeVariants(input: unknown, base: readonly Card[]): Varian
     const s=getSubset(f.subset); const selected=rows.filter(r=>r.sourceLabel===f.sourceLabel);
     requireValue(selected.length===f.expectedCount,'Incomplete family '+f.sourceLabel);
     requireValue(new Set(selected.map(r=>r.number)).size===selected.length,'Duplicate family number');
-    const standardNumbers=new Set(rows.filter(r=>r.sourceLabel===s.name).map(r=>r.number));
+    const standardNumbers=new Set(identityRows.filter(r=>r.sourceLabel===s.name).map(r=>r.number));
     requireValue(selected.every(r=>standardNumbers.has(r.number)),'Variant outside subset');
     const generated:Variant[]=[];
     for(const r of selected){
@@ -77,6 +79,6 @@ export function validateVariantData(d:VariantData,base:readonly Card[]) {
  unique(entries.map(e=>e.id),'entry');unique(d.variants.map(v=>v.id),'variant');unique(d.configurations.map(c=>c.id),'configuration');unique(d.sources.map(s=>s.id),'source');unique(d.variants.map(v=>v.entryId+'|'+v.parallelName),'edition identity');unique(d.eligibility.map(e=>e.id),'claim');
  const byId=new Map(entries.map(e=>[e.id,e]));
  for(const v of d.variants){const e=byId.get(v.entryId);requireValue(e,'Invalid variant parent');requireValue(v.sourceIds.length && v.sourceIds.every(id=>d.sources.some(s=>s.id===id)) && text(v.locator),'Missing provenance');requireValue(v.numbering==='NUMBERED'?Number.isInteger(v.serialTotal)&&Number(v.serialTotal)>0:v.serialTotal===null,'Invalid serial total');requireValue(v.autograph===(e.entryType==='AUTOGRAPH'),'Invalid card type');}
- for(const e of entries){const defaults=d.variants.filter(v=>v.entryId===e.id&&v.isDefault);requireValue(defaults.length<=1 && (e.entryType!=='BASE'||defaults.length===1),'Missing/duplicate default');requireValue(defaults.every(v=>v.id===e.id),'Default identity changed');if(e.variationOfEntryId)requireValue(byId.get(e.variationOfEntryId)?.entryType==='BASE','Invalid variation parent');}
+ for(const e of entries){requireValue(d.variants.some(v=>v.entryId===e.id),'Entry missing collectible variant');const defaults=d.variants.filter(v=>v.entryId===e.id&&v.isDefault);requireValue(defaults.length<=1 && (e.entryType!=='BASE'||defaults.length===1),'Missing/duplicate default');requireValue(defaults.every(v=>v.id===e.id),'Default identity changed');if(e.variationOfEntryId)requireValue(byId.get(e.variationOfEntryId)?.entryType==='BASE','Invalid variation parent');}
  for(const claim of d.eligibility){const c=d.configurations.find(c=>c.id===claim.configurationId);const v=d.variants.find(v=>v.id===claim.variantId);requireValue(c&&v&&byId.get(v.entryId)?.releaseId===c.releaseId,'Invalid eligibility target');}
 }

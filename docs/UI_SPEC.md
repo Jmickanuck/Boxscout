@@ -185,3 +185,9 @@ The box Overview leads with Where to buy: reviewed matching-product retailer lin
 Remove retailer-identity tables, SKU/UPC, repeated source/date labels, public evidence/history disclosures and the overview source footer. These facts remain in the canonical data and operator records. Links serve shopping; no factual data or provenance is deleted. The Cards source section is unchanged.
 
 The set-selection card for configuration `npp-mega` displays **Retail Mega Box**, as requested by Justin. This is a display label only; it does not merge other retail Mega configurations or change the stored NPP identity/eligibility.
+
+## Plan 009 — Mega family and hidden eligibility tags
+
+Mega versions group into one shopper-facing box family. Retail Red Disco, Target, Dick’s and Hobby remain exact configurations linked to shared variants. Release ID, subset/type, variant parallel/numbering and configuration eligibility are structured tags; no free-text tagging system or duplicate cards per retailer. The box page compares version colours and retailer links; Red Disco average claims remain scoped to that version.
+
+The card page starts with the union of documented Mega Base matches and exposes a version selector. Shared variants appear once. Probable links are included by default with visible qualification; disabling them shows only verified matches. Unmapped release variants are not presented as eligible Mega cards. Show-more renders 120 records at a time, preserving searches over the full dataset and exact variant-level Owned/Watching IDs. Twelve disputed families remain pending; neither the whole release nor every Mega version is claimed complete.

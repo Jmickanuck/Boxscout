@@ -7,7 +7,7 @@ import {snapshotText} from '../scripts/database/operations.ts';
 import {createCatalogRepository} from '../src/repositories/catalog-repository.ts';
 test('publication preserves all domain fields, provenance and stable identities',async()=>{
  const expected=await fixtureSource.read();assertParity(expected,publication.data);assertParity(expected,inflate(flatten(expected)));
- assert.equal(digest(expected),publication.revision);assert.equal(publication.data.entries.length,559);assert.equal(publication.data.variants.length,1643);
+ assert.equal(digest(expected),publication.revision);assert.equal(publication.data.entries.length,1010);assert.equal(publication.data.variants.length,10342);
  assert.deepEqual(createCatalogRepository(expected).listProducts(),createCatalogRepository(publication.data).listProducts());
 });
 test('snapshot serialization is deterministic and tampering changes the revision',()=>{
@@ -25,7 +25,7 @@ test('set navigation deduplicates releases and keeps box formats and products wi
  assert.equal(repo.listReleases().length,2);
  assert.equal(repo.findRelease(other.id)?.name,other.name);
  assert.equal(repo.listReleaseProducts(first.release.id).length,2);
- assert.equal(repo.listReleaseConfigurations(first.release.id).length,8);
+ assert.equal(repo.listReleaseConfigurations(first.release.id).length,9);
  assert.deepEqual(repo.listReleaseConfigurations(other.id),[]);
  assert.equal(repo.findRelease('missing'),undefined);
  assert.deepEqual(repo.listReleaseProducts('missing'),[]);

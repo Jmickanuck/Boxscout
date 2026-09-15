@@ -4,11 +4,10 @@ import {readFileSync} from 'node:fs';
 import {normalizeVariants,validateVariantData} from '../scripts/checklists/variants.ts';
 import {variantData} from '../src/data/fixtures/generated/golden-product-variants.ts';
 import {cards} from '../src/data/fixtures/generated/golden-product-base.ts';
-import {variantRepository} from '../src/repositories/variant-repository.ts';
 import {defaultVariantFilters as defaults,filterVariants,eligibilityAssessment} from '../src/domain/catalog/variants.ts';
 import {createCollectionStateRepository,collectionStorageKey} from '../src/repositories/collection-state-repository.ts';
 const input=JSON.parse(readFileSync('data/imports/golden-product-variants/input.json','utf8'));
-const data=variantRepository.browse(cards[0].releaseId);
+const data={...variantData,entries:[...cards.map(c=>({...c,entryType:'BASE' as const,variationOfEntryId:null})),...variantData.entries]};
 const query=(changes:Partial<typeof defaults>)=>filterVariants(data,{...defaults,...changes}).results;
 test('complete reviewed pilot replays with stable entry and variant identities',()=>{
  assert.deepEqual(normalizeVariants(input,cards),variantData);
@@ -48,10 +47,10 @@ test('eligibility does not follow release membership and exact-box confidence is
  const red=data.variants.find(v=>v.parallelName==='Red Disco')!;
  assert.deepEqual(eligibilityAssessment(data,red.id,'npp-mega'),{status:'INCLUDED',confidence:'VERIFIED'});
  assert.deepEqual(eligibilityAssessment(data,red.id,'mastermind'),{status:'INCLUDED',confidence:'PROBABLE'});
- assert.equal(query({configuration:'npp-mega'}).length,500);
- assert.equal(query({configuration:'mastermind'}).length,0);
- assert.equal(query({configuration:'mastermind',probable:true}).length,500);
- assert.equal(query({configuration:'hobby',probable:true}).length,0);
+ assert.equal(query({edition:'ALL',configuration:'npp-mega'}).length,500);
+ assert.equal(query({edition:'ALL',configuration:'mastermind'}).length,0);
+ assert.equal(query({edition:'ALL',configuration:'mastermind',probable:true}).length,500);
+ assert.equal(query({edition:'ALL',configuration:'hobby',probable:true}).length,0);
  const conflict={...data,eligibility:[...data.eligibility,{...data.eligibility[0],status:'EXCLUDED' as const}]};
  assert.equal(eligibilityAssessment(conflict,data.eligibility[0].variantId,'npp-mega').status,'CONFLICTING');
 });

@@ -1,3 +1,4 @@
+import {appendCatalogue} from './additive.ts';
 import {connect,safeError} from './connection.ts';
 import {fixtureSource} from './fixture-source.ts';
 import {migrate,importCatalogue,approvePublication,readPublication,writeSnapshot,counts} from './operations.ts';
@@ -10,6 +11,7 @@ try{
  c=await connect(local);
  switch(command){
  case 'migrate':await migrate(c);console.log('Migrations applied/verified');break;
+ case 'append':console.log(await appendCatalogue(c,await fixtureSource.read(),process.env.BOXSCOUT_BASELINE??'',review));break;
  case 'import':console.log(await importCatalogue(c,await fixtureSource.read(),review));break;
  case 'parity':{const data=await postgresRepository(c).read();assertParity(await fixtureSource.read(),data);console.log('Full domain/provenance parity passed',counts(data));break;}
  case 'approve':console.log('Approved revision',await approvePublication(c,await fixtureSource.read(),review));break;

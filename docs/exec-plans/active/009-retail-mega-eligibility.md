@@ -41,3 +41,13 @@ Identity comparison and existing-box packaging reconnaissance complete. Target p
 ## Follow-up comparison
 
 Justin questioned whether different retail Mega barcodes really imply different cards. They do not by themselves. [Collectosk](https://www.collectosk.com/2026-panini-prizm-fifa-world-cup-2026-soccer-cards/) reports Target/Excell-specific Teal Disco /149 and White Disco /20, compared with the NPP Disco colors above. Treat that as a secondary-source candidate difference pending exact packaging/manufacturer corroboration; do not assert the entire checklist differs. Retail Mega can remain the shopper-facing format, with version-specific eligibility where proven.
+
+## Implementation authorized
+
+Justin approved updating the web app and card database, with hidden set/variant/box tags. Group Mega configurations into one shopper-facing family; retain exact eligibility internally. Reuse existing relational entry/variant/configuration identities and preserve all existing records. Add complete manufacturer-extracted Mega families supported by packaging, plus source-qualified Target, DSG and Hobby Mega links; no unsupported exclusion or invented 99% equivalence. Additive import requires an expected baseline digest and rejects modification/removal of existing records. Verify SQL rollback/repeatability and UI version filtering before publication. Collection-site research: TCDB separates checklists, variations and related parallel sets; Collectosk exposes product filters and parallel exclusivity. These are UI patterns, not evidence of their internal database implementations.
+
+## Implemented reviewed slice
+
+Mega-family navigation, version comparison, version-aware checklist and paged rendering implemented. Hidden tags reuse existing relational IDs and eligibility edges. Hosted additive update passed full parity and publication approval: `7df2a4a69c049bc014904cff11a1f9cd54512510723a75f8702300068bf57b25`. 1,010 entries / 10,342 variants / 13,807 links / nine configurations. All pilot records retained. Full coverage remains pending for the 12 disputed subsets listed in the import README. Automatic review rejected batch resolution of those discrepancies; the safer import excludes all affected families, and retains their unapproved evidence.
+
+Validation: 52 application tests, three SQL integration tests, lint, typecheck and production build passed. Mobile 390px dark/light checks passed, no horizontal overflow; Target vs Red Disco filtering and a Watch flag surviving reload checked. Pre/post hosted backups saved outside Git. A separate review-proposal.md retains the exact source differences for the remaining approval decision. Full completion of the disputed families remains pending.

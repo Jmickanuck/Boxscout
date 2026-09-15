@@ -10,7 +10,7 @@ export function ConfigurationIntelligence({ intelligence, prices }: { intelligen
   return <div className="box-overview">
     <section className="overview-panel shopping-panel" aria-labelledby="retailers-heading">
       <p className="eyebrow">FIND YOUR BOX</p>
-      <h2 id="retailers-heading">Where to buy</h2>
+      <h2 id="retailers-heading">Retail / Red Disco listings</h2>
       <p className="checklist-note">Retailers listing this box. Check each website for current price, stock and delivery.</p>
       {retailers.length ? <ul className="retailer-list">{retailers.map(retailer => {
         const selection = retailer.listingId ? selectSealedPrice(prices, retailer.listingId, view.listing.productId, new Date()) : null;
@@ -22,7 +22,7 @@ export function ConfigurationIntelligence({ intelligence, prices }: { intelligen
       })}</ul> : <p>Retailer listings are not available yet.</p>}
     </section>
     <section className="overview-panel packaging-panel" aria-labelledby="packaging-heading">
-      <h2 id="packaging-heading">Inside the box</h2>
+      <h2 id="packaging-heading">Inside the Retail / Red Disco box</h2>
       {specification ? <dl className="packaging-stats">
         <div><dt>Packs per box</dt><dd>{specification.packsPerBox}</dd></div>
         <div><dt>Cards per pack</dt><dd>{specification.cardsPerPack}</dd></div>

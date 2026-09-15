@@ -1,3 +1,4 @@
+import {megaVersionIds} from './box-families.ts';
 import type { BrowseData, BrowseEntry, BrowseVariant, Confidence } from '../../types/variants.ts';
 import type { CollectionState } from '../collection.ts';
 export type VariantFilters = {query:string; type:string; edition:string; maximum:string; country:string; subset:string; configuration:string; probable:boolean; owned:boolean; watched:boolean};
@@ -15,8 +16,16 @@ export function eligibilityAssessment(data:BrowseData, variantId:string, configu
 export function filterVariants(data:BrowseData,f:VariantFilters,collection:CollectionState={}) {
  const q=f.query.trim().toLocaleLowerCase().replace(/^#/,'');
  const parallelSearch=!!q&&data.variants.some(v=>!v.isDefault&&v.parallelName.toLocaleLowerCase().includes(q));
- const exact=f.edition!=='DEFAULT'||!!f.maximum||parallelSearch||f.type==='AUTOGRAPH'||!!f.configuration||f.owned||f.watched;
+ const exact=f.edition!=='DEFAULT'||!!f.maximum||parallelSearch||f.type==='AUTOGRAPH'||f.owned||f.watched;
  const entries=new Map(data.entries.map(e=>[e.id,e]));
+ const byVariant=Map.groupBy(data.eligibility,e=>e.variantId);
+ const allowed=new Set<string>();
+ if(f.configuration){
+  const configs=f.configuration==='mega'?megaVersionIds:[f.configuration];
+  for(const [id,claims] of byVariant){
+   if(configs.some(config=>{const a=eligibilityAssessment({...data,eligibility:claims},id,config);return a.status==='INCLUDED'&&(a.confidence==='VERIFIED'||f.probable&&a.confidence==='PROBABLE');}))allowed.add(id);
+  }
+ }
  const results:{entry:BrowseEntry;variant:BrowseVariant;group:string}[]=[];
  for(const v of data.variants){
   const e=entries.get(v.entryId);if(!e)continue;
@@ -27,7 +36,7 @@ export function filterVariants(data:BrowseData,f:VariantFilters,collection:Colle
   if(f.edition==='NUMBERED'&&v.numbering!=='NUMBERED')continue;
   if(q&&!`${e.playerName} ${e.cardNumber} ${e.country} ${e.subset} ${v.parallelName}`.toLocaleLowerCase().includes(q))continue;
   if(f.owned&&!collection[v.id]?.owned||f.watched&&!collection[v.id]?.watched)continue;
-  if(f.configuration){const a=eligibilityAssessment(data,v.id,f.configuration);if(a.status!=='INCLUDED'||a.confidence!=='VERIFIED'&&!(f.probable&&a.confidence==='PROBABLE'))continue;}
+  if(f.configuration&&!allowed.has(v.id))continue;
   const group=e.subset+' · '+v.parallelName+(v.serialTotal!==null?' /'+v.serialTotal:'');
   results.push({entry:e,variant:v,group});
  }

@@ -1,3 +1,4 @@
+import {MegaVersions} from '@/components/products/mega-versions';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { catalogRepository } from '@/repositories/catalog-repository';
@@ -10,6 +11,7 @@ export default async function ProductPage({ params }: { params: Promise<{ produc
   const intelligence = catalogRepository.getConfigurationIntelligence(product.id);
   const prices = catalogRepository.listSealedPrices(product.id);
   return <><ProductHeader product={product} active="overview" />
+    <MegaVersions slug={product.slug} />
     {intelligence ? <ConfigurationIntelligence intelligence={intelligence} prices={prices} /> : <p>Configuration intelligence unknown.</p>}
     <section className="checklist-callout"><div><p className="eyebrow">EXPLORE THE RELEASE</p><h2>{cards.length} sourced base cards</h2><p>The complete base checklist with independent Owned and Watching controls.</p></div><Link className="button" href={'/products/' + product.slug + '/cards'}>Browse cards →</Link></section>
 
