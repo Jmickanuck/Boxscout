@@ -77,9 +77,31 @@ The hardening checkpoint at commit `b4cfca6b21a6b879def8a7811e79f3842512ec0b` pa
 - Client payloads should become narrower as release/configuration data grows.
 - Off-device scheduled backups are still required before irreplaceable market/surfaced/user data is stored.
 
+## 2026-09-15 — Manufacturer / Topps pitch-deck workstream
+
+A separate communications workstream is planned for a professional manufacturer-facing BoxScout concept PDF, initially for Topps if image/sample discussions progress.
+
+The deck should:
+
+- explain BoxScout's sealed-box buying-intelligence purpose;
+- show the collector problem and BoxScout decision flow;
+- include polished web-app diagrams/mockups, especially:
+  - homepage / intelligence dashboard;
+  - release / set page;
+  - specific box/configuration purchase-decision page;
+  - visual card checklist/gallery using official manufacturer imagery when permitted;
+- explain exactly how official manufacturer assets would be used;
+- explain the potential manufacturer benefit without making unsupported sales claims;
+- clearly separate current live functionality from future product direction;
+- preserve image/IP permission boundaries and avoid implying official affiliation unless one exists.
+
+If Topps supplies physical samples or digital assets, preserve the accompanying terms, provenance, exact product identity and publication-rights scope before using them publicly.
+
+The dedicated handoff document is `MANUFACTURER_PITCH_DECK_BRIEF.md`. A new chat can use that file as the source of truth for creating the final pitch deck and mockups.
+
 ## Documentation rule going forward
 
-When a change materially affects product direction, canonical data semantics, architecture, publication/ingestion behavior, runtime scaling, operational recovery or execution sequencing:
+When a change materially affects product direction, canonical data semantics, architecture, publication/ingestion behavior, runtime scaling, operational recovery, execution sequencing, or an important external/manufacturer workstream:
 
 1. update the governing document;
 2. add a short entry here when the change is important enough that future project context would suffer without it;
