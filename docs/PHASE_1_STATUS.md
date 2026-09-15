@@ -4,7 +4,7 @@ Last updated: 2026-09-15
 
 ## Authority
 
-This document is the current operational source of truth for Phase 1 status and sequencing. It does not replace `PRODUCT.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DATA_INTEGRITY.md`, or `BOX_FIRST_UI_DIRECTION.md`; it tells agents what is true now, what remains incomplete, and what to do next.
+This document is the current operational source of truth for Phase 1 status and sequencing. It does not replace `PRODUCT.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DATA_INTEGRITY.md`, `BOX_FIRST_UI_DIRECTION.md`, or `MANUFACTURER_INTEGRATIONS.md`; it tells agents what is true now, what remains incomplete, and what to do next.
 
 When older execution plans conflict with this document or the current active plan, follow this document plus the current active plan. Historical plans remain useful implementation history, not current authorization.
 
@@ -138,6 +138,30 @@ Four questions must never be collapsed:
 
 The frontend consumes those answers; it does not invent them.
 
+## Approved manufacturer-readiness direction
+
+BoxScout should become increasingly easy and safe for manufacturers such as Topps/Fanatics and Panini to work with while preserving collector-first product priorities and BoxScout editorial independence.
+
+The approved direction is documented in `MANUFACTURER_INTEGRATIONS.md` and includes:
+
+- explicit official-source attribution;
+- richer manufacturer asset-rights metadata;
+- deterministic asset withdrawal/removal procedures;
+- reviewed manufacturer corrections and replacement-asset submissions;
+- official-store purchase destinations represented separately from ordinary retailer offers;
+- future structured manufacturer imports;
+- future privacy-safe outbound purchase-intent analytics;
+- future private preview/embargo/launch workflows only after security and operational maturity support them;
+- future aggregate manufacturer analytics only after meaningful traffic exists.
+
+### What may be incorporated during current work
+
+If Plan 010 or immediately adjacent data work naturally touches provenance, source type, image rights or publication inventory, it is acceptable to design those fields so they are compatible with the manufacturer-integration requirements. Do not create throwaway structures that will immediately need replacement.
+
+### What must wait for later execution plans
+
+Do not interrupt Plan 010 to build a self-service manufacturer portal, analytics dashboard, embargo system, large partner API or other major B2B surface. Those capabilities are approved, but their implementation must be sequenced after their data/security dependencies are ready.
+
 ## Current development freeze
 
 Until Plan 010 is complete, do not add:
@@ -154,8 +178,11 @@ Until Plan 010 is complete, do not add:
 - chase depletion implementation
 - sales-market ingestion
 - major new UI surfaces unrelated to honest coverage/completeness
+- self-service manufacturer portals
+- manufacturer analytics dashboards
+- confidential/embargoed partner workflows
 
-Small UI changes required to expose data coverage accurately are allowed by Plan 010.
+Small UI changes required to expose data coverage accurately are allowed by Plan 010. Manufacturer-readiness foundations that naturally intersect current provenance/rights/publication work may also be designed compatibly, but must not displace the active plan.
 
 ## Recovery roadmap
 
@@ -185,6 +212,8 @@ Compare supported boxes using inspectable metrics: sealed price, hit structure, 
 
 Product #2 begins only after Golden Product #1 is useful end-to-end and Justin would genuinely use it before a purchase.
 
+Manufacturer-readiness work should be converted into a dedicated execution plan when the appropriate dependencies are ready. Near-term candidates are the canonical rights schema, official-source attribution, publication asset inventory/withdrawal workflow, manufacturer preview/export and reviewed correction intake.
+
 ## Quality bar
 
 BoxScout should optimize for trust before breadth.
@@ -194,6 +223,7 @@ A partial section labelled partial is better than a fake full checklist.
 One complete Golden Product is better than ten shallow products.
 The canonical database and its provenance are more important than decorative frontend completeness.
 The box-buying decision is the product; card data is the intelligence that makes that decision trustworthy.
+Manufacturer participation must improve data quality and product presentation without buying influence over BoxScout analysis.
 
 ## Immediate next action
 
