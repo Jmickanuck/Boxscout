@@ -109,6 +109,29 @@ Desired pattern:
 
 Never use an LLM to perform a bulk join, count, hash, exact dedupe or deterministic field comparison that normal code can perform reliably.
 
+## Engineering hardening checkpoint — 2026-09-15
+
+The repository was deliberately hardened before Plan 010 scales the catalogue further.
+
+Implemented and retained:
+
+- `AGENTS.md` now uses selective, task-relevant documentation loading instead of requiring every project document up front.
+- `docs/AI_CONTEXT.md` is the compact agent starting context.
+- `src/data/published/manifest.json` is the preferred small operational snapshot for revision/count inspection.
+- The publication writer is shard-ready and writes release/domain shards on the next approved publication while retaining `catalogue.ts` temporarily for compatibility.
+- `src/repositories/catalogue-index.ts` provides shared indexed lookup structures for common repository operations.
+- Variant browsing caches/indexes repeated lookups instead of rebuilding them on every filter operation.
+- GitHub Actions CI runs lint, typecheck, application tests and production build on pushes/PRs to `main`.
+- `.editorconfig`, Prettier configuration and lint/format scripts establish consistent source formatting while excluding bulk generated/import data.
+- generated/import/publication line endings are pinned to LF to avoid platform-only diffs.
+- `docs/decisions/007-ai-efficient-data-processing.md` records the deterministic-first, compact-context architecture decision.
+- `docs/PUBLICATION_SHARDING.md` records the migration path away from the giant monolithic publication artifact.
+- `docs/exec-plans/active/README.md` explicitly states that Plan 010 is the only current execution authority; Plans 001–009 are historical records.
+
+The last verified hardening commit in this checkpoint is `b4cfca6b21a6b879def8a7811e79f3842512ec0b`; GitHub CI and Vercel both succeeded for that commit.
+
+Do not undo these changes casually. If a future approach replaces them, it must preserve or improve token efficiency, deterministic processing, runtime performance and publication integrity.
+
 ## Read detailed docs only when relevant
 
 - product behavior / terminology -> `docs/PRODUCT.md`
@@ -119,16 +142,30 @@ Never use an LLM to perform a bulk join, count, hash, exact dedupe or determinis
 - database/publication/backups -> `docs/PERSISTENCE_RUNBOOK.md`
 - local implementation workflow -> `docs/ASTRA_RUNBOOK.md`
 - monetization -> `docs/MONETIZATION.md` and ADR 004
+- AI/data-processing efficiency -> `docs/decisions/007-ai-efficient-data-processing.md`
+- publication scaling -> `docs/PUBLICATION_SHARDING.md`
 
 Do not preload all of these for unrelated tasks.
 
-## Current efficiency risks
+## Current efficiency state / remaining work
 
-1. `src/data/published/catalogue.ts` is already large and must not remain the long-term publication format.
-2. Full-release expansion could reach tens of thousands of variants; publication output must be shardable and queryable by release/domain.
-3. Repository lookups should use precomputed indexes rather than repeated whole-array scans as data grows.
-4. CI should independently run lint, typecheck, tests and production build.
-5. Documentation should remain current and compact enough that agents do not reconcile obsolete project history every session.
+Already addressed:
+
+1. compact AI context and bulk-file guardrails;
+2. compact publication manifest;
+3. shard-ready publication writer;
+4. indexed repository access and cached browse indexes;
+5. CI verification;
+6. formatting/EOL hygiene;
+7. stale core documentation refresh.
+
+Still intentionally transitional:
+
+1. `src/data/published/catalogue.ts` remains the compatibility runtime artifact until repository consumers migrate safely to shards/projections;
+2. release/domain shard files are generated on the next approved database publication, not retroactively manufactured by hand;
+3. client payloads should become configuration/release-specific as catalogue scale materially grows;
+4. Plan 010 still needs deterministic completeness/coverage reporting and Golden Product release completion;
+5. off-device scheduled backups are still required before irreplaceable market/surfaced/user data is stored.
 
 ## Completion discipline
 
