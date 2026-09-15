@@ -1,4 +1,3 @@
-import { publication } from '../data/published/catalogue.ts';
 import { assessNppMapping } from '../domain/catalog/configuration-intelligence.ts';
 import type { Card, ConfigurationIntelligence, Product, Release } from '../types/catalog.ts';
 import type { SealedPriceObservation } from '../types/market.ts';
@@ -6,6 +5,7 @@ import type { CatalogueData } from '../types/publication.ts';
 import type { ReleaseConfiguration } from '../types/variants.ts';
 import { cardImageRepository } from './card-image-repository.ts';
 import { buildCatalogueIndex } from './catalogue-index.ts';
+import { catalogueData, catalogueIndex } from './published-catalogue.ts';
 
 export interface CatalogRepository {
   getConfigurationIntelligence(productId: string): ConfigurationIntelligence | undefined;
@@ -20,8 +20,12 @@ export interface CatalogRepository {
   listReleaseCards(releaseId: string): readonly Card[];
 }
 
-export function createCatalogRepository(data: CatalogueData): CatalogRepository {
-  const index = buildCatalogueIndex(data);
+type CatalogueIndex = ReturnType<typeof buildCatalogueIndex>;
+
+export function createCatalogRepository(
+  data: CatalogueData,
+  index: CatalogueIndex = buildCatalogueIndex(data),
+): CatalogRepository {
   const intelligence = (id: string) => index.intelligenceByProduct.get(id);
 
   const reviewed = (product: Product): Product => {
@@ -70,4 +74,4 @@ export function createCatalogRepository(data: CatalogueData): CatalogRepository 
   };
 }
 
-export const catalogRepository = createCatalogRepository(publication.data);
+export const catalogRepository = createCatalogRepository(catalogueData, catalogueIndex);
