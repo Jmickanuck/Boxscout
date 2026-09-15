@@ -99,6 +99,29 @@ If Topps supplies physical samples or digital assets, preserve the accompanying 
 
 The dedicated handoff document is `MANUFACTURER_PITCH_DECK_BRIEF.md`. A new chat can use that file as the source of truth for creating the final pitch deck and mockups.
 
+## 2026-09-15 — Manufacturer integration strategy approved
+
+BoxScout will be designed not only as a collector-facing buying-intelligence product but also as a controlled downstream product-information surface that manufacturers such as Topps/Fanatics and Panini can safely work with.
+
+Approved implementation direction:
+
+- distinguish official manufacturer facts from BoxScout research/analysis in provenance and UI semantics;
+- expand asset publication rights into first-class metadata covering owner/licensor, allowed uses/scope, attribution, expiry/withdrawal and publication inventory;
+- make approved assets deterministically locatable/removable from BoxScout-controlled public surfaces;
+- allow manufacturer corrections/replacement assets to enter the same candidate -> review -> canonical publication workflow rather than bypassing BoxScout validation;
+- represent official manufacturer purchase URLs independently from third-party retailer offers;
+- later support standardized manufacturer release/checklist/odds/asset intake;
+- later measure privacy-safe aggregate outbound purchase intent once traffic justifies it;
+- later support private previews/embargoed launches only after access control and operations are sufficiently mature;
+- later expose aggregate manufacturer analytics only after BoxScout has meaningful usage;
+- preserve editorial independence: commercial, licensing, affiliate or manufacturer relationships cannot silently change evidence states, rankings or factual analysis.
+
+A dedicated specification now lives in `MANUFACTURER_INTEGRATIONS.md` with staged M0-M5 implementation guidance and manufacturer-readiness acceptance criteria.
+
+The existing Plan 010 Golden Product work remains the only current execution authority. Manufacturer-readiness foundations may be incorporated opportunistically when current provenance/rights/publication work touches them, but major portals, dashboards and embargo systems require later execution plans.
+
+The Topps pitch-deck brief was also updated to use the actual BoxScout UI/design system as its primary visual language and to communicate this manufacturer-ready architecture without overstating current functionality.
+
 ## Documentation rule going forward
 
 When a change materially affects product direction, canonical data semantics, architecture, publication/ingestion behavior, runtime scaling, operational recovery, execution sequencing, or an important external/manufacturer workstream:
