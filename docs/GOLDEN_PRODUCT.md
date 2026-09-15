@@ -1,108 +1,138 @@
-# Golden Product #1 — Working Specification
+# Golden Product #1 — Current Working Specification
 
-## Product
+Last updated: 2026-09-15.
 
-2026 Panini Prizm FIFA World Cup Soccer — Mega Box
+For current sequencing/status, read `PHASE_1_STATUS.md` and active Plan 010 first. Historical implementation detail remains in Plans 001–009 and import README files; this document intentionally keeps only current Golden Product truth.
 
-Initial retailer reference supplied by Justin:
-Mastermind Toys.
+## Release
 
-## Purpose
+**2026 Panini Prizm FIFA World Cup Soccer**
 
-This is the first product used to validate the complete BoxScout vertical slice.
+Purpose: validate BoxScout end-to-end as a sealed-box buying intelligence product before Product #2.
 
-Do not add additional products simply to make the catalogue look bigger.
+## Product hierarchy
 
-## Important modelling lesson
-
-“Mega Box” is not sufficient identity.
-
-The release has multiple configurations/SKUs.
-
-BoxScout must model:
+`Mega Box` is a shopper-facing **Box Format**, not sufficient canonical identity.
 
 ```text
+Release / Set
+  -> Box Format (Mega)
+      -> Box Version / Configuration
+          -> Retailer Listing / Offer
+
 Release
-→ specific configuration/SKU
-→ eligible parallel/variant families
+  -> Card Subset
+      -> ChecklistEntry
+          -> Variant
 ```
 
-## Working facts from current research
+Current researched Mega configurations include NPP/Red Disco, Target, DSG and Hobby Mega candidates/records at differing confidence. Exact identity and any evidence-backed Pull Profile equivalence are Plan 011 work. Do not merge them because pack counts are similar.
 
-Treat these as working facts with provenance, not permanent truth without sources:
+## Current reviewed catalogue state
 
-- 7 cards per pack
+Latest reviewed Plan 009 publication before Plan 010 completion:
+
+- **1,010 checklist entries**
+- **10,342 variants**
+- **13,807 configuration/variant links**
+- **9 configurations**
+- all original stable pilot identities preserved
+
+This is **not the complete release catalogue**. Several subset/autograph/parallel families remain absent, disputed or unresolved.
+
+Earlier workbook inspection suggested a planning envelope around 1,400–1,600 checklist entries and 50,000–60,000 source-observed exact variants. Those are not canonical totals. Plan 010 must derive measured coverage from reviewed source data.
+
+## Confirmed base coverage
+
+The 500-card Base checklist (#1–500) was reconciled from the GTS distributor workbook and Checklist Insider with targeted TCDB resolution checks. Base identity coverage is complete for that scoped checklist.
+
+Base completeness does **not** prove:
+
+- full release completeness;
+- every parallel exists for every base card;
+- individual Mega eligibility;
+- image rights;
+- chase/surfaced state.
+
+## Autograph coverage
+
+Autograph coverage is currently incomplete and is a dedicated Plan 010 audit target.
+
+Known families to investigate include at least:
+
+- Signatures
+- Penmanship
+- International Ink
+- Global Graphs
+- National Heroes
+- 2012 Prizm Throwback Signatures
+- 1994 Team USA Signatures
+- Dual Signatures
+- Trio Signatures
+- Quad Signatures
+- Winning Captains
+- Signature Moments
+
+This is a starting inventory, not proof that no additional autograph family exists.
+
+## Mega box working facts
+
+One researched Canadian retail listing is the former Mastermind product with retailer SKU `256877` and reported UPC `746134202520`.
+
+Reviewed evidence supports:
+
 - 6 packs per box
+- 7 cards per pack
 - 42 cards total
-- matching-UPC retailer descriptions use “per box, on average”; final physical packaging has not been independently inspected
-- multiple Mega configurations exist
-- the Mastermind Mega appears likely to correspond to the NPP Mega configuration, but exact SKU/UPC verification should be completed before setting canonical VERIFIED status
-- the base checklist contains 500 base cards
-- total collectible content is larger than 500 because inserts, autographs, variations and parallels exist
+- probable relationship to the NPP/Red Disco Mega family rather than a fully authoritative UPC-to-family bridge
+- source-specific average/guarantee language that must remain distinct
 
-## Current data work required
+Different Mega UPCs/configurations exist. They may share much of the release while having different exclusive parallels. Plan 011 will resolve exact identities and eligibility after release completeness is trustworthy.
 
-Before calling the Golden Product dataset complete:
+## Pricing state
 
-1. Verify exact Mastermind configuration/SKU.
-2. Preserve source URLs and checked dates.
-3. Build complete base checklist.
-4. Model insert/subset structure.
-5. Model relevant variant/parallel structure.
-6. Map configuration eligibility.
-7. Add rights-cleared imagery through the reusable pipeline; coverage is conditional on permission, never a quota.
-8. Identify manually curated major chases.
-9. Add sealed-price observations.
-10. Preserve uncertainty where evidence conflicts.
+The catalogue currently retains two dated CAD $119.99 Mastermind listing observations from 2026-09-14. They are historical listing observations, not a live universal market price and not completed sales.
 
-## Image policy
+Future box-price intelligence must distinguish:
 
-Do not blindly copy images from Google, eBay, marketplaces or checklist sites.
+- active asking/listing price;
+- completed sealed sale;
+- market summary across credible observations;
+- retailer/offer identity;
+- currency/shipping/tax uncertainty.
 
-For each image, track:
-- exact card match confidence
-- source
-- usage/publication status
+## Image state
 
-A missing image is acceptable.
+The rights-aware image pipeline exists, but broad public card-image permission/coverage is not established.
 
-## Definition of Golden Product completion
+Rules:
 
-Golden Product #1 is successful when Justin can use the real product page on his phone to:
+- exact match and publication rights are separate gates;
+- no blind copying from Google/eBay/checklist sites;
+- missing image is acceptable and uses an intentional placeholder;
+- manufacturer outreach to Panini/Topps is tracked outside canonical catalogue facts.
 
-- understand the box
-- browse its checklist visually
-- search/filter cards
-- mark Owned/Watching
-- inspect major chases
-- make a more informed purchase decision
+## Golden Product completion
 
+Golden Product #1 is successful only when Justin can use BoxScout on his phone to make a materially better sealed-box purchase decision.
 
-## Plan 002 reviewed state — 2026-09-14
+That ultimately requires:
 
-- Exact Canadian listing: [Mastermind Toys](https://www.mastermindtoys.com/products/2026-panini-soccer-prizm-world-cup-mega-box), SKU 256877, retailer-reported UPC 746134202520, variant 41821202317445. UPC-A check digit passes, which is syntax validation only.
-- Release authority: [Panini official release article](https://blog.paniniamerica.net/panini-prizm-fifa-world-cup-2026-hits-the-net/). It does not identify this Mega UPC; other configuration counts are not borrowed.
-- NPP mapping is PROBABLE, supported by [Collectors Emporium's same-UPC NPP description](https://collectorsemporium.com/en-ca/products/2026-panini-prizm-fifa-world-cup-trading-cards-mega-box), [SCHEELS matching-UPC contents](https://www.scheels.com/p/18467-2-20253-20mo20/74613420252), and the [Panini NPP sell sheet hosted by GTS, page 5](https://gogts.net/wp-content/uploads/2026/06/2026-Panini-Prizm-World-Cup-Soccer-Cards-Sell-Sheet-Retail.pdf). No authoritative UPC-to-NPP bridge was established in the bounded review.
-- Six packs × seven cards = 42 is qualified as probable applicability, with source-specific specifications retained. The five retailer average claims are separate from sell-sheet guarantee claims; exact-box guarantees remain unresolved. SCHEELS' eight Prizms includes six Disco, never eight plus six.
-- Two genuine Mastermind checks recorded CAD $119.99 for one box at 2026-09-14T20:20:41.132Z and 2026-09-14T20:30:25.573Z. Both are retained. Conflicting stock signals mean availability UNKNOWN; shipping is separate and tax treatment unknown. These are dated listing observations.
-- The existing 24 base cards, placeholders and independent local flags are unchanged. Full checklist, variant eligibility, images and other Golden Product completion items above remain deferred beyond this plan.
+1. complete/measured release catalogue coverage;
+2. exact box/configuration identity and eligibility;
+3. useful box-first UI;
+4. sealed-price/retailer intelligence;
+5. selected major chase + finite surfaced evidence;
+6. inspectable supporting card/checklist browsing;
+7. transparent comparison/value inputs without fake precision.
 
+## Current execution sequence
 
-## Plan 003 reviewed base coverage — 2026-09-14
+- Plan 010 — complete release catalogue + exact variants + coverage report
+- Plan 011 — exact Mega identities / Pull Profiles / eligibility
+- Plan 012 — box-first frontend + pricing presentation
+- Plan 013 — chase / finite-instance surfaced tracking
+- Plan 014 — card sales + sealed market intelligence
+- Plan 015 — box comparison + first transparent value model
 
-The base sample is replaced by 500 verified release-level base identities (#1–500). All 24 prior stable IDs are unchanged. Distributor GTS and Checklist Insider supply complete factual extracts; TCDB supplies targeted discrepancy corroboration. Five name differences and one equivalent country-label difference are explicitly reviewed in `data/imports/golden-product-base/discrepancies.json`. No unresolved substantive differences remain in those imported observations. Future source corrections must be reviewed rather than silently applied.
-
-The lightweight, offline replayable importer validates coverage, base membership, provenance, numeric order, source hashes and legacy identity compatibility. The canonical mobile tile, search and browser-local collection v1 remain unchanged. Placeholders remain intentional. This completes base coverage only; Mega mapping remains PROBABLE, individual-card eligibility UNKNOWN, and images/variants/chases and other completion goals above remain out of scope.
-
-
-## Plan 004 image foundation
-
-One Panini promotional image URL was screened as a discovery reference; no exact base identity or public reuse permission was established. No third-party image binary was retained. Zero card-target candidates were promoted and zero public card images are approved. All 500 cards retain placeholders; source coverage is not fabricated. See data/imports/golden-product-images/discovery.json. The reusable approval/generation/rendering path is exercised with synthetic test pixels in temporary directories, never presented as real cards. Configuration mapping and eligibility remain unchanged.
-
-## Plan 005 reviewed pilot
-
-559 checklist entries: Base 500, Base Variations 25, Aces 25, 1994 Team USA Signatures nine. 1,643 variants: 559 defaults; Base Red Disco /99 (500); Base Black /1 (500); Aces Silver unnumbered (25), Orange /25 (25), Green /5 (25); Team USA Silver (nine, Tony Meola /199 and eight /75). Each imported family is complete, not first-N sampling. Original 500 Base IDs and local flags remain compatible.
-
-Eight release configuration records: NPP Mega, Hobby, FOTL, Choice, Hobby Mega, DSG Mega, NPP Blaster and NPP Counter Display. The last two Mega channel families (Hobby Mega/DSG) remain PROBABLE at registry level; supported manufacturer families are VERIFIED. Only 500 Base Red Disco → NPP Mega inclusion claims are promoted here. Other mappings remain UNKNOWN; no unsupported exclusions. The exact Mastermind listing remains PROBABLE NPP.
-
-All 59 new entry names/countries agree across GTS and Checklist Insider after whitespace normalization. The manufacturer workbook supplies per-record parallel existence and sequence; secondary lists corroborate family structure. Team USA Silver has legitimate mixed print runs, not a conflict. Existing Plan 003 name resolutions remain unchanged. No images acquired; all imagery remains placeholders. The full release and other eligibility relationships remain incomplete by design.
+Do not add Product #2 until this Golden Product works end-to-end.
