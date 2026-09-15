@@ -16,6 +16,12 @@ Make the 2026 Panini Prizm FIFA World Cup release catalogue trustworthy and stru
 
 This plan is about **release completeness**, not full Mega eligibility, chase tracking, sales ingestion, Compare, Product #2 or visual polish.
 
+### Box-first downstream contract
+
+The release catalogue is being completed because BoxScout is a **sealed-box buying intelligence product**. Cards/checklists are supporting intelligence for the question: **which box should I buy, what should I pay, and where should I buy it?**
+
+Plan 010 must therefore leave clean, reusable release/subset/entry/variant data for later box eligibility, chase, price and comparison work. It must not distort the catalogue to fit the current UI or a particular retailer box. Durable product/UI requirements are in `docs/PRODUCT.md` and `docs/BOX_FIRST_UI_DIRECTION.md`.
+
 ## Why this plan exists
 
 The current site has begun to expose a structural gap: the UI can look complete while the loaded release catalogue is still partial. The autograph section made this obvious.
@@ -272,6 +278,6 @@ Stop and request a decision rather than guessing if:
 
 ## Next plan after completion
 
-**Plan 011 — Complete Mega Configuration Eligibility**
+**Plan 011 — Resolve Exact Mega Identities, Pull Profiles and Configuration Eligibility**
 
-Only after release-level catalogue coverage is trustworthy should BoxScout finish mapping exact variants to the shopper-facing Mega configuration/version(s).
+Only after release-level catalogue coverage is trustworthy should BoxScout establish the supported Mega versions/configurations, any evidence-backed pull-profile equivalence, and exact variant eligibility for the shopper-facing Mega experience.
