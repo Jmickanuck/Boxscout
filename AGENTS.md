@@ -6,21 +6,26 @@ BoxScout is a mobile-first soccer-card sealed-product intelligence platform.
 
 Read these files in order:
 
-1. `docs/PRODUCT.md`
-2. `docs/ARCHITECTURE.md`
-3. `docs/DATA_INTEGRITY.md`
-4. `docs/DATA_MODEL.md`
-5. `docs/UI_SPEC.md`
-6. `docs/GOLDEN_PRODUCT.md`
-7. `docs/ASTRA_RUNBOOK.md`
-8. `docs/MONETIZATION.md` and `docs/decisions/004-trust-first-monetization.md`
-9. the current file in `docs/exec-plans/active/`
+1. `docs/PHASE_1_STATUS.md`
+2. `docs/PRODUCT.md`
+3. `docs/ARCHITECTURE.md`
+4. `docs/DATA_INTEGRITY.md`
+5. `docs/DATA_MODEL.md`
+6. `docs/UI_SPEC.md`
+7. `docs/GOLDEN_PRODUCT.md`
+8. `docs/ASTRA_RUNBOOK.md`
+9. `docs/MONETIZATION.md` and `docs/decisions/004-trust-first-monetization.md`
+10. the single current plan named in the **Active plan** section below
+
+Older execution plans are implementation history, not current authorization. When an older plan conflicts with `PHASE_1_STATUS.md` or the current active plan, follow the current status and active plan.
 
 ## Phase 1 objective
 
 Build a V0 that Justin personally finds useful for evaluating soccer-card sealed products before buying them.
 
 Do not optimize Phase 1 for monetization or scale.
+
+The immediate recovery priority is data completeness and trustworthy Golden Product coverage, not additional visual features or Product #2.
 
 ## Hard rules
 
@@ -30,10 +35,12 @@ Do not optimize Phase 1 for monetization or scale.
 - Candidate data must never silently become verified canonical data.
 - Keep canonical data separate from personal user state.
 - Keep UI, domain logic, and data-access concerns separate.
-- Do not introduce Supabase, authentication, payments, scraping, microservices, or unnecessary infrastructure during the first visible build.
+- Do not add new infrastructure, authentication, payments, broad scraping, microservices, or other services unless the active plan explicitly authorizes them.
 - Do not expand Phase 1 scope without explicit approval.
 - Prefer simple, understandable architecture.
 - Build vertically around Golden Product #1 before adding more products.
+- Release membership, exact variant identity, and configuration eligibility are separate facts and must never be collapsed.
+- A partial catalogue must never be presented as a complete/full checklist.
 - Make small changes, test them, review, commit, push to GitHub and verify the remote.
 - Do not perform enormous rewrites unless explicitly requested.
 - Never discard working behavior merely to “modernize” code.
@@ -68,9 +75,11 @@ If a command does not yet exist, do not invent a passing result. State that it i
 
 ## Active plan
 
-Read:
+Read and execute only:
 
-`docs/exec-plans/active/006-persistent-backend-foundation.md`
+`docs/exec-plans/active/010-complete-golden-product-release-catalogue.md`
+
+Plans 001-009 remain historical implementation records. They do not authorize new work unless Plan 010 or a later approved plan explicitly carries that work forward.
 
 ## Monetization and cost principles
 
@@ -105,11 +114,11 @@ Standing Git rules:
 ## Separate backup responsibilities
 
 - Code/documentation → GitHub.
-- Future PostgreSQL/live data → database backups/exports.
+- PostgreSQL/live data → database backups/exports.
 - Future images/evidence assets → object-storage backup/versioning.
 
-Pushing source code does not back up a future live database, object storage or browser-local personal state. Establish and verify the relevant data backup strategy when persistent services are introduced; this rule does not authorize adding those services now.
+Pushing source code does not back up a live database, object storage or browser-local personal state. Establish and verify the relevant data backup strategy before persistent services contain irreplaceable data; the current manual/local backup limitation remains tracked in `PHASE_1_STATUS.md`.
 
 ## Persistent catalogue foundation
 
-Follow docs/PERSISTENCE_RUNBOOK.md for migrations, reviewed imports, publication, backups and recovery. PostgreSQL is canonical; the application consumes an approved versioned snapshot. Do not bypass publication review, overwrite a differing database or expose operator credentials. Current local-only backups are approved only for reproducible catalogue data; off-device scheduled backups are mandatory before irreplaceable data. No accounts or new data domains are authorized by this foundation.
+Follow `docs/PERSISTENCE_RUNBOOK.md` for migrations, reviewed imports, publication, backups and recovery. PostgreSQL is canonical; the application consumes an approved versioned snapshot. Do not bypass publication review, overwrite a differing database or expose operator credentials. Current local-only backups are approved only for reproducible catalogue data; off-device scheduled backups are mandatory before irreplaceable data. No accounts or new data domains are authorized by this foundation.
