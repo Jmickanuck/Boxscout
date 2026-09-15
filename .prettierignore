@@ -1,0 +1,8 @@
+.next
+node_modules
+package-lock.json
+src/data/published/catalogue.ts
+src/data/published/releases/
+src/data/fixtures/generated/
+data/imports/
+*.dump
