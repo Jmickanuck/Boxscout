@@ -255,6 +255,27 @@ Mature in stages:
 
 Do not naively multiply original hit odds by the percentage of chase copies not yet surfaced. Opened boxes and surfaced chase copies both alter the remaining opportunity, and the remaining sealed population is generally uncertain. Prefer ranges and explicit uncertainty over fake precision.
 
+## Manufacturer-ready platform direction
+
+BoxScout should be built so companies such as Topps/Fanatics and Panini can safely participate without controlling BoxScout's independent analysis.
+
+Approved manufacturer-facing direction includes:
+
+- explicit manufacturer/source attribution for official checklists, odds, specifications, images and purchase URLs;
+- first-class asset-rights metadata and deterministic withdrawal/removal procedures;
+- clear separation in the UI between official manufacturer facts and BoxScout intelligence;
+- reviewed manufacturer correction/replacement-asset submissions that enter the normal candidate -> review -> canonical publication workflow;
+- official-store destinations represented separately from third-party retailer offers;
+- future privacy-safe outbound purchase-intent measurement;
+- a supervised structured manufacturer intake/import format for releases, SKUs, checklists, odds and assets;
+- future private preview / embargo / scheduled-launch capability only after access control and operational maturity are adequate;
+- future aggregate manufacturer analytics only after BoxScout has meaningful traffic;
+- preservation of BoxScout editorial independence regardless of licensing, affiliate or commercial relationships.
+
+The collector remains the primary user. The strategic manufacturer value proposition is that BoxScout can become a trusted downstream surface where official products are represented accurately at the point collectors are comparing and buying sealed product.
+
+Implementation requirements and staging are defined in `MANUFACTURER_INTEGRATIONS.md`.
+
 ## Out of scope for Phase 1 unless explicitly approved
 
 - user accounts
@@ -274,6 +295,10 @@ Do not naively multiply original hit odds by the percentage of chase copies not 
 - large automated scraping system
 - microservices
 - speculative EV/fair-value claims
+- self-service manufacturer portals
+- confidential/embargoed manufacturer data handling before the security model supports it
+
+Manufacturer-readiness foundations such as source attribution, rights metadata and withdrawal semantics are approved direction and may be incorporated when they naturally touch active work. Larger manufacturer portals/analytics/embargo systems require later explicit execution plans.
 
 ## Long-term strategy — trusted intelligence before revenue
 
@@ -320,6 +345,8 @@ identify release/configuration
 
 Reuse ingestion patterns rather than one-off page construction.
 
+Manufacturer-supplied data must use this same review architecture rather than becoming a privileged alternate source of canonical truth.
+
 ## Current recovery roadmap
 
 1. **Plan 010 — Complete Golden Product release catalogue**
@@ -329,5 +356,7 @@ Reuse ingestion patterns rather than one-off page construction.
 5. **Plan 014 — Card sales plus sealed-price market intelligence**
 6. **Plan 015 — Box comparison and first transparent value model**
 7. Product #2 only after Golden Product #1 is genuinely useful as a purchase-decision tool.
+
+Manufacturer-readiness requirements in `MANUFACTURER_INTEGRATIONS.md` are approved future implementation targets. They should be folded into active plans when dependencies are ready rather than used to bypass the current Golden Product sequence.
 
 Plan 010 remains the current implementation authority. Later product requirements do not authorize skipping the data foundation.
