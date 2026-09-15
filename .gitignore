@@ -9,3 +9,6 @@ next-env.d.ts
 *.log
 
 .image-inputs/
+
+*.dump
+*.backup

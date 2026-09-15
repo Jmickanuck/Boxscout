@@ -13,9 +13,18 @@
     "checklist:check": "node scripts/checklists/generate.ts data/imports/golden-product-base/manifest.json --check",
     "images:generate": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json",
     "images:check": "node scripts/images/generate.ts data/imports/golden-product-images/manifest.json --check",
-    "prebuild": "npm run checklist:check && npm run variants:check && npm run images:check",
+    "prebuild": "npm run checklist:check && npm run variants:check && npm run images:check && npm run publication:check",
     "variants:generate": "node scripts/checklists/generate-variants.ts",
-    "variants:check": "node scripts/checklists/generate-variants.ts --check"
+    "variants:check": "node scripts/checklists/generate-variants.ts --check",
+    "db:migrate": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts migrate",
+    "db:import": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts import",
+    "db:parity": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts parity",
+    "db:approve": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts approve",
+    "db:publish": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts publish",
+    "db:size": "node --env-file-if-exists=.env.database.local scripts/database/cli.ts size",
+    "db:test": "node --test scripts/database/integration.test.ts",
+    "db:backup": "node --env-file=.env.database.local scripts/database/backup.ts",
+    "publication:check": "node scripts/database/check-publication.ts"
   },
   "dependencies": {
     "next": "16.3.5",
@@ -23,15 +32,17 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^24",
+    "@types/pg": "8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "typescript": "^5",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
-    "sharp": "0.35.4"
+    "pg": "8.23.0",
+    "sharp": "0.35.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "type": "module",
   "engines": {

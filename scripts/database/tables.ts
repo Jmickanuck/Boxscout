@@ -1,0 +1,3 @@
+// Whitelist for parameterized import/export. Core fields live in typed SQL columns.
+export const tableNames=["releases","retailer_configurations","products","entries","variants","configurations","eligibility","sources","evidence","listings","assessments","configuration_links","specifications","claims","prices","source_links","entry_sources","variant_sources","configuration_sources","eligibility_sources","claim_conflicts","identifier_evidence"] as const;
+export const orderedTables=new Set(["releases","retailer_configurations","products","entries","variants","configurations","eligibility","sources","evidence","listings","assessments","configuration_links","specifications","claims","prices","entry_sources","variant_sources","configuration_sources","eligibility_sources"]);

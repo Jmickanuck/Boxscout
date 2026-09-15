@@ -1,3 +1,6 @@
+# Approved implementation amendments
+
+Justin approved Plan 006: Supabase Free, Canada Central if available, PostgreSQL canonical truth with reviewed snapshot publication, current IDs and browser-local v1 preserved. Local database dumps outside Git are sufficient for this reproducible catalogue stage; the original proposed offsite-before-cutover gate below is superseded. Off-device/cloud plus scheduled backups are mandatory before irreplaceable user/market/surfaced data. No future account/market tables or live per-card queries. The original proposal follows as historical design context.
 # Execution Plan 006 — Persistent Backend Foundation
 
 ## Status and boundary
@@ -171,3 +174,16 @@ No new source conflicts are resolved by this plan. Existing factual discrepancie
 ## Planning completion
 
 Review this document's consistency and links, verify that it is the only changed path, commit and push to origin/main, fetch and compare local main/origin/main/live remote, then stop for approval. Application test/build commands are not required for this documentation-only change under AGENTS.md.
+
+
+## Implementation verification — 2026-09-14 (Toronto)
+
+Implemented Supabase project BoxScout / abkbniwtvojtjogxscap in MicknuckSoup Free, Canada Central, PostgreSQL 17.6. Four versioned migrations establish typed canonical tables, relational source/conflict links, integrity constraints, restricted reader role/RLS and separate publication approval. No account/market/sighting tables were created. See PERSISTENCE_RUNBOOK.md for operational details and explicit initial-import limitations.
+
+Imported and round-tripped one release, 559 entries, 1,643 variants, eight family configurations, 500 eligibility assessments, five box-evidence records, 11 claims, three packaging specifications and two CAD observations. Full field/provenance parity passed, including optional manufacturer source hash; repeated import was unchanged. Publication dca21b6b38c51ed3ed2788afd2bce11e3b1d43cf73a5c1be0fbabea041c56be1 exports reproducibly. The public app reads this snapshot without database credentials or requests; existing server-rendered routes remain server-rendered.
+
+All 46 application tests passed, along with local SQL integration tests, lint, typecheck and production build. Local mobile smoke at 375×812 and 390×844 preserved four columns (79 / 82.75 px tile widths), no overflow, 500 default cards, Messi/Red Disco search, autograph filtering and both saved flags after refresh. Console warning/error capture was empty. Desktop geometry also retained four columns/no overflow. No components, routes, images or collection storage logic changed.
+
+Measured database 15,953,043 bytes, catalogue relations 4,915,200 bytes. Batched export read 259 ms in one observed hosted run. Public browser projection 512,360 bytes / 26,039 gzip versus prior 512,360 / 26,038. Local route HTML 1,132,170 bytes / 52,803 gzip versus prior 1,132,170 / 52,796; observed local response 98 ms. These are test observations, not field latency guarantees.
+
+Manual custom-format dumps and checksum/migration manifests are outside Git at C:\Users\Justin\Documents\BoxScout-backups. Final-schema dump restored into a fresh disposable PostgreSQL 17.11 database and passed full parity plus restricted-role publication validation (359 ms measured restore/verification). No second Supabase project or paid backup service was created. Off-device/scheduled protection remains mandatory before irreplaceable data. Secret scan found zero password matches in commit-eligible files. Git push/deployment verification is reported with the completion commit.

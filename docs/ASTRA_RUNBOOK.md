@@ -260,3 +260,7 @@ Future supervised Add Product must reuse candidate normalization and review, not
 ## Variant import workflow
 
 Use data/imports/golden-product-variants/README.md. Run variants:check (also enforced by prebuild), checklist:check and images:check. Review exact family coverage and discrepancies before generation. Never promote release membership to box eligibility. Base/default IDs preserve collection v1 compatibility. Future variant-detail and finite-copy work requires a separate approved task.
+
+## Persistent catalogue operations
+
+Follow [PERSISTENCE_RUNBOOK.md](PERSISTENCE_RUNBOOK.md). Plan 006 approves Supabase Free/PostgreSQL in Canada Central and a verified publication-snapshot deployment path. Current operator credentials stay in ignored local files; Vercel requires none. Never put database dumps in Git. Local manual backups are the approved current stage; off-device/cloud and scheduled backups are prerequisites before irreplaceable data. Do not overwrite a differing database to force fixture parity. Every schema change must be a new committed migration; every publication must be reviewed, committed, pushed and deployed with a matching verified revision.

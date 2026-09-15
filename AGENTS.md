@@ -70,7 +70,7 @@ If a command does not yet exist, do not invent a passing result. State that it i
 
 Read:
 
-`docs/exec-plans/active/005-release-variant-configuration-foundation.md`
+`docs/exec-plans/active/006-persistent-backend-foundation.md`
 
 ## Monetization and cost principles
 
@@ -109,3 +109,7 @@ Standing Git rules:
 - Future images/evidence assets → object-storage backup/versioning.
 
 Pushing source code does not back up a future live database, object storage or browser-local personal state. Establish and verify the relevant data backup strategy when persistent services are introduced; this rule does not authorize adding those services now.
+
+## Persistent catalogue foundation
+
+Follow docs/PERSISTENCE_RUNBOOK.md for migrations, reviewed imports, publication, backups and recovery. PostgreSQL is canonical; the application consumes an approved versioned snapshot. Do not bypass publication review, overwrite a differing database or expose operator credentials. Current local-only backups are approved only for reproducible catalogue data; off-device scheduled backups are mandatory before irreplaceable data. No accounts or new data domains are authorized by this foundation.
