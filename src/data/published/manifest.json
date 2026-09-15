@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "revision": "7df2a4a69c049bc014904cff11a1f9cd54512510723a75f8702300068bf57b25",
+  "counts": {
+    "releases": 1,
+    "entries": 1010,
+    "variants": 10342,
+    "configurations": 9,
+    "eligibility": 13807,
+    "prices": 2
+  },
+  "releases": [
+    {
+      "id": "panini-prizm-fifa-world-cup-2026",
+      "name": "2026 Panini Prizm FIFA World Cup",
+      "year": 2026,
+      "manufacturer": "Panini"
+    }
+  ]
+}
