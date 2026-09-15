@@ -2,112 +2,267 @@
 
 ## Product
 
-BoxScout is a mobile-first soccer-card sealed-product intelligence platform.
+BoxScout is a mobile-first soccer-card **sealed-box buying intelligence platform**.
 
-It is not primarily a collection manager. Its core purpose is to help a collector understand and compare sealed soccer-card products before spending money.
+Its primary purpose is to help a collector decide:
+
+> **Which box should I buy, what should I pay, and where should I buy it?**
+
+Cards, checklists, variants, odds, sales and surfaced finite hits are the intelligence inputs that explain whether a sealed box is attractive. BoxScout is not primarily a collection manager or checklist database.
+
+See `PRODUCT_AUDIT_2026-09-15.md` for the audit that established this box-first direction.
 
 ## Phase 1 goal
 
-Build a V0 that Justin personally uses when evaluating soccer-card sealed products.
+Build a V0 that Justin personally uses when evaluating soccer-card sealed products before spending money.
 
 Phase 1 does not need revenue.
 
 ## Phase 1 success
 
-The V0 should allow a user to:
+The V0 should ultimately allow a user to:
 
-1. Browse supported soccer sealed products.
-2. Open a product.
-3. See current sealed price and configuration.
-4. Understand what is actually eligible to be pulled from that exact configuration.
-5. Browse the set visually in a four-column mobile grid.
-6. Search/filter the checklist.
-7. Mark cards Owned.
-8. Mark cards Watching.
-9. See major chases.
-10. See finite-card surfaced status with evidence/confidence.
-11. Compare a small number of boxes using transparent metrics.
+1. Browse supported soccer releases and sealed box formats.
+2. Understand the known versions/configurations of a box format.
+3. Open a specific box/configuration.
+4. See current/observed sealed pricing and credible places to buy it.
+5. Understand the box configuration, contents and defensible hit rules/frequencies.
+6. Understand what exact cards/variants are eligible to be pulled from that configuration.
+7. See major eligible chases and finite-card surfaced status with evidence/confidence.
+8. Browse/search/filter the underlying set visually when deeper inspection is useful.
+9. Mark cards Owned and Watching without mixing personal state into canonical facts.
+10. Compare boxes using transparent metrics.
+11. Eventually see a defensible box-value model only after its probability and market assumptions are supportable.
 
-Target Phase 1 catalogue: approximately five products.
-
-Do not add Product #2 until Golden Product #1 works end-to-end well enough that Justin would genuinely use it before a purchase.
+Target Phase 1 catalogue remains deliberately small. Do not add Product #2 until Golden Product #1 works end-to-end well enough that Justin would genuinely use BoxScout before a purchase.
 
 ## Golden Product #1
 
-2026 Panini Prizm FIFA World Cup Soccer — Mega Box.
+**2026 Panini Prizm FIFA World Cup Soccer**
 
-Retail reference initially supplied:
-Mastermind Toys product listing.
+The Golden Product is the release plus its sealed configurations, with Mega as the first shopper-facing format to make trustworthy end-to-end.
 
-This product is deliberately complex and should force the system to model:
+This release is deliberately complex and should force the system to model:
 
-- release vs configuration/SKU
+- release/set vs box format
+- exact box version/configuration/SKU
+- retailer listing/offer vs canonical configuration
+- possible evidence-backed pull-profile grouping
 - configuration-exclusive parallels
 - base checklist
 - inserts
 - autographs
+- exact variants
 - finite numbered cards
 - visual checklist
 - chase tracking
 - evidence/provenance
+- sealed pricing
+
+## Canonical product hierarchy
+
+Use these terms consistently:
+
+```text
+Release / Set
+  -> Box Format
+      -> Box Version / Configuration
+          -> Retailer Listing / Offer
+
+Release / Set
+  -> Card Subset
+      -> Checklist Entry
+          -> Variant
+              -> future FiniteInstance
+```
+
+Examples:
+
+- Release / Set: `2026 Panini Prizm FIFA World Cup`
+- Box Format: `Mega`, `Hobby`, `Blaster`, `Choice`, `FOTL`
+- Box Version / Configuration: `NPP Mega`, `Target Mega`, `DSG Mega`, `Hobby Mega`
+- Retailer Listing: an exact retailer SKU/UPC/price observation
+- Card Subset: `Aces`, `Signatures`, `International Ink`
+
+Do not call box versions/configurations card "subsets."
+
+### Pull Profile
+
+A future/internal Pull Profile may group exact configurations proven to share materially the same pull pool and hit structure. Similar pack counts or copied retailer language are not enough to establish equivalence. Preserve exact identifiers and evidence even when configurations are grouped for the shopper-facing experience.
 
 ## Core user surfaces
 
-### Products
-Browse supported sealed products.
+### Home — intelligence dashboard
 
-### Product Overview
-Show:
-- product identity
-- configuration identity/status
-- current sealed price
-- box configuration
-- pull/content rules
-- configuration-exclusive information
-- major chases
+The mature homepage should feel like a collector intelligence dashboard rather than a static marketing landing page.
+
+When supported by real data it may surface:
+
+- search for releases/boxes/players/chases
+- featured boxes
+- new/notable releases
+- latest major verified surfaced pull
+- latest major verified card sale
+- meaningful sealed-price moves
+- boxes with interesting remaining chase landscapes
+- recent BoxScout data updates
+- later, personal watched/saved-box activity
+
+Useful intelligence should appear high on the mobile viewport. Static marketing copy should become compact once real data exists.
+
+### Release / Set
+
+Purpose: help the user understand the ways they can buy/open the release.
+
+Show box formats first. Each format should eventually support decision-relevant summaries such as:
+
+- typical/average sealed price
+- cheapest credible offer
+- packs/cards
+- important guarantees or per-box averages
+- known versions/configurations
+- notable exclusives
+- headline chase/surfaced information
+
+The card checklist is a drill-down from the release, not the primary purpose of the page.
+
+### Box Format
+
+Purpose: compare materially different versions/configurations of the same shopper-recognizable format.
+
+Example: Mega may contain NPP, Target, DSG and Hobby Mega versions.
+
+For each supported version/configuration, eventually show:
+
+- exact identity/channel context
+- average sealed market price
+- cheapest credible offer
+- box contents/hit structure
+- exclusive or characteristic parallels
+- defensible autograph/numbered/case-hit frequencies
+- top eligible chases
+- finite surfaced status
+- coverage/confidence state
+
+### Box / Configuration Overview
+
+This is BoxScout's core purchase-decision surface.
+
+Answer, in order:
+
+1. What box is this exactly?
+2. What does it cost now / what price evidence do we have?
+3. Where can I buy it from a credible seller?
+4. What do I get in the box?
+5. What are my defensible hit frequencies or guarantees?
+6. What are the best cards eligible in this exact box?
+7. Which important finite hits have publicly surfaced?
+8. What meaningful upside is publicly unaccounted for?
+9. How does this compare with alternatives?
+
+Do not bury purchase information below marketing copy.
 
 ### Cards
-Visual checklist:
+
+The visual checklist is an important supporting intelligence surface:
+
 - four columns on mobile
-- card image
+- card image/intentional placeholder
 - card number
-- player name
+- player/display name
 - search
 - filters
 - Owned
 - Watching
-- tap to open detail
+- exact variant drill-down
+
+Its purpose is to let the user inspect what exists and what can be pulled. It must not make BoxScout feel primarily like a collection-management app.
 
 ### Chases
-Tracked major cards:
-- card/variant identity
+
+Track major eligible cards/variants with:
+
+- exact card/variant identity
 - serial total where finite
+- box/configuration eligibility
 - surfaced status
 - evidence/confidence
+- supported market value when later available
+
+Never claim that a card with no public evidence is definitely still sealed.
 
 ### Compare
-Compare products using only defensible metrics.
+
+Compare boxes using transparent, inspectable metrics.
 
 Examples:
+
 - current sealed price
+- cheapest credible offer
 - numbered-card frequency where known
 - autograph frequency where known
-- tracked major chases
-- surfaced percentage
 - configuration-exclusive chase information
+- tracked major chases
+- finite surfaced percentage/counts
+- supported chase value distribution
 
 Do not claim rigorous expected value in Phase 1.
 
-## Out of scope for Phase 1
+## Sealed-price intelligence
 
-Unless explicitly approved, do not add:
+Sealed-box price is a core BoxScout data domain, not decorative retailer copy.
+
+Eventually distinguish:
+
+- active retailer/listing asking price
+- recent verified sealed sale
+- average/median credible listing price
+- cheapest credible active offer
+- historical price observations
+- currency
+- shipping/tax/availability only when actually supported
+- source and observation date/time
+
+Do not let a single absurd asking price define market value. Listing observations and completed sales are separate fact types.
+
+## Chase-adjusted box intelligence
+
+A central long-term differentiator is the relationship between current sealed price and the publicly observed finite chase landscape.
+
+Transparent future measures may include:
+
+- number of tracked major chase variants
+- total tracked finite physical copies
+- verified surfaced copies
+- probable/reported surfaced copies separately
+- copies with no verified public evidence
+- surfaced share of supported tracked chase value
+- highest-value tracked chase with no verified surfaced record
+
+Use language such as `verified surfaced`, `probable`, `reported`, `no verified public evidence`, or `publicly unaccounted for`.
+
+## Future box valuation model
+
+Justin ultimately wants BoxScout to estimate what a sealed box should be worth from its hit structure, eligible card values and changing chase landscape.
+
+This is an approved long-term analytics direction, not a current permission to publish EV or a black-box score.
+
+Mature in stages:
+
+1. **Transparent inputs:** sealed price, hit frequencies, eligible chase structure, supported market values, surfaced finite counts.
+2. **Chase-adjusted comparative value:** inspectable formula/components; no opaque AI score.
+3. **Modelled fair-value range:** only when probabilities, market values, uncertainty and assumptions are strong enough.
+
+Do not naively multiply original hit odds by the percentage of chase copies not yet surfaced. Opened boxes and surfaced chase copies both alter the remaining opportunity, and the remaining sealed population is generally uncertain. Prefer ranges and explicit uncertainty over fake precision.
+
+## Out of scope for Phase 1 unless explicitly approved
 
 - user accounts
 - authentication
 - payments
 - subscription billing
 - marketplace
-- seller inventory
+- seller inventory owned by BoxScout
 - social network
 - collection cloud sync
 - native iOS app
@@ -115,49 +270,64 @@ Unless explicitly approved, do not add:
 - public API
 - retailer dashboards
 - affiliate implementation
-- banner advertising
+- banner-ad-first monetization
 - large automated scraping system
 - microservices
-- speculative EV scores
+- speculative EV/fair-value claims
 
 ## Long-term strategy — trusted intelligence before revenue
 
 BoxScout aims to become the decision layer immediately before a sealed-card transaction:
 
 ```text
-discover → understand → inspect cards → assess chase/upside → compare products → compare retailers → purchase
+discover -> choose a release -> compare boxes -> understand pulls/chases -> compare sellers -> purchase
 ```
 
-The approved sequence is:
+The approved monetization sequence remains:
 
 1. Free purchase intelligence.
-2. Affiliate commerce, as the first revenue experiment after useful public product coverage.
+2. Affiliate commerce after useful public product coverage.
 3. Pro demand validation.
-4. BoxScout Pro, only after willingness to pay is demonstrated.
+4. BoxScout Pro only after willingness to pay is demonstrated.
 5. Retailer / B2B intelligence.
 6. API / data licensing.
 
-See [MONETIZATION.md](MONETIZATION.md) for the full strategy and [ADR 004](decisions/004-trust-first-monetization.md) for the trust boundary. Monetization must not influence factual analysis, rankings or recommendations. Affiliate commission is never a ranking factor; purchase links require nearby disclosure when implemented.
+See `MONETIZATION.md` and ADR 004. Monetization must never influence factual analysis, rankings or recommendations. Affiliate commission is never a ranking factor.
 
-Basic product information, visual checklists, basic configuration information, basic current pricing, basic chase information and normal comparisons should remain free. Pro candidates provide additional depth, history, alerts and personalization; do not cripple the free product or immediately build subscriptions. Tentative US$8–12/month pricing may be tested later and is not committed.
+## Approved long-term data direction
 
-This strategy does not expand current Phase 1 scope or authorize affiliate routes, tracking, billing, B2B tools, data licensing or other implementation. Phase 1 still does not require revenue. Keep operating costs low until demand is proven and keep development subscriptions separate from runtime costs.
+One Release supports multiple sealed Configurations. Configurations share canonical cards but differ in eligible variants; adding a configuration must not duplicate checklist identities.
 
+Future catalogue identity proceeds:
 
-## Approved long-term direction (deferred implementation)
+```text
+ChecklistEntry -> Variant -> FiniteInstance -> SurfaceObservation -> Evidence
+```
 
-One Release supports multiple sealed Configurations. Configurations share canonical cards but differ in eligible variants; adding a configuration must not duplicate checklist identities. Future catalogue identity proceeds Card → Variant → FiniteInstance.
+Future market intelligence adds supported card sales/value history and sealed-price history without mixing observations into canonical identity.
 
-Approved future capabilities include user accounts, variant-level collection ownership, recent card sales and valuation history, collection value by release/configuration, verified finite-card surfaced evidence and confirmed 1/1 depletion. Personal quantities, grading and ownership remain separate from canonical facts. A configuration collection-value view needs an explicit membership/eligibility rule and must not double-count shared cards.
+Scale through a supervised Add Product/import workflow:
 
-Future risk/reward intelligence combines dated sealed price, configuration-eligible chases/hit structure, supported market values and verified surfaced/depletion evidence with confidence. Confirmed depletion of a specific 1/1 requires verified unique identity and surfaced evidence; it says nothing about other unobserved chases. No fake EV or certainty from absence of evidence.
+```text
+identify release/configuration
+-> source observations
+-> normalize candidates
+-> validate/review
+-> promote canonical records
+-> publish approved snapshot
+-> verify box-decision surfaces
+```
 
-Scale through a supervised Add Product/import workflow: identify release/configuration → source observations → normalize candidates → validate/review → promote canonical records → verify the existing product surfaces. Reuse the ingestion pattern instead of one-off product scripts. These directions are not permission to implement accounts, sales, valuation, tracking or risk/reward during Plan 004.
+Reuse ingestion patterns rather than one-off page construction.
 
-Plan 004 image success is a reusable, rights-controlled foundation. Zero cleared public images is acceptable; counts never weaken publication requirements.
+## Current recovery roadmap
 
-## Plan 005 approved direction
+1. **Plan 010 — Complete Golden Product release catalogue**
+2. **Plan 011 — Resolve exact Mega identities, pull-profile relationships and configuration eligibility**
+3. **Plan 012 — Box-first frontend and pricing presentation refinement**
+4. **Plan 013 — Major chase / finite-instance surfaced tracking**
+5. **Plan 014 — Card sales plus sealed-price market intelligence**
+6. **Plan 015 — Box comparison and first transparent value model**
+7. Product #2 only after Golden Product #1 is genuinely useful as a purchase-decision tool.
 
-The Cards pilot now separates release checklist entries, exact collectible variants and configuration eligibility. Base/default ownership preserves all prior local flags. The bounded pilot is not the complete insert/autograph/parallel release universe.
-
-Every exact variant should eventually have a dedicated detail page with identity, imagery, serial edition, eligible configurations, sightings/listings, confirmed sales, raw/graded context, values/history, surfaced serial evidence, factual context and personal collection controls. Future configuration intelligence combines current sealed price, box rules, exact eligible variants, market values, surfaced finite instances and confidence. No EV, Remaining Chase Index, ranking score, detail page, accounts or market ingestion is added now.
+Plan 010 remains the current implementation authority. Later product requirements do not authorize skipping the data foundation.
