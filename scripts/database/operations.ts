@@ -175,7 +175,7 @@ function writeJson(dest: string, value: unknown) {
   writeAtomicText(dest, JSON.stringify(value, null, 2) + '\n');
 }
 
-function releaseData(data: CatalogueData, releaseId: string): CatalogueData {
+export function publicationReleaseData(data: CatalogueData, releaseId: string): CatalogueData {
   const products = data.products.filter((product) => product.release.id === releaseId);
   const productIds = new Set(products.map((product) => product.id));
   const entries = data.entries.filter((entry) => entry.releaseId === releaseId);
@@ -197,13 +197,12 @@ function releaseData(data: CatalogueData, releaseId: string): CatalogueData {
   };
 }
 
-function writeReleaseShards(p: Publication) {
-  const root = 'src/data/published/releases';
+function writeReleaseShards(p: Publication, root: string) {
   rmSync(root, { recursive: true, force: true });
 
   for (const release of publicationManifest(p).releases) {
     const dir = join(root, release.id);
-    const data = releaseData(p.data, release.id);
+    const data = publicationReleaseData(p.data, release.id);
     mkdirSync(dir, { recursive: true });
 
     writeJson(join(dir, 'entries.json'), data.entries);
@@ -223,10 +222,9 @@ function writeReleaseShards(p: Publication) {
   }
 }
 
-export function writeSnapshot(p: Publication) {
-  const dir = 'src/data/published';
+export function writeSnapshot(p: Publication, dir = 'src/data/published') {
   mkdirSync(dir, { recursive: true });
   writeAtomicText(join(dir, 'catalogue.ts'), snapshotText(p));
   writeAtomicText(join(dir, 'manifest.json'), manifestText(p));
-  writeReleaseShards(p);
+  writeReleaseShards(p, join(dir, 'releases'));
 }
