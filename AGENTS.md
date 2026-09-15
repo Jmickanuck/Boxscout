@@ -1,6 +1,6 @@
 # BoxScout Agent Instructions
 
-BoxScout is a mobile-first soccer-card sealed-product intelligence platform.
+BoxScout is a mobile-first soccer-card sealed-box buying intelligence platform.
 
 ## Before doing any work
 
@@ -12,20 +12,25 @@ Read these files in order:
 4. `docs/DATA_INTEGRITY.md`
 5. `docs/DATA_MODEL.md`
 6. `docs/UI_SPEC.md`
-7. `docs/GOLDEN_PRODUCT.md`
-8. `docs/ASTRA_RUNBOOK.md`
-9. `docs/MONETIZATION.md` and `docs/decisions/004-trust-first-monetization.md`
-10. the single current plan named in the **Active plan** section below
+7. `docs/BOX_FIRST_UI_DIRECTION.md`
+8. `docs/GOLDEN_PRODUCT.md`
+9. `docs/ASTRA_RUNBOOK.md`
+10. `docs/MONETIZATION.md` and `docs/decisions/004-trust-first-monetization.md`
+11. the single current plan named in the **Active plan** section below
+
+`docs/PRODUCT_AUDIT_2026-09-15.md` is the historical requirements record behind the current box-first direction. Read it when context for those decisions is needed; governing requirements live in `PRODUCT.md`, `BOX_FIRST_UI_DIRECTION.md`, and `PHASE_1_STATUS.md`.
 
 Older execution plans are implementation history, not current authorization. When an older plan conflicts with `PHASE_1_STATUS.md` or the current active plan, follow the current status and active plan.
 
 ## Phase 1 objective
 
-Build a V0 that Justin personally finds useful for evaluating soccer-card sealed products before buying them.
+Build a V0 that Justin personally finds useful for deciding which soccer-card sealed box to buy, what to pay, and where to buy it.
 
 Do not optimize Phase 1 for monetization or scale.
 
 The immediate recovery priority is data completeness and trustworthy Golden Product coverage, not additional visual features or Product #2.
+
+Cards/checklists are supporting intelligence for the sealed-box decision engine. Do not let implementation drift into treating BoxScout primarily as a collection manager or checklist site.
 
 ## Hard rules
 
@@ -39,8 +44,13 @@ The immediate recovery priority is data completeness and trustworthy Golden Prod
 - Do not expand Phase 1 scope without explicit approval.
 - Prefer simple, understandable architecture.
 - Build vertically around Golden Product #1 before adding more products.
-- Release membership, exact variant identity, and configuration eligibility are separate facts and must never be collapsed.
+- Release membership, exact variant identity, configuration eligibility, and retailer listing identity are separate facts and must never be collapsed.
 - A partial catalogue must never be presented as a complete/full checklist.
+- Box versions/configurations must not be called card subsets. Use the terminology defined in `PRODUCT.md` and `BOX_FIRST_UI_DIRECTION.md`.
+- Similar pack counts, retailer copy, or UPC proximity do not prove equivalent pull structure. Evidence is required before grouping configurations into a Pull Profile.
+- Listing/asking prices and completed sales are separate market observations.
+- Never claim an unobserved finite card is definitely still sealed.
+- Do not publish a black-box EV/fair-value score before the underlying probability and market assumptions are defensible and inspectable.
 - Make small changes, test them, review, commit, push to GitHub and verify the remote.
 - Do not perform enormous rewrites unless explicitly requested.
 - Never discard working behavior merely to “modernize” code.
@@ -80,6 +90,17 @@ Read and execute only:
 `docs/exec-plans/active/010-complete-golden-product-release-catalogue.md`
 
 Plans 001-009 remain historical implementation records. They do not authorize new work unless Plan 010 or a later approved plan explicitly carries that work forward.
+
+The approved recovery sequence is:
+
+1. Plan 010 — complete Golden Product release catalogue
+2. Plan 011 — exact Mega identities, pull profiles and configuration eligibility
+3. Plan 012 — box-first frontend and pricing presentation refinement
+4. Plan 013 — major chase / finite-instance surfaced tracking
+5. Plan 014 — card sales plus sealed-price market intelligence
+6. Plan 015 — box comparison and first transparent value model
+
+Do not jump ahead merely because a later UI or analytics requirement is documented.
 
 ## Monetization and cost principles
 
