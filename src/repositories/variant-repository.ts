@@ -1,18 +1,14 @@
-import { publication } from '../data/published/catalogue.ts';
 import type { BrowseData, ChecklistEntry } from '../types/variants.ts';
 import { cardImageRepository } from './card-image-repository.ts';
-import { buildCatalogueIndex } from './catalogue-index.ts';
+import { catalogueData, catalogueIndex } from './published-catalogue.ts';
 
-const variantData = publication.data;
-const index = buildCatalogueIndex(variantData);
-
-export const releaseEntries: readonly ChecklistEntry[] = variantData.entries;
+export const releaseEntries: readonly ChecklistEntry[] = catalogueData.entries;
 
 export const variantRepository = {
-  listEntries: (releaseId: string) => index.entriesByRelease.get(releaseId) ?? [],
+  listEntries: (releaseId: string) => catalogueIndex.entriesByRelease.get(releaseId) ?? [],
 
   browse(releaseId: string): BrowseData {
-    const entries = (index.entriesByRelease.get(releaseId) ?? []).map(
+    const entries = (catalogueIndex.entriesByRelease.get(releaseId) ?? []).map(
       ({ id, releaseId: entryReleaseId, cardNumber, playerName, country, subset, entryType, sortOrder }) => ({
         id,
         releaseId: entryReleaseId,
@@ -25,7 +21,7 @@ export const variantRepository = {
       }),
     );
 
-    const variants = (index.variantsByRelease.get(releaseId) ?? []).map(
+    const variants = (catalogueIndex.variantsByRelease.get(releaseId) ?? []).map(
       ({ id, entryId, parallelName, isDefault, numbering, serialTotal }) => ({
         id,
         entryId,
@@ -36,7 +32,7 @@ export const variantRepository = {
       }),
     );
 
-    const eligibility = (index.eligibilityByRelease.get(releaseId) ?? []).map(
+    const eligibility = (catalogueIndex.eligibilityByRelease.get(releaseId) ?? []).map(
       ({ configurationId, variantId, status, confidence }) => ({
         configurationId,
         variantId,
@@ -48,15 +44,15 @@ export const variantRepository = {
     return {
       entries,
       variants,
-      configurations: index.configurationsByRelease.get(releaseId) ?? [],
+      configurations: catalogueIndex.configurationsByRelease.get(releaseId) ?? [],
       eligibility,
     };
   },
 
   images(releaseId: string) {
     return Object.fromEntries(
-      (index.variantsByRelease.get(releaseId) ?? []).flatMap((variant) => {
-        const entry = index.entryById.get(variant.entryId);
+      (catalogueIndex.variantsByRelease.get(releaseId) ?? []).flatMap((variant) => {
+        const entry = catalogueIndex.entryById.get(variant.entryId);
         const image =
           cardImageRepository.findPrimary(variant.entryId, variant.id) ??
           (variant.isDefault && entry?.entryType === 'BASE'
@@ -68,5 +64,5 @@ export const variantRepository = {
     );
   },
 
-  sources: variantData.sources,
+  sources: catalogueData.sources,
 };
