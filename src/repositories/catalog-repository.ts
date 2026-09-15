@@ -1,10 +1,12 @@
-import { cardImageRepository } from './card-image-repository.ts';
 import { publication } from '../data/published/catalogue.ts';
 import { assessNppMapping } from '../domain/catalog/configuration-intelligence.ts';
+import type { Card, ConfigurationIntelligence, Product, Release } from '../types/catalog.ts';
 import type { SealedPriceObservation } from '../types/market.ts';
-import type { Card, Product, Release, ConfigurationIntelligence } from '../types/catalog.ts';
+import type { CatalogueData } from '../types/publication.ts';
 import type { ReleaseConfiguration } from '../types/variants.ts';
-import type {CatalogueData} from '../types/publication.ts';
+import { cardImageRepository } from './card-image-repository.ts';
+import { buildCatalogueIndex } from './catalogue-index.ts';
+
 export interface CatalogRepository {
   getConfigurationIntelligence(productId: string): ConfigurationIntelligence | undefined;
   listSealedPrices(productId: string): readonly SealedPriceObservation[];
@@ -17,24 +19,55 @@ export interface CatalogRepository {
   findProduct(slug: string): Product | undefined;
   listReleaseCards(releaseId: string): readonly Card[];
 }
-export function createCatalogRepository(data:CatalogueData):CatalogRepository {
- const intelligence=(id:string)=>data.intelligence.find(i=>i.productId===id)?.data;
- const reviewed=(p:Product):Product=>{const i=intelligence(p.id);return i?{...p,configuration:{...p.configuration,nppMappingStatus:assessNppMapping(i)}}:p;};
- return {
-  getConfigurationIntelligence:intelligence,
-  listSealedPrices:id=>data.prices.filter(p=>p.productId===id),
-  listProducts:()=>data.products.map(reviewed),
-  listReleases:()=>[...new Map(data.products.map(p=>[p.release.id,p.release])).values()],
-  findRelease:id=>data.products.find(p=>p.release.id===id)?.release,
-  listReleaseProducts:releaseId=>data.products.filter(p=>p.release.id===releaseId).map(reviewed),
-  listReleaseConfigurations:releaseId=>data.configurations.filter(c=>c.releaseId===releaseId),
-  // A presentation association only: callers must retain the product's mapping confidence.
-  listFormatProducts:(releaseId,familyName)=>data.products.filter(p=>{
-   const evidence=intelligence(p.id);
-   return p.release.id===releaseId && evidence?.assessment.family===familyName && assessNppMapping(evidence)!=='UNKNOWN';
-  }).map(reviewed),
-  findProduct:slug=>{const p=data.products.find(p=>p.slug===slug);return p?reviewed(p):undefined;},
-  listReleaseCards:releaseId=>data.entries.filter(e=>e.releaseId===releaseId&&e.entryType==='BASE').map(card=>{const image=cardImageRepository.findPrimary(card.id);return image?{...card,image}:card;}),
- };
+
+export function createCatalogRepository(data: CatalogueData): CatalogRepository {
+  const index = buildCatalogueIndex(data);
+  const intelligence = (id: string) => index.intelligenceByProduct.get(id);
+
+  const reviewed = (product: Product): Product => {
+    const evidence = intelligence(product.id);
+    return evidence
+      ? {
+          ...product,
+          configuration: {
+            ...product.configuration,
+            nppMappingStatus: assessNppMapping(evidence),
+          },
+        }
+      : product;
+  };
+
+  return {
+    getConfigurationIntelligence: intelligence,
+    listSealedPrices: (id) => index.pricesByProduct.get(id) ?? [],
+    listProducts: () => data.products.map(reviewed),
+    listReleases: () => [...index.releaseById.values()],
+    findRelease: (id) => index.releaseById.get(id),
+    listReleaseProducts: (releaseId) => (index.productsByRelease.get(releaseId) ?? []).map(reviewed),
+    listReleaseConfigurations: (releaseId) => index.configurationsByRelease.get(releaseId) ?? [],
+
+    // Presentation association only: callers must retain the product's mapping confidence.
+    listFormatProducts: (releaseId, familyName) =>
+      (index.productsByRelease.get(releaseId) ?? [])
+        .filter((product) => {
+          const evidence = intelligence(product.id);
+          return evidence?.assessment.family === familyName && assessNppMapping(evidence) !== 'UNKNOWN';
+        })
+        .map(reviewed),
+
+    findProduct: (slug) => {
+      const product = index.productBySlug.get(slug);
+      return product ? reviewed(product) : undefined;
+    },
+
+    listReleaseCards: (releaseId) =>
+      (index.entriesByRelease.get(releaseId) ?? [])
+        .filter((entry) => entry.entryType === 'BASE')
+        .map((card) => {
+          const image = cardImageRepository.findPrimary(card.id);
+          return image ? { ...card, image } : card;
+        }),
+  };
 }
-export const catalogRepository=createCatalogRepository(publication.data);
+
+export const catalogRepository = createCatalogRepository(publication.data);
