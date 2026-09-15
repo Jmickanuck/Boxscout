@@ -1,235 +1,216 @@
 # BoxScout Architecture
 
-## Architectural principle
+Last updated: 2026-09-15.
 
-Start as a **modular monolith**.
+## Principle
 
-Do not build a throwaway frontend, but also do not build microservices before there is real need.
+BoxScout is a **modular monolith**. Keep it simple enough for AI-assisted maintenance without creating a throwaway frontend.
 
-Target evolution:
+Do not introduce microservices, a second backend, or a large framework merely because the catalogue grows.
+
+## Current runtime architecture
 
 ```text
 Browser / Phone
       |
       v
-Next.js
+Next.js 16 / React 19
       |
       v
-Application / Domain Layer
+Server route composition + client interactions
       |
       v
-Repository / Data Access Layer
+Domain logic
       |
       v
-Typed Fixtures initially
+Repository/projection layer
       |
       v
-PostgreSQL / Supabase later
+Approved static publication snapshot
 ```
 
-Future ingestion:
+Ordinary catalogue browsing makes **zero runtime database requests**.
+
+PostgreSQL/Supabase is canonical structured storage, but publication is an explicit reviewed step:
 
 ```text
-External sources
-   ↓
-Raw observations
-   ↓
-Normalized candidates
-   ↓
-Validation / review
-   ↓
-Canonical database
-   ↓
-BoxScout application
+external sources
+  -> raw/candidate records
+  -> deterministic normalization/validation
+  -> discrepancy review
+  -> PostgreSQL canonical catalogue
+  -> publication approval/digest
+  -> deterministic static snapshot
+  -> Git/Vercel
 ```
 
-## Frontend
+This keeps the public app fast and usable if Supabase pauses while preserving a real canonical database.
 
-Preferred:
-- Next.js
-- React
-- TypeScript
-- App Router
-- Tailwind CSS
-- server components by default
-- client components only when required
-
-Mobile first.
-
-Design at iPhone width first. Desktop is an enhancement.
-
-Avoid a large UI framework unless there is a compelling reason.
-
-## Suggested routes
-
-```text
-/
-/products/[productSlug]
-/products/[productSlug]/cards
-/products/[productSlug]/chases
-/compare
-```
-
-Do not create future routes until needed.
-
-## Suggested source layout
+## Source layout
 
 ```text
 src/
-  app/
-  components/
-    cards/
-    products/
-    chases/
-    compare/
-    shared/
-  domain/
-    catalog/
-    evidence/
-    market/
-    analytics/
-  repositories/
-  data/
-    fixtures/
-  types/
-  lib/
+  app/            routes and server composition
+  components/     UI only
+  domain/         business rules
+  repositories/   data-access/projection boundaries
+  data/           fixtures + generated publication
+  types/          shared contracts
+
+scripts/
+  checklists/     extraction/normalization/generation
+  database/       migrations/import/parity/publication/backup
+  images/         rights-aware image processing
+
+db/migrations/   immutable versioned schema changes
 ```
 
-This is direction, not a demand to create empty folders.
+Do not create empty layers without a real responsibility.
 
 ## Separation of concerns
 
 Bad:
 
 ```text
-CardGrid.tsx
-  → queries database
-  → matches variants
-  → computes chase state
+React component
+  -> queries PostgreSQL
+  -> matches variants
+  -> computes eligibility/value
+  -> mutates user state
 ```
 
 Good:
 
 ```text
-CardGrid
-  ↓
-Card/domain service
-  ↓
-Card repository
-  ↓
-data source
+React component
+  -> domain/repository projection
+  -> approved publication data
 ```
 
-React components should not become the database or business-logic layer.
+Business rules such as eligibility resolution, configuration identity, market semantics and future surfaced-card logic belong in domain modules, not JSX.
 
-## Phase 1 storage
-
-First visible build:
-- typed local fixture data
-- local browser state for Owned/Watching
-
-Even local data should be accessed through a small repository abstraction.
-
-Example:
+## Canonical identity model
 
 ```text
-ProductRepository
-CardRepository
-CollectionStateRepository
+Release / Set
+  -> Box Format
+      -> Box Version / Configuration
+          -> Retailer Listing / Offer
+
+Release
+  -> Card Subset
+      -> ChecklistEntry
+          -> Variant
+              -> future FiniteInstance
+                  -> future SurfaceObservation
+                      -> Evidence
+
+Configuration <-> VariantEligibility
 ```
 
-This allows later replacement without rewriting the UI.
+These concepts must remain separate even when the UI groups them for shoppers.
 
-## Long-term backend
+## Repositories and indexes
 
-Preferred:
-- PostgreSQL
-- Supabase as managed PostgreSQL platform
-- object storage for approved imagery/evidence
-- Supabase Auth only when accounts become necessary
+Repositories are the application boundary around published data.
 
-Avoid tightly coupling business logic to vendor-specific SDK calls.
+Common lookups use a shared in-memory catalogue index built once per server module graph. Avoid repeated whole-array scans as the catalogue grows.
 
-## Domain logic
+Do not let frontend components import generated catalogue files directly.
 
-Business rules belong in domain modules.
+## Publication scaling
 
-Examples:
+`src/data/published/catalogue.ts` is a temporary compatibility artifact. It is already large enough that agents should not read it as normal source code.
+
+The publication writer now emits:
+
+- compact `manifest.json` for revision/count inspection;
+- release/domain shards under `src/data/published/releases/` on the next publication;
+- compatibility `catalogue.ts` until repository consumers have migrated safely.
+
+See `PUBLICATION_SHARDING.md` and ADR 005.
+
+Before broad catalogue growth, move repository reads toward the shard/projection model so routes do not parse or send unrelated catalogue data.
+
+## Client payload boundary
+
+Server-side catalogue size and iPhone payload size are different concerns.
+
+Do not send the full release/evidence graph to a client merely because the server can hold it. Large browsing surfaces should receive compact projections, and later configuration-specific views should receive only the relevant card/variant/eligibility slice where practical.
+
+Performance work should be driven by measurements, but repeated full-release scans and multi-megabyte client payloads are review triggers.
+
+## AI/data-processing architecture
+
+LLMs are not the parser/database engine.
 
 ```text
-catalog/
-  configuration eligibility
-  checklist ordering
-
-evidence/
-  surfaced status
-
-analytics/
-  cost per numbered card
-  surfaced percentage
+large source data
+  -> deterministic parser / normalizer / comparator
+  -> compact coverage + discrepancy report
+  -> AI/human review of ambiguous records
+  -> canonical promotion
 ```
 
-One metric should have one canonical implementation.
+Agents should not load bulk generated/import files into context to perform counts, joins or dedupe. See `AI_CONTEXT.md`.
 
-## Runtime validation
+## Frontend
 
-Use:
-- TypeScript for compile-time types
-- lightweight runtime validation such as Zod at external-data boundaries
+- Next.js App Router
+- TypeScript strict mode
+- server components by default
+- client components only for interaction/browser state
+- mobile-first at iPhone width
+- Tailwind/PostCSS plus existing shared CSS/theme tokens
+- avoid a large UI framework unless a measured need appears
 
-Never trust scraped/imported/API data solely because TypeScript compiles.
+Owned/Watching and theme preferences remain browser-local repositories during Phase 1 and are separate from canonical facts.
 
 ## Images
 
-Do not store image binary data in PostgreSQL.
+Image identity/match review and publication rights are independent gates.
 
-Store metadata in database; image files later go to object storage.
+Binary images do not belong in PostgreSQL. Approved public derivatives can later move to object storage behind a storage resolver without changing card identity.
 
-Track image match status separately from usage rights.
+Unknown rights => intentional placeholder, not hotlinking.
+
+## Persistence and database
+
+Supabase PostgreSQL is accessed by operator tooling, not application browser code.
+
+Requirements:
+
+- versioned immutable migrations;
+- relational integrity and graph validation;
+- reviewed imports;
+- expected-current-digest protection for incremental updates;
+- publication approval before export;
+- parity/idempotency/rollback tests;
+- backups independent from Git.
+
+See `PERSISTENCE_RUNBOOK.md`.
 
 ## Background ingestion
 
-Do not run large discovery/scraping workflows during normal page requests.
+Do not perform large scraping/discovery workflows during normal page requests.
 
-Future jobs should operate independently and write raw/candidate records.
+Future ingestion jobs/adapters should produce raw/candidate observations and feed the same validation/review pipeline. Adding a new product should become a supervised import workflow rather than copied pages or product-specific application logic.
 
-## Deployment
+## CI and code hygiene
 
-Phase 1:
-GitHub → Vercel → responsive web app
+GitHub Actions independently runs:
 
-Later:
-GitHub → Vercel Next.js → Supabase PostgreSQL/Storage
+- lint
+- TypeScript checks
+- application tests
+- production build (including deterministic publication/generator checks)
 
-Use separate development/preview/production environments once real production data exists.
+Local checks remain required.
 
-## Architectural change control
+EditorConfig defines basic whitespace/EOL rules. `npm run lint:fix` handles safe ESLint fixes. A pinned Prettier command is available for intentional formatting passes; bulk generated/import artifacts are excluded.
 
-Important architectural choices should be recorded under:
+## Change control
 
-`docs/decisions/`
+Record meaningful architectural decisions under `docs/decisions/`.
 
-Do not silently replace the architecture because another pattern is fashionable.
-
-
-## Implemented image foundation and future boundaries
-
-Image metadata lives in a separate manifest and generated public sidecar; the checklist importer remains unchanged. scripts/images validates unknown JSON, targets and independent match/rights/approval states, then processes explicitly approved local inputs. No network crawler, page-request ingestion or backend. ImageAsset review metadata stays outside client imports; CardImageRepository joins only the generated public projection to stable card IDs. Missing images use the existing fixture placeholder.
-
-Approved pilot binaries are content-hashed, bounded WebP masters in public/card-images; Next.js handles responsive lazy delivery. The offline processor uses the pinned Sharp version already present through Next.js. Original/private source files never belong in public/ or Git. Storage keys and metadata are separate so object storage can later replace local delivery without replacing the grid. See [ADR 005](decisions/005-image-asset-rights-and-delivery.md).
-
-Future Add Product remains supervised and adapter-based: discovery → candidates → shared validation/review → canonical records. A Release owns shared Cards and multiple Configurations; eligibility belongs to Configuration/Variant relationships. Future accounts/collections, sales/valuations and finite surfaced evidence use separate repositories referencing Card → Variant → FiniteInstance. No new product-specific copy of catalogue identity or UI.
-
-## Plan 005 reusable fixture pipeline
-
-Reviewed factual import → shared checklist/variant validation → generated server fixture → repository browsing projection → existing Cards grid. Product-specific workbook extraction remains outside shared normalization. The compact browser projection omits evidence text and locators; full provenance stays in the canonical fixture and linked source inventory. No live ingestion during requests and no new service/dependency.
-
-The image pipeline validates exact variants from the same canonical targets. Collection storage remains the existing v1 repository keyed by collectible variant identity, with default IDs deliberately preserving old keys. Dedicated variant pages, account adapters, sale/value observations and finite-instance evidence are later vertical slices. Future supervised Add Product should reuse these boundaries, not clone a checklist per sealed box.
-
-## Implemented Plan 006 persistence
-
-PostgreSQL on Supabase Free is the canonical structured source; reviewed publication snapshots provide application delivery. UI → existing catalogue/variant repositories → generated publication data; the separate operator pipeline uses CatalogueDataRepository → fixture/PostgreSQL adapters. React has no Supabase SDK or live database client. One batched relational read creates a consistent snapshot; each ordinary page view makes zero database requests. Current server-rendered routes remain unchanged.
-
-Versioned SQL migrations and domain parity protect existing IDs and confidence. Explicit database publication approval precedes snapshot export; export precedes reviewed Git/Vercel deployment. Fixture generators remain deterministic bootstrap/test inputs, not an automatic database overwrite path. The initial importer refuses a differing populated catalogue. Incremental reviewed import tooling is a later bounded extension.
-
-The non-login reader role and RLS limit operator exports; Data API remains disabled. No Vercel database credentials, backend account tables, scheduled jobs or keepalive traffic. See [PERSISTENCE_RUNBOOK.md](PERSISTENCE_RUNBOOK.md) for local environments, secrets, manual backups and fresh-project recovery. Local-only backups are approved for this reproducible catalogue stage; off-device scheduled protection is required before irreplaceable records.
+Do not rewrite healthy code merely to adopt a fashionable pattern. Prefer small, tested migrations that preserve stable identities and user-visible behavior.
