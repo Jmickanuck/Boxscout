@@ -128,7 +128,7 @@ The publication writer now emits:
 - release/domain shards under `src/data/published/releases/` on the next publication;
 - compatibility `catalogue.ts` until repository consumers have migrated safely.
 
-See `PUBLICATION_SHARDING.md` and ADR 005.
+See `PUBLICATION_SHARDING.md` and ADR 007.
 
 Before broad catalogue growth, move repository reads toward the shard/projection model so routes do not parse or send unrelated catalogue data.
 
