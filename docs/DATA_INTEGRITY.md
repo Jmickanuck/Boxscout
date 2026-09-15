@@ -53,6 +53,8 @@ Important factual records should preserve:
 - verification state
 - confidence where applicable
 
+Manufacturer-supplied data is a high-quality source type, not a bypass around provenance or review. Preserve the manufacturer/source identity and exact supplied claim semantics.
+
 ## Rule 6 — Raw before canonical
 
 Future ingestion:
@@ -73,6 +75,18 @@ AI guesses
 → canonical record overwritten
 ```
 
+Manufacturer submission follows the same pattern:
+
+```text
+manufacturer submission
+→ raw/candidate record
+→ validation / discrepancy review
+→ reviewed canonical record
+→ approved publication
+```
+
+A manufacturer must not receive unrestricted direct write access to canonical BoxScout facts merely because it owns the underlying brand/product.
+
 ## Rule 7 — Image integrity
 
 Match accuracy and publication rights are different concepts.
@@ -91,6 +105,27 @@ Suggested usage states:
 - UNKNOWN_RIGHTS
 
 Do not automatically republish marketplace photos merely because they are publicly viewable.
+
+### Manufacturer asset-rights records
+
+Manufacturer-supplied or licensed assets should eventually preserve, where applicable:
+
+- owner / licensor;
+- manufacturer;
+- source reference;
+- exact covered release/configuration/card/variant or broader scope;
+- allowed public surfaces/uses;
+- territory restrictions;
+- start/expiry dates;
+- required attribution;
+- permitted transformations such as resize/crop;
+- approval/agreement reference;
+- date received / date last reviewed;
+- withdrawal status/date.
+
+Sensitive contracts, emails or private approval evidence should not be committed to public Git. Public records should contain only the minimum safe metadata needed to enforce publication.
+
+A published asset must be traceable to every BoxScout-controlled derivative/surface that uses it so withdrawal can be handled deterministically.
 
 ## Rule 8 — Deterministic identity checks
 
@@ -117,12 +152,52 @@ Owned/Watching is personal state, not catalogue truth.
 
 Do not produce EV, probability, market value, or chase-depletion metrics beyond what the source quality supports.
 
+## Rule 11 — Official-source attribution is not endorsement
+
+BoxScout should distinguish manufacturer-supplied facts from BoxScout research/analysis in both data and UI semantics.
+
+Examples of official/manufacturer facts:
+
+- official checklist rows;
+- official specifications;
+- published odds;
+- official guarantee/average language;
+- official images;
+- official SKUs/UPCs;
+- official purchase URLs.
+
+Examples of BoxScout intelligence:
+
+- observed sealed pricing;
+- completed sales;
+- configuration normalization/inference;
+- surfaced finite-card evidence;
+- chase analysis;
+- comparisons;
+- future value modelling.
+
+Manufacturer source attribution must not imply that the manufacturer endorses BoxScout or its independent analysis unless a formal relationship explicitly says so.
+
+## Rule 12 — Commercial relationships cannot alter evidence
+
+Affiliate, licensing, manufacturer or retailer relationships must never silently alter:
+
+- evidence states;
+- ranking logic;
+- factual corrections;
+- surfaced-card evidence;
+- market-price observations;
+- comparison conclusions.
+
+Sponsored placement, if ever used, must be explicitly labelled and kept separate from factual rankings/recommendations.
 
 ## Image publication enforcement — Plan 004
 
 Exact matching, usage rights and approval are separate. Official hosting, public access, an own scan or a user submission cannot alone satisfy publication rights. Unknown rights remains reference metadata or absent; no unlicensed binary is persisted. Generated public paths must be on the approved inventory, and builds reject orphan/stale files. Only public-safe review metadata may be committed; private permissions/contracts are not a GitHub asset.
 
 This static/Git pilot cannot safely enforce expiring grants, so it rejects them for publication. Withdrawal requires explicit removal of the reviewed public file, regeneration, deployment and cache/old-deployment review; no automatic shared-history rewrite. Public availability must be checked directly, not inferred from a hidden UI URL. Confirm restore/retention policy separately before future object storage.
+
+Future manufacturer-readiness should replace ad-hoc removal knowledge with an explicit asset inventory capable of answering where each approved asset is published and which derivatives depend on it. Any claim of withdrawal/removal should be scoped to BoxScout-controlled systems and verified after deployment.
 
 Future confirmed 1/1 depletion requires the exact verified variant/finite instance and verified surfaced evidence. Deduplicate repeated listings/photos of the same card. No verified public evidence does not mean a card is definitely available. Eligible-chase/market-value/sealed-price intelligence must preserve scope, date and confidence, and must not convert asking prices into sales or uncertain evidence into fake EV.
 
@@ -137,3 +212,7 @@ Legacy collection flags are deterministically Base/default flags, per Justin's e
 Plan 006 requires full domain/provenance parity for the initial migration, exact no-op reruns, relational FK/enum/serial/default constraints and a separately approved publication digest. RAW/CANDIDATE entries or variants cannot publish. UNKNOWN/PROBABLE configuration facts remain allowed and qualified. A changed database digest without approval cannot replace the public snapshot. Offline prebuild verifies snapshot integrity and reproducibility. A differing populated catalogue is never overwritten by the bootstrap importer.
 
 Backups are separate from Git. For the current reproducible catalogue, local external-to-repository dumps and tested recovery are approved; scheduled off-device backups must precede irreplaceable user/market/surfaced data. Restore into an isolated database and compare IDs, content hashes, provenance and permissions before cutover. See PERSISTENCE_RUNBOOK.md.
+
+## Manufacturer-integration reference
+
+See `MANUFACTURER_INTEGRATIONS.md` for the approved staged implementation direction covering source attribution, rights metadata, correction workflows, official purchase paths, structured manufacturer intake, future embargo handling and aggregate manufacturer analytics.
