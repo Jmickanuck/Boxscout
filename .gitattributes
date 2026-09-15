@@ -1,4 +1,6 @@
-# Reviewed extract hashes and canonical generation must survive Windows/Linux checkouts.
+# Reviewed extracts and deterministic generated outputs must survive Windows/Linux checkouts.
 data/imports/** text eol=lf
 src/data/fixtures/generated/** text eol=lf
+src/data/published/** text eol=lf
 scripts/checklists/** text eol=lf
+scripts/database/** text eol=lf
