@@ -30,7 +30,9 @@ Justin has confirmed that the first real version should cover **one entire relea
 
 These are end-product requirements, not implemented capabilities or permission to broaden Plan 010. The existing Plans 010–015 remain the near-term sequence. Prove the Mega slice, then scope remaining release configurations and first-real-version acceptance through bounded follow-on work before Product #2. Plan 010 can satisfy its reconciliation criteria with explicit unresolved cases without establishing complete-release launch readiness.
 
-Account implementation remains deferred; whether it belongs in the first real version is unresolved. Existing browser-local Owned/Watching must be preserved. The ongoing application budget direction is under approximately $100/month with eventual cost recovery; currency and individual paid commitments are not approved. No operating hours commitment has been supplied. See the decision register rather than assuming defaults.
+**D09 account timing is now confirmed:** account-backed personal checklists/watchlists must be working before the first real version. Implementation remains outside Plan 010 and requires a dedicated security/persistence/cost-aware plan; this is a required release gate, not an optional post-launch enhancement. Preserve existing browser-local Owned/Watching and offer a consented import when accounts are implemented. Ordinary box research remains accessible without login. Detailed scope and acceptance checks are in `PRODUCT.md`, D09.
+
+The ongoing application budget direction is under approximately $100/month with eventual cost recovery; currency and individual paid commitments are not approved. No operating hours commitment has been supplied. See the decision register rather than assuming defaults.
 
 ## Current architecture
 
@@ -116,6 +118,10 @@ The long-term box-buying value proposition depends on verified finite-card surfa
 
 Catalogue backups remain manual/local. Off-device scheduled backups are required before BoxScout stores irreplaceable reviewed evidence, sales history or finite-instance data.
 
+### 10. Account readiness for the first real version
+
+Accounts and private cross-device checklist/watchlist persistence are not implemented, but are now required before the D11 release gate. A login screen alone is insufficient. The dedicated account plan must include tested user isolation, account recovery/deletion, safe local-state import, honest save/error states and scheduled off-device backup/recovery before irreplaceable personal data is accepted. Public catalogue browsing must not become dependent on authentication or private-state availability.
+
 ## Product model that must remain explicit
 
 ```text
@@ -156,7 +162,7 @@ The approved direction is documented in `MANUFACTURER_INTEGRATIONS.md` and inclu
 - richer manufacturer asset-rights metadata;
 - deterministic asset withdrawal/removal procedures;
 - reviewed manufacturer corrections and replacement-asset submissions;
-- official-store purchase destinations represented separately from ordinary retailer offers;
+- official-store destinations represented separately from ordinary retailer offers;
 - future structured manufacturer imports;
 - future privacy-safe outbound purchase-intent analytics;
 - future private preview/embargo/launch workflows only after security and operational maturity support them;
@@ -190,7 +196,7 @@ Until Plan 010 is complete, do not add:
 - manufacturer analytics dashboards
 - confidential/embargoed partner workflows
 
-Small UI changes required to expose data coverage accurately are allowed by Plan 010. Manufacturer-readiness foundations that naturally intersect current provenance/rights/publication work may also be designed compatibly, but must not displace the active plan. Confirmed future account/value/discovery requirements do not remove this freeze.
+Small UI changes required to expose data coverage accurately are allowed by Plan 010. Manufacturer-readiness foundations that naturally intersect current provenance/rights/publication work may also be designed compatibly, but must not displace the active plan. Confirmed first-release account requirements and future value/discovery requirements do not remove this freeze.
 
 ## Recovery roadmap
 
@@ -220,9 +226,9 @@ Compare supported boxes using inspectable metrics: sealed price, hit structure, 
 
 ### Full-release acceptance before Product #2
 
-After the Mega pilot is useful, scope remaining Golden Product box configurations and integrated acceptance through bounded follow-on plans. The D11 first-real-version target covers a whole release's boxes/cards and useful purchase intelligence; do not substitute the pilot or a list of empty box pages. Product #2 begins only after that target is met and Justin would genuinely use the product before a purchase, unless he explicitly revises the scope.
+After the Mega pilot is useful, scope remaining Golden Product box configurations and integrated acceptance through bounded follow-on plans. The D11 first-real-version target covers a whole release's boxes/cards and useful purchase intelligence; do not substitute the pilot or a list of empty box pages. Product #2 begins only after that target and the D09 account gate are met and Justin would genuinely use the product before a purchase, unless he explicitly revises the scope.
 
-Account timing relative to this gate remains open and requires a separate security/persistence/cost-aware plan. Do not silently add it to Plan 010 or assume it is permanently out of the product.
+Accounts with saved personal checklists/watchlists must be completed before this first-real-version gate through a separate security/persistence/cost-aware plan. The implementation position will be scoped when dependencies are ready; do not silently add it to Plan 010, defer it beyond launch, or treat a login-only screen as completion. Preserve guest research and local flags. The detailed D09 acceptance checks in `PRODUCT.md` are part of release readiness.
 
 Manufacturer-readiness work should be converted into a dedicated execution plan when dependencies are ready. Near-term candidates are the canonical rights schema, official-source attribution, publication asset inventory/withdrawal workflow, manufacturer preview/export and reviewed correction intake.
 
