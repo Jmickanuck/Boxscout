@@ -24,6 +24,14 @@ The immediate objective is not to add more products or more visual features. It 
 
 The 2026-09-15 live-site audit is captured in `PRODUCT_AUDIT_2026-09-15.md`; durable box-first UI requirements are in `BOX_FIRST_UI_DIRECTION.md`.
 
+### Planning clarification — first real version versus engineering pilot
+
+Justin has confirmed that the first real version should cover **one entire release's boxes and cards**, not only the initial Mega pilot. He also confirmed specific-box, budget and club/card-to-box discovery; economic value comparisons informed by surfaced chases; account/checklist/watchlist return visits; and a subordinate, non-directive role for singles information. Durable requirements and decisions D07–D11 are in `PRODUCT.md` and `MASTER_PLAN.md`.
+
+These are end-product requirements, not implemented capabilities or permission to broaden Plan 010. The existing Plans 010–015 remain the near-term sequence. Prove the Mega slice, then scope remaining release configurations and first-real-version acceptance through bounded follow-on work before Product #2. Plan 010 can satisfy its reconciliation criteria with explicit unresolved cases without establishing complete-release launch readiness.
+
+Account implementation remains deferred; whether it belongs in the first real version is unresolved. Existing browser-local Owned/Watching must be preserved. The ongoing application budget direction is under approximately $100/month with eventual cost recovery; currency and individual paid commitments are not approved. No operating hours commitment has been supplied. See the decision register rather than assuming defaults.
+
 ## Current architecture
 
 The architecture remains healthy and should not be rewritten.
@@ -182,7 +190,7 @@ Until Plan 010 is complete, do not add:
 - manufacturer analytics dashboards
 - confidential/embargoed partner workflows
 
-Small UI changes required to expose data coverage accurately are allowed by Plan 010. Manufacturer-readiness foundations that naturally intersect current provenance/rights/publication work may also be designed compatibly, but must not displace the active plan.
+Small UI changes required to expose data coverage accurately are allowed by Plan 010. Manufacturer-readiness foundations that naturally intersect current provenance/rights/publication work may also be designed compatibly, but must not displace the active plan. Confirmed future account/value/discovery requirements do not remove this freeze.
 
 ## Recovery roadmap
 
@@ -208,11 +216,15 @@ Collect and normalize supported card sales and sealed-product price evidence wit
 
 ### Plan 015 — Box comparison and first transparent value model
 
-Compare supported boxes using inspectable metrics: sealed price, hit structure, eligible chase value, surfaced finite evidence and other defensible inputs. Begin with transparent comparative metrics; only model a fair-value range when the probability and market assumptions support it. No opaque BoxScout score or fake EV.
+Compare supported boxes using inspectable metrics: sealed price, hit structure, eligible chase value, surfaced finite evidence and other defensible inputs. Begin with transparent comparative metrics; only model return/value ranges when probability and market assumptions support them. The D08 economic objective in `PRODUCT.md` guides this work; no opaque score or unsupported EV.
 
-Product #2 begins only after Golden Product #1 is useful end-to-end and Justin would genuinely use it before a purchase.
+### Full-release acceptance before Product #2
 
-Manufacturer-readiness work should be converted into a dedicated execution plan when the appropriate dependencies are ready. Near-term candidates are the canonical rights schema, official-source attribution, publication asset inventory/withdrawal workflow, manufacturer preview/export and reviewed correction intake.
+After the Mega pilot is useful, scope remaining Golden Product box configurations and integrated acceptance through bounded follow-on plans. The D11 first-real-version target covers a whole release's boxes/cards and useful purchase intelligence; do not substitute the pilot or a list of empty box pages. Product #2 begins only after that target is met and Justin would genuinely use the product before a purchase, unless he explicitly revises the scope.
+
+Account timing relative to this gate remains open and requires a separate security/persistence/cost-aware plan. Do not silently add it to Plan 010 or assume it is permanently out of the product.
+
+Manufacturer-readiness work should be converted into a dedicated execution plan when dependencies are ready. Near-term candidates are the canonical rights schema, official-source attribution, publication asset inventory/withdrawal workflow, manufacturer preview/export and reviewed correction intake.
 
 ## Quality bar
 
