@@ -24,15 +24,15 @@ Support the collector's own decision. Personal checklist/account features may su
 
 Build a V0 that Justin personally uses when evaluating soccer-card sealed products before spending money. The engineering pilot does not require revenue.
 
-**Confirmed minimum for the first real version:** at least one entire card release's boxes and cards, using **2026 Panini Prizm FIFA World Cup Soccer** as the target. A single supported Mega configuration or a partial checklist is an intermediate pilot, not that finished release experience.
+**Confirmed minimum for the first real version:** at least one entire card release's boxes and cards, using **2026 Panini Prizm FIFA World Cup Soccer** as the target. A single supported Mega configuration or a partial checklist is an intermediate pilot, not that finished release experience. Accounts with saved personal checklists/watchlists must also be working before this release under D09.
 
 The release target includes a source-backed inventory of its card subsets, exact variants, box formats and distinct configurations, useful box/card pages, and evidence-qualified links between exact variants and boxes. A list of box names with otherwise empty pages does not satisfy the intended experience. Keep regional retailer coverage separate from release coverage: US shopping is first, while shared card/configuration identities remain correctly represented.
 
 Use machine-readable coverage to distinguish release completeness, configuration coverage and eligibility completeness. Unknown or disputed families must remain visible and block unsupported full/complete claims; do not silently omit them to pass a launch gate. Plan 010 may finish its reconciliation work with explicit unresolved records under its own criteria without claiming this broader launch is complete.
 
-Complete catalogue coverage does not mean a sale record, approved image, published odds or current retailer offer exists for every entity. Do not fabricate those. The precise acceptable licensed-image coverage and whether accounts are required at this first-real-version gate remain open decisions.
+Complete catalogue coverage does not mean a sale record, approved image, published odds or current retailer offer exists for every entity. Do not fabricate those. The precise acceptable licensed-image coverage remains open; account timing is decided and must pass the D09 acceptance checks before the first real version.
 
-Keep Mega first, then reuse the proven pipeline and components across the remaining release configurations through bounded follow-on plans. Do not begin Product #2 merely because the Mega pilot or Plans 010–015 are finished. Full-release scope and genuine buying usefulness must be demonstrated, or a scope revision explicitly agreed.
+Keep Mega first, then reuse the proven pipeline and components across the remaining release configurations through bounded follow-on plans. Do not begin Product #2 merely because the Mega pilot or Plans 010–015 are finished. Full-release scope, genuine buying usefulness and the D09 account requirements must be demonstrated, or a scope revision explicitly agreed.
 
 ## Confirmed discovery journeys — Decision D07
 
@@ -88,7 +88,7 @@ The V0 should ultimately allow a user to:
 6. Understand what exact cards/variants are eligible to be pulled from that configuration.
 7. See major eligible chases and finite-card surfaced status with evidence/confidence.
 8. Browse/search/filter the underlying set visually when deeper inspection is useful.
-9. Mark cards Owned and Watching without mixing personal state into canonical facts.
+9. Mark cards Owned and Watching without mixing personal state into canonical facts; before the first real version, save and revisit that checklist/watchlist through an account across devices under D09.
 10. Compare boxes using transparent metrics, including options within a budget.
 11. Find supported boxes from a selected card/variant, including the club discovery route where the data supports it.
 12. Eventually see defensible estimated-return and box-value models only after probability and market assumptions are supportable.
@@ -270,13 +270,26 @@ The principal objective is price relative to eligible pull-value potential (D08)
 
 ## Personal accounts and return visits — Decision D09
 
-**Confirmed end-product intent:** users can return, log into an account, update their personal checklist, inspect a watchlist and browse the next box they want. An account-backed checklist/watchlist is part of the intended product, not automatically a full portfolio-management suite.
+**Confirmed by Justin on 2026-09-15:** account functionality, including the saved personal checklist/watchlist, is required **before the first real version**. Users can return, log in, update their checklist, inspect their watchlist and browse the next box. This resolves the earlier open launch-timing question; it is not automatically a full portfolio-management suite.
 
-The current pilot remains browser-local Owned/Watching. Whether account login is required in the first real version, rather than a subsequent release, remains undecided. Do not add authentication or subscriptions during Plan 010 or reinterpret existing flags as public ownership evidence.
+The current pilot remains browser-local Owned/Watching. Implement accounts through a separate bounded execution plan before the D11 release gate, not during Plan 010. Do not reinterpret existing flags as public ownership evidence. The authentication provider and sign-in method should be selected in that plan using the existing architecture, security requirements and total operating budget; no provider purchase or deployment is authorized here.
 
-Before implementing accounts, create a bounded plan covering identity/access control, per-user isolation, private storage, recoverability/deletion, and explicit migration/import of existing local flags. Preserve stable variant IDs and resolve local/cloud conflicts without silent loss or parallel fan-out. Account data must never enter a public catalogue snapshot or public Git.
+### Minimum first-release experience
 
-A private Owned/Watching flag is not verified surfaced-card evidence. Public evidence submission would require a separate consent/review path. Ordinary box research should remain accessible without account creation; alerts, social features, detailed acquisition accounting and billing are not implied by this decision.
+- Create an account, sign in and sign out, with an appropriate way to recover access and delete the account/personal data.
+- Save a personal checklist and watchlist against stable canonical variant identities. The same account can retrieve and update these across phone and desktop; a login screen with only device-local state is insufficient. Real-time push updates are not required.
+- Offer an explicit, consented import of existing browser-local Owned/Watching. Preserve the current local data until a successful reviewed migration/import; define conflict and retry behaviour without silent loss, unexpected overwrites or parallel fan-out.
+- Keep ordinary box/card research and comparisons available without login. Accounts provide personal persistence rather than acting as a gate around public intelligence. Preserve guest browsing and existing local behaviour.
+
+### Engineering and release acceptance
+
+Before implementing accounts, the dedicated plan must cover identity/access control, per-user isolation, private storage, recovery/deletion, local-state import, session/error handling and operating cost. Scheduled off-device backups and tested recovery must precede irreplaceable account data, following `PERSISTENCE_RUNBOOK.md`.
+
+Account data must never enter a public catalogue snapshot or public Git. Keep the existing approved-snapshot path for public catalogue facts; authenticated private reads/writes belong behind a separate personal-state boundary and do not require moving ordinary catalogue browsing onto runtime database queries.
+
+The release check must demonstrate saved-state retrieval on a second device/browser, preservation of existing variant IDs/flags, safe import retries/conflicts, and isolation between two test accounts at both the UI and data-access layers. Signing out, switching accounts, expired sessions and failed saves must not expose another user's data, silently lose confirmed changes, or falsely report a successful cloud save. Test access recovery and account/data deletion as part of the implemented lifecycle, with backup-retention behaviour documented rather than promising immediate deletion from backups.
+
+A private Owned/Watching flag is not verified surfaced-card evidence. Public evidence submission would require a separate consent/review path. Alerts, notifications, public profiles, social features, detailed acquisition accounting and billing are not required by this account milestone. They need their own later scope decisions.
 
 ## Sealed-price intelligence
 
@@ -363,7 +376,7 @@ Approved manufacturer-facing direction includes:
 - explicit manufacturer/source attribution for official checklists, odds, specifications, images and purchase URLs;
 - first-class asset-rights metadata and deterministic withdrawal/removal procedures;
 - clear separation in the UI between official manufacturer facts and BoxScout intelligence;
-- reviewed manufacturer correction/replacement-asset submissions that enter the normal candidate -> review -> canonical publication workflow;
+- reviewed manufacturer corrections/replacement-asset submissions that enter the normal candidate -> review -> canonical publication workflow;
 - official-store destinations represented separately from third-party retailer offers;
 - future privacy-safe outbound purchase-intent measurement;
 - a supervised structured manufacturer intake/import format for releases, SKUs, checklists, odds and assets;
@@ -375,7 +388,7 @@ The collector remains the primary user. The strategic manufacturer value proposi
 
 ## Current implementation exclusions
 
-Accounts and account-backed checklists/watchlists are approved end-product intent under D09, but not current Plan 010 implementation. Their timing relative to the first real version must be settled through a later scope decision.
+Accounts and account-backed checklists/watchlists are required before the first real version under D09. They remain outside current Plan 010 implementation and need a dedicated security/persistence/cost-aware execution plan; launch timing is no longer an open product choice.
 
 The following are not authorized by the current plan:
 
@@ -454,8 +467,6 @@ Reuse ingestion patterns rather than one-off pages. Manufacturer data uses the s
 4. **Plan 013 — Major chase / finite-instance surfaced tracking**
 5. **Plan 014 — Card sales plus sealed-price market intelligence**
 6. **Plan 015 — Box comparison and first transparent value model**
-7. Scope remaining Golden Product configurations and first-real-version integration/acceptance through bounded follow-on work; finish the D11 release gate before Product #2. Account timing remains a separate pending scope choice.
+7. Scope remaining Golden Product configurations, the required D09 accounts/checklists/watchlists, and first-real-version integration/acceptance through bounded follow-on work; finish both the D11 release coverage and D09 account gates before Product #2. The account plan must be completed before the first real version, not automatically deferred until after launch.
 
 Manufacturer-readiness targets should be folded into approved plans as dependencies become ready. New end-product decisions must not bypass source feasibility, identity integrity or security.
-
-Plan 010 remains the current implementation authority. The first-real-version target is broader than Plan 010 or the initial Mega slice; neither is a reason to rush all remaining features into the active task.
