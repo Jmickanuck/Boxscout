@@ -14,6 +14,7 @@ Then read detailed documents **only when the task touches that area**. Do not pr
 
 ### Conditional documentation
 
+- product planning / milestone preparation -> `docs/MASTER_PLAN.md` (working strategy and open decisions; not an additional execution authority)
 - product behavior / terminology -> `docs/PRODUCT.md`
 - architecture/refactor -> `docs/ARCHITECTURE.md`
 - catalogue/import/evidence -> `docs/DATA_INTEGRITY.md` and `docs/DATA_MODEL.md`
