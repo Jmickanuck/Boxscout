@@ -2,21 +2,21 @@
 
 Status: WORKING PLAN — collaborative product planning.
 Last updated: 2026-09-15.
-Baseline reviewed: `ea826fd051591a6b2784f9f89ff2159253f82b70`.
+Initial planning baseline: `ea826fd051591a6b2784f9f89ff2159253f82b70`; this document incorporates the subsequent explicit decisions below. Read current repository state before implementation.
 
 ## How to use this plan
 
 This is the strategic map, not a second execution authority. It connects the product outcome to the existing build sequence and records decisions still needed. It does not claim that planned capabilities are implemented.
 
-- **Established** means supported by the approved repository specifications or a subsequently recorded explicit product decision from Justin.
+- **Established** means supported by approved repository specifications or a recorded explicit product decision from Justin.
 - **Proposed** means a planning recommendation, not a decision attributed to Justin.
 - **Open** means the choice remains unresolved; do not silently select it during implementation.
 
-[PHASE_1_STATUS.md](PHASE_1_STATUS.md) owns current operational state and sequencing. The single active execution plan owns implementation scope. [PRODUCT.md](PRODUCT.md), [DATA_INTEGRITY.md](DATA_INTEGRITY.md), [DATA_MODEL.md](DATA_MODEL.md) and [ARCHITECTURE.md](ARCHITECTURE.md) own their respective contracts. This document does not override them.
+[PHASE_1_STATUS.md](PHASE_1_STATUS.md) owns operational state and immediate sequencing. The single active execution plan owns implementation scope. [PRODUCT.md](PRODUCT.md), [DATA_INTEGRITY.md](DATA_INTEGRITY.md), [DATA_MODEL.md](DATA_MODEL.md) and [ARCHITECTURE.md](ARCHITECTURE.md) own their respective contracts. Later confirmed end-product requirements do not themselves expand an active coding task.
 
-Plan 010 remains the only active build plan. Plans 011–015 are the existing approved sequence, not permission to start those features now. New recommendations below need to be incorporated into the appropriate approved execution plan before implementation. The start of this planning exercise does not approve spending, new infrastructure, a roadmap reorder or every proposed target.
+Plan 010 remains the only active build plan. Plans 011–015 retain their approved implementation order. The release-complete first-real-version target below is broader than the initial Mega pilot: completing that pilot or the existing plan numbers is not automatically completion of the first real version. Additional bounded plans must be scoped when their dependencies are ready.
 
-Coding agents should read this document only for product planning, milestone preparation or an explicitly relevant task. Keep the compact startup path in [AGENTS.md](../AGENTS.md); do not add this entire plan to every coding session.
+Read this document for product planning, milestone preparation or an explicitly relevant task. Keep the compact startup path in [AGENTS.md](../AGENTS.md); do not add this entire plan to every coding session.
 
 ## 1. Product outcome
 
@@ -24,161 +24,177 @@ Coding agents should read this document only for product planning, milestone pre
 
 > Which box should I buy, what should I pay, and where should I buy it?
 
-**Working product promise:** Help a collector choose a sealed product that fits their budget and interests, understand what is actually eligible to be pulled, inspect the price and finite-chase evidence, and make a better-informed decision.
+**Confirmed audience — D05:** soccer-card collectors who want to understand what they are buying and whether better options exist before buying. This is not a beginner-only or expert-only product.
 
-A useful outcome may be buy, choose another version, wait or skip. Opening a box should not be presented as a reliable financial return. Do not optimize the product solely for getting an outbound purchase click.
+**Confirmed value direction — D08:** evaluate the current box price relative to the potential value of eligible pulls, including how verified surfaced finite chases change the available evidence. Estimated return is an intended analytics outcome, subject to supportable probabilities, comparable card values and uncertainty. A generic preference score or a lowest-price list alone does not fulfil that vision.
 
-**Confirmed audience — D05:** the soccer-card collector who wants to understand what they are buying and whether better options exist before buying. Justin did not limit this audience to beginners, experts, professional breakers or investors. Lead with understandable purchase information and make deeper research available without requiring specialist knowledge.
+Support informed choices without pushing the collector toward a purchase or toward singles instead of boxes. Do not present opening boxes as reliable profit. Personal collecting interests remain relevant, but the principal value-comparison objective is economic rather than an arbitrary preference score.
 
-The collector is the primary user. Checklists, visual card browsing, market observations and manufacturer participation support the buying decision; they do not replace it. The compounding asset is the reviewed dataset and repeatable ingestion/review/publication system, not a growing collection of hand-built product pages.
+The collector remains the primary user. Visual checklists, card prices, surfaced evidence, accounts and watchlists support discovery, evaluation and return visits; they do not turn BoxScout into a marketplace or primarily a collection manager. The compounding asset is the reviewed dataset and repeatable ingestion/review/publication system.
 
-## 2. Established boundaries to preserve
+## 2. Established boundaries
 
-- Golden Product #1 is **2026 Panini Prizm FIFA World Cup Soccer**, with Mega first. Do not revert to an older proposed benchmark.
-- Shopper support prioritizes the **United States first, Canada second**, with the **United Kingdom as the next expansion candidate**. Global card intelligence remains shared; see decision D02 and the market contract in `PRODUCT.md`.
-- Keep release, box format, exact configuration, retailer offer, checklist entry, variant and physical finite instance distinct. Unknown configuration eligibility is not exclusion or inclusion.
-- Preserve canonical IDs, provenance, claim semantics and browser-local Owned/Watching. Public evidence absence is not proof a card remains sealed.
+- Golden Product #1 is **2026 Panini Prizm FIFA World Cup Soccer**. Mega is the first engineering pilot, not the full first-real-version scope.
+- Shopper support prioritizes the **United States first, Canada second**, with the **United Kingdom as the next expansion candidate**. Shared card intelligence remains international.
+- Keep release, box format, exact configuration, retailer offer, checklist entry, variant and physical finite instance distinct. Unknown eligibility is neither inclusion nor exclusion.
+- Preserve canonical IDs, provenance, claim semantics and existing browser-local Owned/Watching. Public evidence absence is not proof a card remains sealed.
 - Retain the modular monolith and canonical PostgreSQL -> approved snapshot architecture. Do not require live database requests for ordinary catalogue browsing.
-- Preserve the approved four-column mobile gallery and theme direction. Public image rights and exact matching remain independent gates.
-- Product #2 follows a genuinely useful Golden Product. Accounts, billing, broad scraping, opaque value scores and manufacturer portals are not current work.
+- Preserve the approved four-column mobile gallery and themes. Public image rights and exact matching remain independent gates.
+- Accounts and personal checklists/watchlists are confirmed end-product intent, not current implementation authorization. Their first-real-version timing is open. Billing, broad scraping, opaque scores and manufacturer portals are not current work.
+- Do not start Product #2 merely because the Mega pilot works. First deliver the complete-release target and genuinely useful purchase experience described below, or obtain an explicit scope revision.
 
-Details remain in the linked specifications rather than being copied here. In particular, follow [BOX_FIRST_UI_DIRECTION.md](BOX_FIRST_UI_DIRECTION.md), [UI_SPEC.md](UI_SPEC.md), [MONETIZATION.md](MONETIZATION.md) and [MANUFACTURER_INTEGRATIONS.md](MANUFACTURER_INTEGRATIONS.md).
+Details remain in [PRODUCT.md](PRODUCT.md), [BOX_FIRST_UI_DIRECTION.md](BOX_FIRST_UI_DIRECTION.md), [UI_SPEC.md](UI_SPEC.md), [MONETIZATION.md](MONETIZATION.md) and [MANUFACTURER_INTEGRATIONS.md](MANUFACTURER_INTEGRATIONS.md).
 
-## 3. Reverse-engineered buying journey
+## 3. Confirmed user journeys — D07
 
-| User task | Information the system must establish | Failure to prevent |
+All three entry paths are part of the intended product; Justin did not choose just one.
+
+| Entry path | Intended journey |
+| --- | --- |
+| Specific box | Find its exact configuration -> inspect contents, eligible cards, surfaced chases, current price and supported history -> compare alternatives |
+| Budget | Browse boxes, identify those within budget, and compare their supported potential value relative to price. A natural-language recommendation wizard is not required |
+| Club/card | Filter cards by club -> select a card and exact variant -> see which box configurations can contain it, with eligibility confidence |
+
+All paths must reuse the same identities, evidence, market observations and comparison logic. The reverse card-to-box lookup must not turn release membership into exact-box eligibility. Club affiliation also requires its own data semantics; do not relabel a national-team card with an inferred or undated club relationship.
+
+### Buying decision contract
+
+| User task | Information required | Failure to prevent |
 | --- | --- | --- |
-| Identify the box | Exact configuration and the listing-to-configuration relationship | Applying another version's pull structure to this offer |
-| Understand the contents | Source-qualified specifications, guarantees, averages and published odds | Turning an average into a guarantee or unknown odds into an estimate |
-| Inspect eligible cards | Reviewed release identities, exact variants and scoped eligibility | Treating release membership as pullability |
-| Inspect major chases | Explicit tracked scope and deduplicated finite-instance evidence | Counting repeated listings as different cards or calling unseen copies sealed |
-| Assess a price | Comparable dated observations, currency, offer/sale distinction and delivery uncertainty | Calling a stale asking price current market value |
-| Compare alternatives | Transparent inputs, limitations and relevance to the collector | Manufacturing an overall winner when evidence is insufficient |
+| Identify the box | Exact configuration and listing mapping | Applying another version's pull structure to the offer |
+| Understand contents | Source-qualified specifications, guarantees, averages and odds | Turning an average into a guarantee |
+| Inspect eligible cards | Reviewed entries, variants and scoped eligibility | Treating a card's presence in the release as pullability |
+| Inspect major chases | Explicit tracked scope and deduplicated finite evidence | Counting repeated listings as new cards or unseen copies as sealed |
+| Assess price/history | Comparable dated observations, original currency and price basis | Calling asking-price history fair value or inventing pre-tracking history |
+| Compare value | Defensible economic inputs and visible uncertainties | Treating surfaced percentage alone as remaining pull odds or expected return |
 
-The intended box page leads with exact identity, useful observed pricing, purchase destinations, contents and eligible chases. Research detail belongs underneath, but uncertainty that could change a purchase must remain visible at the relevant point.
+Lead box pages with useful purchase information and make deeper evidence available without overwhelming the page. Material uncertainty must remain visible where it changes interpretation.
 
-## 4. Existing build sequence, expressed as outcomes
+## 4. Build sequence and release gates
 
-The order below is established. The outcome descriptions clarify intent; the active plan's acceptance criteria still control completion.
+The existing order remains active. Outcome descriptions clarify intent; each approved execution plan still controls its own implementation.
 
-| Plan | Deliverable | What it must demonstrate |
+| Plan | Deliverable | Demonstration |
 | --- | --- | --- |
-| **010 — Release catalogue** | Reconciled subsets, entries, exact variants and machine-readable coverage | Every source family is accounted for; partial or unresolved coverage cannot appear complete |
-| **011 — Mega identity and eligibility** | Exact configurations, seller mappings and evidence-backed pull relationships | Each supported box shows only appropriately qualified contents and eligible variants |
-| **012 — Box-first experience** | Mobile buying pages and supported price presentation | A collector can evaluate the supported box without navigating a research database |
-| **013 — Finite-card evidence** | Selected major chases, instances, observations and evidence | Surfaced counts are traceable and deduplicated, with tracked scope explicit |
-| **014 — Market intelligence** | Supported card sales, sealed offers and historical observations | Price evidence retains exact identity, date, currency and sale/listing semantics |
-| **015 — Transparent comparison** | Inspectable comparisons and only defensible modelling | Alternatives can be compared without concealing uncertainty or inventing probabilities |
+| **010 — Release catalogue** | Reconciled subsets, entries, variants and coverage | Every source family accounted for; partial/unresolved data cannot appear complete |
+| **011 — Mega identity and eligibility** | Exact configurations, seller mappings and pull relationships | Supported Mega boxes show appropriately qualified contents and eligibility |
+| **012 — Box-first experience** | Mobile buying pages and supported price presentation | A collector can evaluate a supported box without navigating a research database |
+| **013 — Finite-card evidence** | Selected major chases, instances and observations | Surfaced counts are traceable and deduplicated, with tracked scope explicit |
+| **014 — Market intelligence** | Supported card sales, sealed offers and history | Evidence retains exact identity, date, currency and sale/listing semantics |
+| **015 — Transparent comparison** | Inspectable comparisons and defensible modelling | Alternatives can be compared without invented probabilities or hidden assumptions |
 
-Plan 010 does not require pretending all source disagreements are solvable. Its existing acceptance criteria allow explicit unresolved states while requiring all resolvable approved families to be reconciled. Unresolved is not a shortcut around work that can actually be completed.
+Plan 010 can finish with explicit unresolved cases under its acceptance criteria; that does not mean the whole release is complete. Unresolved is not a shortcut around reconcilable work. Plan 012 must not invent Plan 014 market data, and Plan 015 can prove comparison within Golden Product #1.
 
-Plan 012 must not invent the data intended for Plan 014. Plan 015 can prove comparison using supported configurations within Golden Product #1. Neither requires bypassing the Product #2 gate.
+### First real version — D11
 
-Release/domain publication sharding and compact client projections remain the existing architecture direction, not a new infrastructure programme. Performance changes must be measured and scoped through [PUBLICATION_SHARDING.md](PUBLICATION_SHARDING.md) and the active plan.
+Justin requires **at least one entire release's boxes and cards**, using 2026 Panini Prizm FIFA World Cup as the concrete target. The useful Mega pilot is an intermediate milestone, not this finished release experience.
 
-## 5. Proposed planning refinements
+Inventory all source-identified card families, exact variants, box formats and distinct configurations for that release. Reuse the working pilot to extend coverage across the release; do not hand-build another database/page per box. Separate release membership, configuration coverage and eligibility completeness. US shopping comes first without silently deleting international configurations or duplicating shared cards.
 
-These are candidates for future task acceptance criteria, not authorization to build additional systems during Plan 010.
+Before declaring the release-complete target achieved, show measured coverage and disclose unresolved identities, mappings and families. Merely listing box names with empty detail pages is not the intended end product. Conversely, this requirement does not manufacture sold records, imagery, retailer stock or unpublished odds for every entity.
+
+After the Mega slice is proven, scope bounded remaining-configuration coverage and integration/acceptance work before Product #2. Do not allocate speculative plan numbers or broaden Plan 010 into this whole programme. Account launch timing and a precise permitted-image coverage threshold remain open.
+
+A successful mobile acceptance session covers the three entry paths: evaluate a box; compare options within a budget; find boxes containing a selected card. Users can inspect material limitations and make their own decision without another chat explaining the interface. Numerical estimated-return claims require their own data/model gate; no fake metric merely to satisfy a launch checklist.
+
+Publication sharding and compact client projections remain the existing architecture direction. Follow [PUBLICATION_SHARDING.md](PUBLICATION_SHARDING.md) with measured, scoped changes rather than a new infrastructure programme.
+
+## 5. Operational and analytical planning
 
 ### Source feasibility before automation
 
-For each new data domain, prove a small real-data path before substantial implementation. Record the source, access and permitted-use constraints, exact identifiers/fields available, freshness needs, failure behaviour, storage requirements and expected manual review. Discovery or public visibility alone does not establish permission to republish.
+Prove a small real-data route before substantial integration. Record source access, permitted uses, exact identifiers/fields, freshness, failure behaviour, storage and manual-review needs. Public visibility is not a republishing license.
 
-A source that cannot be accessed reliably is a product constraint. Do not respond by inventing values or quietly bypassing access restrictions.
+For card-market work, use [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md). eBay is the first source to investigate, not a guaranteed feed. Storage, display, derived analysis and AI processing require appropriate permissions; do not assume licensed history belongs in public Git.
 
-For card-market work, read [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md). It records the eBay-led research direction, current access/licensing constraints and alternative-source limitations. Source permission must cover storage, display and the intended analysis; do not assume market history can enter the public Git snapshot or an AI workflow.
+### Value model requirements
 
-### Sustainable review workload
+The old-box-versus-new-box example is a desired comparison, not a predetermined outcome. Show observed sealed prices/history, exact eligible chases, supported card values and verified surfaced evidence. Distinguish chase counts from value-weighted coverage and disclose the tracked universe.
 
-Measure routine review time, exceptions per import, repeat corrections and source failures. Use deterministic code for parsing, joins, counting and exact comparisons; use AI for bounded ambiguity. Present compact review batches rather than asking Justin to inspect thousands of records.
+Observed surfaced copies are not a census of opened cards. Remaining sealed supply, configuration allocation, collation and the unobserved opened population may be unknown. Depletion percentage alone cannot determine current odds. Keep original published odds separate from a hypothetical present-day model.
 
-The suggested target of **at most about one hour per week of routine maintenance** is an unconfirmed design hypothesis, not Justin's stated commitment or an achieved result. Development time and optional hobby research are separate. Coverage should grow only as the observed workload supports it.
+A future return estimate must distinguish expected gross card value, net proceeds after supported costs, box outlay and profit/ROI. Do not call a chase-only subtotal a whole-box expectation, use graded prices for assumed raw pulls, or equate an average outcome with a typical or guaranteed outcome. Ranges/scenarios need stated assumptions; unsupported inputs remain unknown. Exact formulas and publication thresholds require a later tested plan.
 
-### Price freshness and source failure
+### Sustainable operating cost and workload — D03/D01
 
-Before implementing market summaries, define which observations qualify, how stale offers are labelled or excluded, how unavailable sources behave, and which currency/shipping/tax assumptions are visible. Preserve original event and observation dates; a refresh must not make an old sale look new. Thresholds require a source-specific decision, not an invented universal expiry.
+**Confirmed budget direction:** ongoing application costs should stay under approximately **$100/month**, with an eventual objective of at least covering those costs through revenue. Justin did not specify the currency; record it as unresolved rather than assuming USD from the shopper market. This is a planning ceiling, not permission to purchase any subscription or a target to spend in full.
 
-### Imagery and presentation readiness
+Keep development subscriptions conceptually separate. Budget application hosting, storage, backups, image delivery, licensed data, refresh processing and eventual account/email operations together, including relevant currency/tax and renewal context before approving spend. Do not choose a provider whose data cost consumes the ceiling without accounting for other services. Breaking even is an objective, not a revenue forecast or a reason to bypass demand validation.
 
-Separate **image pipeline ready** from **visual experience ready**. A safe pipeline with zero approved images can satisfy a foundation task without demonstrating a finished image-led experience. Agree a practical permitted-image target for the supported shopping journey before claiming visual readiness. Missing images remain intentional placeholders; rights do not become optional.
+Routine maintenance time remains unanswered. The earlier one-hour-per-week suggestion is still a hypothesis, not Justin's commitment. Measure review time, exceptions, repeat corrections and failed sources. Deterministic software handles bulk work; AI/human review handles consequential ambiguity. Grow coverage only when measured cost and workload support it.
 
-Activate homepage intelligence modules only when real, sufficiently current data supports them. Do not build empty activity feeds to imitate a mature platform.
+### Freshness, images and operational safety
 
-### Operational prerequisites
+Set source-specific offer freshness and stale-data policies before market summaries. Preserve original dates and original amounts; running a refresh does not create a new historical sale. Do not fabricate history from before permitted observations exist.
 
-The existing off-device scheduled-backup requirement must be an explicit dependency before irreplaceable surfaced evidence, market history or user data is stored. Use [PERSISTENCE_RUNBOOK.md](PERSISTENCE_RUNBOOK.md); do not select a paid provider without approval. Asset backup and rights withdrawal require their own treatment, separate from database recovery.
+The image pipeline and the visual experience are separate readiness gates. Full boxes/cards listed does not itself specify a percentage of licensed images or guarantee sale history for every card. Retain intentional placeholders and obtain a practical image-acceptance target before claiming visual readiness.
 
-Before promising continuous data refresh, define executable jobs, monitoring, failure reporting and publication review. A chat session or a local development PC is not an unattended production service.
+Scheduled off-device backup and tested recovery are prerequisites for irreplaceable evidence, market history and account data. Follow [PERSISTENCE_RUNBOOK.md](PERSISTENCE_RUNBOOK.md). Asset retention/withdrawal is separate from database recovery. Do not select paid services without approval.
 
-### User acceptance and expansion
+Actual unattended ingestion needs executable jobs, monitoring, failure reporting and review/publication controls. A chat or local development PC is not an unattended production service. Activate homepage modules only when real data supports them.
 
-Proposed acceptance exercise: on a phone, evaluate a supported box, understand its material uncertainties, compare a supported alternative, and choose buy/wait/skip without requiring another chat to explain the interface.
+### Return visits and accounts — D09
 
-Record evidence from several real evaluations before expansion: what helped, what remained confusing or missing, whether displayed information was correct, and the maintenance cost. Do not require a purchase to count the exercise as successful. Exact targets remain to be agreed; catalogue size alone is not a success metric.
+Confirmed return reasons: log into an account, update a personal checklist, view a watchlist and browse for the next box. News, notifications and automatic alerts were not selected as mandatory features by this answer.
 
-Manufacturer foundations should strengthen this experience without making a partnership a prerequisite for all progress. Follow the existing M0–M5 sequence. Affiliate experimentation and Pro demand validation retain their existing gates; no revenue or willingness-to-pay claim is established by this plan.
+Preserve local Owned/Watching now. Account-backed persistence needs a later bounded plan for user isolation, recovery/deletion, private storage, a consented local-state import and operating cost. Personal ownership/watch flags never become canonical facts or verified surfaced evidence automatically. Do not store private user data in public Git or gate ordinary box research behind a login merely because accounts exist.
 
-## 6. Product decisions
+Manufacturer foundations and the existing affiliate/Pro/B2B sequence remain supporting strategies, subject to source rights, independence and demand gates.
 
-Only record an answer as decided after Justin actually supplies or accepts that specific choice. An unanswered recommendation remains proposed. Open questions below do not block catalogue reconciliation.
+## 6. Decision register
 
-| ID | Decision | Current position | Resolve before / application |
-| --- | --- | --- | --- |
-| D01 | Maximum routine weekly review/maintenance | Open. Proposed design target: about one hour; distinguish optional research and development | Setting sustained ingestion breadth/cadence |
-| D02 | First shopper geography | DECIDED — United States first; Canada second; United Kingdom as the next expansion candidate. Confirmed by Justin on 2026-09-15 | Apply to upcoming retailer, pricing, UI and comparison scopes; no current catalogue rewrite |
-| D03 | Ongoing paid source/infrastructure budget | Open. No new spend authorized; distinguish application costs from development subscriptions | Any paid source/service commitment |
-| D04 | Minimum image coverage for a useful visual pilot | Open. Rights-safe infrastructure is not itself the visual acceptance target | Claiming the image-led experience ready for broader use |
-| D05 | Primary collector audience | DECIDED — soccer-card collectors seeking to understand what they are buying and whether better options exist before purchase. Confirmed by Justin on 2026-09-15 | Guide product language, information hierarchy and comparison; do not force a beginner/expert-only persona |
-| D06 | Marketplace-backed card information | CONFIRMED VISION — show eBay or other popular marketplace price/sale information on cards. Source selection, access, licenses, costs and estimation methodology remain unresolved | Plan 014 source feasibility and detail UI; Plan 015 uses only permitted, supportable inputs |
+All decisions below were supplied in the 2026-09-15 planning conversation. Open choices are not blockers for Plan 010.
 
-### D02 — US-first shopping, shared international intelligence
+| ID | Decision | State / application |
+| --- | --- | --- |
+| D01 | Routine review/maintenance time | OPEN; about one hour/week remains an unconfirmed design hypothesis |
+| D02 | Shopper geography | DECIDED: US first, Canada second, UK next expansion candidate; shared international intelligence |
+| D03 | Operating budget and objective | CONFIRMED: under approximately $100/month, eventual cost recovery; currency and individual spending approvals unresolved |
+| D04 | Image coverage acceptance | OPEN: full boxes/cards listed is required under D11, but an exact permitted-image coverage threshold was not supplied |
+| D05 | Audience | DECIDED: informed soccer-card purchase decisions, neither beginner-only nor expert-only |
+| D06 | Marketplace data | CONFIRMED VISION: card prices/sales from eBay or other popular venues; integration, rights, cost and methodology remain subject to feasibility |
+| D07 | Entry journeys | CONFIRMED: specific-box evaluation, budget browsing/comparison and club/card -> eligible-box discovery |
+| D08 | Better value | CONFIRMED: lower box price relative to eligible pull-value potential, considering surfaced chases; estimated return is an intended, evidence-gated model, not an arbitrary score |
+| D09 | Return visits/accounts | CONFIRMED END-PRODUCT INTENT: account, personal checklist, watchlist and next-box browsing; first-real-version account timing not yet selected |
+| D10 | Role of singles | DECIDED: subordinate information about card prices and acquisition routes; do not push singles over boxes; choice belongs to the collector |
+| D11 | First real version | CONFIRMED: at least one whole release's boxes and cards, not only one Mega configuration; full-release coverage gate before Product #2 |
 
-Justin selected US-first shopping support, replacing the earlier Canada-first recommendation. Canada is the second supported shopping market; the UK is the next candidate to investigate, not an automatically scheduled launch. This is an approved product-priority decision, not independently verified comparative market sizing or proof of demand in any country.
+The earlier Canada-first proposal is superseded. D05 does not require a beginner/expert choice. D08 rejects defining value solely by personal preference; interests still guide discovery. D10 rejects making buy-the-single redirection the default product behaviour. D11 raises the release target without requiring invented missing data.
 
-The durable market contract is in [PRODUCT.md](PRODUCT.md#shopper-market-priority--decision-d02). It separates shopper region and display currency from original observations, exact configuration identities and globally sourced evidence. US retailer coverage and USD presentation take priority in the relevant future plans. Existing Canadian pilot facts and prices remain intact; a country change must never silently convert observations or reinterpret box identities.
-
-Canada/UK expansion requires supported seller and delivery coverage, source feasibility and sustainable maintenance. Regional purchase support does not restrict who may browse the site. Do not discard UK/Canadian sightings of the same physical card from global surfaced counts, or assume similarly named regional boxes have the same contents.
-
-### D05/D06 — Informed collector, inspectable card-market evidence
-
-Justin confirmed the collector's purchase question rather than selecting an expertise level. The interface should explain a supported box and relevant alternatives first, with deeper evidence available on demand. Do not pivot into professional-breaker software, a collection manager or speculative investing tools.
-
-He also made marketplace-backed card information explicit, naming eBay and other popular selling sites. Treat sales, current asking prices and estimates as separate outputs, matched to exact variants and condition/grade. The proposed placement is the variant detail, retaining the approved gallery. A particular vendor, paid plan, formula, new gallery layout or automated ingestion has not been selected. [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md) contains the dated source research and proposed implementation safeguards.
-
-D02 and D05 are settled; D06's user-visible intent is confirmed. Resolve remaining choices as their dependencies approach rather than re-asking them. Plan 010 remains active.
+Open questions should be resolved only as their dependencies approach: account launch timing, budget currency before spending, image threshold, and sustainable maintenance. Do not ask Justin to reconfirm the established journeys, value objective, target release or regional priority.
 
 ## 7. First bounded desktop handoff
 
-**Plan 010, first slice: source inventory and coverage contract.** This is a proposed subdivision of the existing active plan, not a new parallel plan or a replacement acceptance gate.
+**Plan 010, first slice: source inventory and coverage contract.** This subdivides the existing active plan; it is not a new parallel plan or release-completion claim.
 
-Read [AGENTS.md](../AGENTS.md), the compact startup context and [Plan 010](exec-plans/active/010-complete-golden-product-release-catalogue.md). Follow the relevant parts of [ASTRA_RUNBOOK.md](ASTRA_RUNBOOK.md). Fetch remote state, inspect local changes and inspect existing parsers/manifests before adding code. Do not overwrite uncommitted PC work or assume this reviewed baseline is still current.
+Read [AGENTS.md](../AGENTS.md), its compact startup context and [Plan 010](exec-plans/active/010-complete-golden-product-release-catalogue.md). Follow applicable parts of [ASTRA_RUNBOOK.md](ASTRA_RUNBOOK.md). Fetch remote state, inspect local changes and existing parsers/manifests before adding code. Do not overwrite uncommitted PC work or assume an earlier baseline is current.
 
-Objective: establish which source subset families exist and how expected/source-observed, canonical and unresolved coverage will be represented reproducibly.
+Objective: establish which source subset families exist and how source-observed/expected, canonical and unresolved coverage will be represented reproducibly.
 
 Expected output:
 
-1. A source-backed subset inventory with locators, source identity/hash, classification, count semantics and explicit unresolved cases.
-2. A deterministic compact coverage report/prototype plus tests for missing families, unresolved totals and unknown denominators. Existing bulk files should be processed by code, not loaded into model context.
-3. A concise discrepancy ledger and proposed next reconciliation slice. Record measured state in the active plan/status without claiming release completion.
+1. Source-backed subset inventory with locators, source identity/hash, classification, count semantics and unresolved cases.
+2. Deterministic compact coverage report/prototype with tests for missing families, unresolved totals and unknown denominators. Process bulk files with code, not model context.
+3. Concise discrepancy ledger and next reconciliation slice. Record measured state in the active plan/status without claiming complete release coverage.
 
-This slice must not redesign the UI, expand products, resolve disputed identities by guessing, overwrite canonical data, introduce paid services or publish a candidate report as verified catalogue coverage. Do not force a schema change if existing structures can support the inventory. Any necessary change must remain within Plan 010 and use its review, migration and integrity rules.
+Do not redesign the UI, add accounts, expand products/configurations outside Plan 010, implement valuation, overwrite canonical data, buy services or publish candidate coverage as verified. Do not force a schema change where existing structures suffice; use the plan's migration/review rules for real changes.
 
-Subsequent slices follow the active plan: reconcile approved entries, reconstruct exact variants, enforce coverage/publication gates, then verify database parity and mobile regressions. Slice completion is not Plan 010 completion.
+Subsequent slices reconcile approved entries, reconstruct variants, enforce publication/coverage gates, then verify database parity and mobile regressions. Slice completion is not Plan 010 completion, and Plan 010 completion is not first-real-version completion.
 
-For implementation, run applicable lint/typecheck/tests/build and database checks when affected, review the diff, commit/push and verify the remote. Report the exact SHA, checks actually run, remaining discrepancies and next unfinished slice. Never infer success from a local commit alone.
+Run applicable lint/typecheck/tests/build and database checks when affected, review the diff, commit/push and verify the remote. Report exact SHA, checks actually run, remaining discrepancies and next unfinished slice. Never infer remote success from a local commit alone.
 
-## 8. Documentation and collaboration discipline
+## 8. Documentation and collaboration
 
-Justin owns product choices and acceptance. The planning conversation turns those choices into scoped requirements and reviews outcomes. The desktop implementation agent owns routine technical decisions within the approved architecture, small tested changes and repository updates.
+Justin owns product choices and acceptance. This planning workspace turns them into scoped requirements. The desktop agent owns routine technical choices within the architecture, small tested changes and repository updates.
 
-Do not duplicate current catalogue counts here; use the publication manifest and operational status. Do not write detailed future code instructions before source feasibility and preceding milestones are known.
+Do not duplicate live catalogue counts here. Use the publication manifest and operational status. Do not write detailed future implementation instructions before source feasibility and earlier dependencies are known.
 
-For each substantial handoff, state the outcome, permitted scope, required inputs, data/UI contracts, acceptance checks and stop conditions. Advance one coherent slice at a time rather than sending a broad instruction to finish the whole application.
+Each handoff needs an outcome, allowed scope, inputs, data/UI contracts, acceptance checks and stop conditions. Advance one coherent slice at a time.
 
-Known documentation cleanup to address when the relevant contract is edited:
+Known cleanup when the relevant contract is edited:
 
-- `UI_SPEC.md` contains an earlier probable-eligibility opt-in rule and a later Plan 009 included-by-default rule. Separate historical behaviour from the current and next approved interaction contract; do not silently pick a different default.
-- `DATA_MODEL.md` mixes prospective bootstrap descriptions with later implemented refinements. Label current contracts, future directions and history explicitly.
-- `ASTRA_RUNBOOK.md` retains some bootstrap-era language. Follow the current status and active plan; do not interpret old text as requiring a second backend or undoing persistence.
+- `UI_SPEC.md` retains earlier opt-in and later included-by-default probable-eligibility behaviour. Label history/current/next behaviour rather than silently switching the default.
+- `DATA_MODEL.md` mixes bootstrap direction and implemented refinements; separate current contracts, future work and history.
+- `ASTRA_RUNBOOK.md` retains bootstrap language; current status/plan still govern implementation.
 
-When cleaning these specifications, preserve prior decisions/history, document actual semantic changes, and avoid broad application refactoring under a documentation task.
+Preserve history while eliminating conflicting current instructions. Do not use documentation work to authorize broad application refactoring.
