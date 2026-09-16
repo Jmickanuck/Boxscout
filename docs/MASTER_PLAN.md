@@ -40,7 +40,7 @@ The collector remains the primary user. Visual checklists, card prices, surfaced
 - Preserve canonical IDs, provenance, claim semantics and existing browser-local Owned/Watching. Public evidence absence is not proof a card remains sealed.
 - Retain the modular monolith and canonical PostgreSQL -> approved snapshot architecture. Do not require live database requests for ordinary catalogue browsing.
 - Preserve the approved four-column mobile gallery and themes. Public image rights and exact matching remain independent gates.
-- Accounts and personal checklists/watchlists are confirmed end-product intent, not current implementation authorization. Their first-real-version timing is open. Billing, broad scraping, opaque scores and manufacturer portals are not current work.
+- Accounts and account-backed personal checklists/watchlists are required before the first real version under D09. Implement them through a separate bounded plan, not during Plan 010. Billing, broad scraping, opaque scores and manufacturer portals are not current work.
 - Do not start Product #2 merely because the Mega pilot works. First deliver the complete-release target and genuinely useful purchase experience described below, or obtain an explicit scope revision.
 
 Details remain in [PRODUCT.md](PRODUCT.md), [BOX_FIRST_UI_DIRECTION.md](BOX_FIRST_UI_DIRECTION.md), [UI_SPEC.md](UI_SPEC.md), [MONETIZATION.md](MONETIZATION.md) and [MANUFACTURER_INTEGRATIONS.md](MANUFACTURER_INTEGRATIONS.md).
@@ -87,13 +87,13 @@ Plan 010 can finish with explicit unresolved cases under its acceptance criteria
 
 ### First real version — D11
 
-Justin requires **at least one entire release's boxes and cards**, using 2026 Panini Prizm FIFA World Cup as the concrete target. The useful Mega pilot is an intermediate milestone, not this finished release experience.
+Justin requires **at least one entire release's boxes and cards**, using 2026 Panini Prizm FIFA World Cup as the concrete target. The useful Mega pilot is an intermediate milestone, not this finished release experience. Account-backed personal checklists/watchlists must also be working before this gate under D09.
 
 Inventory all source-identified card families, exact variants, box formats and distinct configurations for that release. Reuse the working pilot to extend coverage across the release; do not hand-build another database/page per box. Separate release membership, configuration coverage and eligibility completeness. US shopping comes first without silently deleting international configurations or duplicating shared cards.
 
 Before declaring the release-complete target achieved, show measured coverage and disclose unresolved identities, mappings and families. Merely listing box names with empty detail pages is not the intended end product. Conversely, this requirement does not manufacture sold records, imagery, retailer stock or unpublished odds for every entity.
 
-After the Mega slice is proven, scope bounded remaining-configuration coverage and integration/acceptance work before Product #2. Do not allocate speculative plan numbers or broaden Plan 010 into this whole programme. Account launch timing and a precise permitted-image coverage threshold remain open.
+After the Mega slice is proven, scope bounded remaining-configuration coverage and integration/acceptance work before Product #2. Do not allocate speculative plan numbers or broaden Plan 010 into this whole programme. Account implementation needs a dedicated plan and must pass its acceptance checks before the first real version; it is no longer an optional post-release enhancement. A precise permitted-image coverage threshold remains open.
 
 A successful mobile acceptance session covers the three entry paths: evaluate a box; compare options within a budget; find boxes containing a selected card. Users can inspect material limitations and make their own decision without another chat explaining the interface. Numerical estimated-return claims require their own data/model gate; no fake metric merely to satisfy a launch checklist.
 
@@ -135,7 +135,9 @@ Actual unattended ingestion needs executable jobs, monitoring, failure reporting
 
 ### Return visits and accounts — D09
 
-Confirmed return reasons: log into an account, update a personal checklist, view a watchlist and browse for the next box. News, notifications and automatic alerts were not selected as mandatory features by this answer.
+Confirmed return reasons: log into an account, update a personal checklist, view a watchlist and browse for the next box. **Justin subsequently confirmed on 2026-09-15 that account functionality belongs before the first real version.** Account-backed checklists/watchlists are therefore a release requirement, not merely future intent. News, notifications and automatic alerts were not selected as mandatory features by this answer.
+
+The initial account experience should remain focused on sign-up/sign-in/sign-out, a saved personal checklist and watchlist accessible across devices, and account recovery/deletion. The detailed minimum scope and release checks are in [PRODUCT.md](PRODUCT.md#personal-accounts-and-return-visits--decision-d09); do not expand into social or portfolio features to satisfy this decision.
 
 Preserve local Owned/Watching now. Account-backed persistence needs a later bounded plan for user isolation, recovery/deletion, private storage, a consented local-state import and operating cost. Personal ownership/watch flags never become canonical facts or verified surfaced evidence automatically. Do not store private user data in public Git or gate ordinary box research behind a login merely because accounts exist.
 
@@ -155,13 +157,13 @@ All decisions below were supplied in the 2026-09-15 planning conversation. Open 
 | D06 | Marketplace data | CONFIRMED VISION: card prices/sales from eBay or other popular venues; integration, rights, cost and methodology remain subject to feasibility |
 | D07 | Entry journeys | CONFIRMED: specific-box evaluation, budget browsing/comparison and club/card -> eligible-box discovery |
 | D08 | Better value | CONFIRMED: lower box price relative to eligible pull-value potential, considering surfaced chases; estimated return is an intended, evidence-gated model, not an arbitrary score |
-| D09 | Return visits/accounts | CONFIRMED END-PRODUCT INTENT: account, personal checklist, watchlist and next-box browsing; first-real-version account timing not yet selected |
+| D09 | Return visits/accounts | DECIDED: accounts with saved personal checklists/watchlists are required before the first real version; separate bounded implementation plan, not Plan 010 |
 | D10 | Role of singles | DECIDED: subordinate information about card prices and acquisition routes; do not push singles over boxes; choice belongs to the collector |
-| D11 | First real version | CONFIRMED: at least one whole release's boxes and cards, not only one Mega configuration; full-release coverage gate before Product #2 |
+| D11 | First real version | CONFIRMED: at least one whole release's boxes and cards, not only one Mega configuration, plus D09 accounts; full-release and account acceptance gates before Product #2 |
 
-The earlier Canada-first proposal is superseded. D05 does not require a beginner/expert choice. D08 rejects defining value solely by personal preference; interests still guide discovery. D10 rejects making buy-the-single redirection the default product behaviour. D11 raises the release target without requiring invented missing data.
+The earlier Canada-first proposal is superseded. D05 does not require a beginner/expert choice. D08 rejects defining value solely by personal preference; interests still guide discovery. D10 rejects making buy-the-single redirection the default product behaviour. D11 raises the release target without requiring invented missing data. D09's earlier open launch-timing question is resolved: accounts must precede the first real version.
 
-Open questions should be resolved only as their dependencies approach: account launch timing, budget currency before spending, image threshold, and sustainable maintenance. Do not ask Justin to reconfirm the established journeys, value objective, target release or regional priority.
+Open questions should be resolved only as their dependencies approach: budget currency before spending, image threshold, and sustainable maintenance. Do not ask Justin to reconfirm account launch timing, the established journeys, value objective, target release or regional priority.
 
 ## 7. First bounded desktop handoff
 
