@@ -20,6 +20,10 @@ Start with:
 - `docs/PHASE_1_STATUS.md`
 - `docs/exec-plans/active/010-complete-golden-product-release-catalogue.md`
 
+## Product planning
+
+The [working master plan](docs/MASTER_PLAN.md) connects the buying journey to the existing milestones, records open product decisions, and proposes bounded desktop handoffs. It distinguishes established requirements from recommendations and does not replace Plan 010 or authorize later features. Read it for planning, not as mandatory context for every coding task.
+
 ## Stack
 
 - Next.js 16 / React 19 / TypeScript
