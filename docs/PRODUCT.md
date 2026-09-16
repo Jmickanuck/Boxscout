@@ -1,4 +1,4 @@
-# BoxScout Product Specification — Phase 1
+# BoxScout Product Specification — Phase 1 and End-Product Direction
 
 ## Product
 
@@ -10,21 +10,43 @@ Its primary purpose is to help a collector decide:
 
 Cards, checklists, variants, odds, sales and surfaced finite hits are the intelligence inputs that explain whether a sealed box is attractive. BoxScout is not primarily a collection manager or checklist database.
 
-See `PRODUCT_AUDIT_2026-09-15.md` for the audit that established this box-first direction.
+See `PRODUCT_AUDIT_2026-09-15.md` for the audit that established this box-first direction. Confirmed end-product intent below does not authorize implementing every feature during the current Plan 010 task. Current implementation state remains in `PHASE_1_STATUS.md`.
 
 ## Primary collector — Decision D05
 
 **Confirmed by Justin on 2026-09-15:** the target user is the soccer-card collector who wants to know more about what they are buying and whether better options exist before buying.
 
-This defines a purchase need, not a beginner-only or expert-only audience. Explain the meaningful differences between boxes in understandable language, with deeper odds, checklist, market and evidence detail available when useful. Do not make specialist vocabulary a prerequisite for making a decision or turn the main interface into a tutorial.
+This defines a purchase need, not a beginner-only or expert-only audience. Explain meaningful differences in understandable language, with deeper odds, checklist, market and evidence detail available when useful. Do not make specialist vocabulary a prerequisite or turn the main interface into a tutorial.
 
-The product should support informed choices including buying, choosing another option, waiting or skipping. This audience decision does not expand current implementation scope into professional-breaker software, investing tools or collection management.
+Support the collector's own decision. Personal checklist/account features may support return visits under D09 without making collection management the primary product or expanding into professional-breaker software or speculative investing tools.
 
-## Phase 1 goal
+## Phase 1 goal and first real version — Decision D11
 
-Build a V0 that Justin personally uses when evaluating soccer-card sealed products before spending money.
+Build a V0 that Justin personally uses when evaluating soccer-card sealed products before spending money. The engineering pilot does not require revenue.
 
-Phase 1 does not need revenue.
+**Confirmed minimum for the first real version:** at least one entire card release's boxes and cards, using **2026 Panini Prizm FIFA World Cup Soccer** as the target. A single supported Mega configuration or a partial checklist is an intermediate pilot, not that finished release experience.
+
+The release target includes a source-backed inventory of its card subsets, exact variants, box formats and distinct configurations, useful box/card pages, and evidence-qualified links between exact variants and boxes. A list of box names with otherwise empty pages does not satisfy the intended experience. Keep regional retailer coverage separate from release coverage: US shopping is first, while shared card/configuration identities remain correctly represented.
+
+Use machine-readable coverage to distinguish release completeness, configuration coverage and eligibility completeness. Unknown or disputed families must remain visible and block unsupported full/complete claims; do not silently omit them to pass a launch gate. Plan 010 may finish its reconciliation work with explicit unresolved records under its own criteria without claiming this broader launch is complete.
+
+Complete catalogue coverage does not mean a sale record, approved image, published odds or current retailer offer exists for every entity. Do not fabricate those. The precise acceptable licensed-image coverage and whether accounts are required at this first-real-version gate remain open decisions.
+
+Keep Mega first, then reuse the proven pipeline and components across the remaining release configurations through bounded follow-on plans. Do not begin Product #2 merely because the Mega pilot or Plans 010–015 are finished. Full-release scope and genuine buying usefulness must be demonstrated, or a scope revision explicitly agreed.
+
+## Confirmed discovery journeys — Decision D07
+
+All three routes belong in the end product:
+
+1. **Box first:** inspect an exact box, contents, eligible cards, verified surfaced chases, observed current price and supported price/history information, then examine alternatives.
+2. **Budget first:** browse boxes, identify options within budget and compare their supported potential return relative to price. A budget filter and transparent comparison are an implementation proposal; a conversational recommender or mandatory wizard is not required.
+3. **Club/card first:** filter cards by club, select a card and exact variant, then see the box configurations that could contain it with appropriately qualified eligibility.
+
+These are views over shared canonical data, not separate catalogues. The reverse lookup must use exact VariantEligibility, preserve UNKNOWN/PROBABLE/VERIFIED distinctions and expose its coverage limitations. Selecting a checklist entry with multiple variants must not imply that every listed box contains every variant.
+
+Club filtering requires an explicit semantics decision in the implementing plan: the club depicted on the card is not automatically the player's current club, and a national-team card must not be relabelled as a club card. A separate player-to-club association, if used for discovery, needs source/time context and distinct presentation. Handle multi-subject entries without inventing a single club. Do not infer current affiliations from old cards or invent missing club data.
+
+Browsing within budget should not rank a box with unavailable market data as free or good value. Preserve original currency, price basis, date, seller availability and delivery uncertainty.
 
 ## Shopper market priority — Decision D02
 
@@ -67,16 +89,17 @@ The V0 should ultimately allow a user to:
 7. See major eligible chases and finite-card surfaced status with evidence/confidence.
 8. Browse/search/filter the underlying set visually when deeper inspection is useful.
 9. Mark cards Owned and Watching without mixing personal state into canonical facts.
-10. Compare boxes using transparent metrics.
-11. Eventually see a defensible box-value model only after its probability and market assumptions are supportable.
+10. Compare boxes using transparent metrics, including options within a budget.
+11. Find supported boxes from a selected card/variant, including the club discovery route where the data supports it.
+12. Eventually see defensible estimated-return and box-value models only after probability and market assumptions are supportable.
 
-Target Phase 1 catalogue remains deliberately small. Do not add Product #2 until Golden Product #1 works end-to-end well enough that Justin would genuinely use BoxScout before a purchase.
+The small catalogue goal is depth in Golden Product #1, not a permanently partial release. Apply the D11 first-real-version gate separately from individual engineering-plan completion.
 
 ## Golden Product #1
 
 **2026 Panini Prizm FIFA World Cup Soccer**
 
-The Golden Product is the release plus its sealed configurations, with Mega as the first shopper-facing format to make trustworthy end-to-end.
+The Golden Product is the release plus its sealed configurations, with Mega as the first shopper-facing format to make trustworthy end-to-end. Other configurations remain part of the full-release target rather than a different Product #2.
 
 This release is deliberately complex and should force the system to model:
 
@@ -144,7 +167,7 @@ When supported by real data it may surface:
 - recent BoxScout data updates
 - later, personal watched/saved-box activity
 
-Useful intelligence should appear high on the mobile viewport. Static marketing copy should become compact once real data exists.
+Useful intelligence should appear high on the mobile viewport. Static marketing copy should become compact once real data exists. Under D09, returning to a checklist/watchlist and browsing the next box are confirmed use cases; this does not make an automated news feed or notifications a mandatory launch feature.
 
 ### Release / Set
 
@@ -196,7 +219,7 @@ Answer, in order:
 8. What meaningful upside is publicly unaccounted for?
 9. How does this compare with alternatives?
 
-Do not bury purchase information below marketing copy.
+Do not bury purchase information below marketing copy. Show supported sealed-price history when available, distinguishing observed listing prices, sale history and any modelled value. Do not fabricate a chart reaching back to release if permitted historical records are absent.
 
 ### Cards
 
@@ -207,12 +230,13 @@ The visual checklist is an important supporting intelligence surface:
 - card number
 - player/display name
 - search
-- filters
+- filters, including evidence-backed club discovery when implemented
 - Owned
 - Watching
 - exact variant drill-down
+- reverse links to eligible boxes from the appropriate detail view
 
-Its purpose is to let the user inspect what exists and what can be pulled. It must not make BoxScout feel primarily like a collection-management app.
+Its purpose is to let the user inspect what exists, what it may be worth on the available evidence, and where it can be pulled. It must not make BoxScout feel primarily like a collection-management app. Preserve the compact tile rather than adding price/history panels to every tile without a separate UI decision.
 
 ### Chases
 
@@ -225,7 +249,7 @@ Track major eligible cards/variants with:
 - evidence/confidence
 - supported market value when later available
 
-Never claim that a card with no public evidence is definitely still sealed.
+Never claim that a card with no public evidence is definitely still sealed. A surfaced date records discovery/reporting context and is not automatically the original opening date.
 
 ### Compare
 
@@ -242,7 +266,17 @@ Examples:
 - finite surfaced percentage/counts
 - supported chase value distribution
 
-Do not claim rigorous expected value in Phase 1.
+The principal objective is price relative to eligible pull-value potential (D08), not an arbitrary preference score. Personal club/player preferences remain filters and collecting context. Do not claim rigorous expected value until the model gate below passes.
+
+## Personal accounts and return visits — Decision D09
+
+**Confirmed end-product intent:** users can return, log into an account, update their personal checklist, inspect a watchlist and browse the next box they want. An account-backed checklist/watchlist is part of the intended product, not automatically a full portfolio-management suite.
+
+The current pilot remains browser-local Owned/Watching. Whether account login is required in the first real version, rather than a subsequent release, remains undecided. Do not add authentication or subscriptions during Plan 010 or reinterpret existing flags as public ownership evidence.
+
+Before implementing accounts, create a bounded plan covering identity/access control, per-user isolation, private storage, recoverability/deletion, and explicit migration/import of existing local flags. Preserve stable variant IDs and resolve local/cloud conflicts without silent loss or parallel fan-out. Account data must never enter a public catalogue snapshot or public Git.
+
+A private Owned/Watching flag is not verified surfaced-card evidence. Public evidence submission would require a separate consent/review path. Ordinary box research should remain accessible without account creation; alerts, social features, detailed acquisition accounting and billing are not implied by this decision.
 
 ## Sealed-price intelligence
 
@@ -261,9 +295,11 @@ Eventually distinguish:
 
 Do not let a single absurd asking price define market value. Listing observations and completed sales are separate fact types.
 
-## Marketplace-backed card information — Decision D06
+## Marketplace-backed card information — Decisions D06 and D10
 
 **Confirmed vision from Justin on 2026-09-15:** cards should show price and sold-card information sourced from eBay or other popular card-selling marketplaces. eBay is the first source to investigate, not an exclusive supplier or an already connected feed. This makes the existing sales/valuation direction more explicit; it does not authorize immediate ingestion or spending.
+
+**D10 — singles remain subordinate:** show supported card prices and how to get the card, including eligible sealed boxes and relevant marketplace listings. Do not make "buy the single instead" the default recommendation, promote singles over boxes, or optimize the interface to steer that choice. The collector decides. This does not prohibit neutral links to actual card listings or evidence that informs a comparison.
 
 The proposed exact-variant detail experience separates **recent matching sales**, **current listings**, and **any supported estimate/history**. Keep source links, dates, sample coverage and condition/grade context visible. Raw and different grading-company/grade results are distinct comparable groups, not one pooled card price. Thin data should produce a few qualified observations or insufficient-evidence wording, not a fabricated value. The existing four-column gallery remains unchanged until a separate UI decision is made.
 
@@ -273,11 +309,13 @@ Before Plan 014 implementation, establish a source route that supports the Golde
 
 See [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md) for dated primary-source research, access restrictions, alternatives and proposed quality gates. No provider, subscription, estimation formula, new layout or guaranteed coverage has been approved. This work remains sequenced under Plans 013–015 as appropriate; Plan 010 stays active.
 
-## Chase-adjusted box intelligence
+## Chase-adjusted box intelligence — Decision D08
 
-A central long-term differentiator is the relationship between current sealed price and the publicly observed finite chase landscape.
+**Confirmed definition of better value:** a box is more attractive when its current price is lower relative to its potential to yield valuable eligible cards. Justin's example compares a higher-priced older release whose major chases have largely surfaced with a cheaper newer box. The intended feature should enable that investigation, not automatically declare old boxes inferior or assume every unobserved card remains available.
 
-Transparent future measures may include:
+A central differentiator is the relationship between current sealed price and the publicly observed finite chase landscape. Personal player/club interest may justify a choice independently of the economic comparison.
+
+Transparent measures may include:
 
 - number of tracked major chase variants
 - total tracked finite physical copies
@@ -289,19 +327,32 @@ Transparent future measures may include:
 
 Use language such as `verified surfaced`, `probable`, `reported`, `no verified public evidence`, or `publicly unaccounted for`.
 
-## Future box valuation model
+Disclose the tracked universe. A percentage of copies is not the same as a percentage of chase value, and a selected chase group is not the whole release. Value-weighted measures require dated supported values and explicit handling of variants with missing values; missing is not zero. A variant's price multiplied by its finite total is not automatically a realizable market value or a sealed-box return.
 
-Justin ultimately wants BoxScout to estimate what a sealed box should be worth from its hit structure, eligible card values and changing chase landscape.
+## Future estimated-return and box-value model
 
-This is an approved long-term analytics direction, not a current permission to publish EV or a black-box score.
+Justin wants to compare boxes within a budget by estimated return/value relative to price, accounting for eligible card values and changing finite-chase evidence. This is a genuine analytics goal, not a feature to replace permanently with only raw metrics. It remains gated on supportable data rather than a requirement to invent numerical estimates.
 
 Mature in stages:
 
-1. **Transparent inputs:** sealed price, hit frequencies, eligible chase structure, supported market values, surfaced finite counts.
-2. **Chase-adjusted comparative value:** inspectable formula/components; no opaque AI score.
-3. **Modelled fair-value range:** only when probabilities, market values, uncertainty and assumptions are strong enough.
+1. **Transparent inputs:** sealed price/history, hit frequencies, exact eligible chases, comparable card values, verified surfaced finite counts and coverage.
+2. **Evidence-based comparison:** inspectable components and limitations, without labelling a heuristic as expected return.
+3. **Modelled estimated-return and value ranges:** only when probabilities, values and uncertainty support an auditable calculation. Define return and fair-value concepts separately rather than equating them.
 
-Do not naively multiply original hit odds by the percentage of chase copies not yet surfaced. Opened boxes and surfaced chase copies both alter the remaining opportunity, and the remaining sealed population is generally uncertain. Prefer ranges and explicit uncertainty over fake precision.
+### Required model distinctions
+
+- Original published odds versus present-day remaining-pool estimates.
+- Verified public surfaced counts versus the actual number of opened copies, including unseen private pulls.
+- Known finite print runs versus the remaining sealed box population and allocation across configurations/channels.
+- Expected gross resale value of the box's cards versus net proceeds after supported selling/shipping costs, the purchase outlay and profit/ROI.
+- A whole-box expectation versus a selected-chase component with unmodelled contents.
+- Expected value versus typical outcomes, variability and the chance of a loss. An average is not a guaranteed or representative single-box result.
+
+Do not multiply original odds by the unsurfaced percentage. Even in an idealized model, current per-box expected chase yield depends on both remaining eligible hits and remaining boxes. In practice surfaced observations are incomplete and the remaining population/collation may be unknown. A decrease in publicly unaccounted-for chases alone cannot establish whether current odds improved or worsened.
+
+Preserve configuration-specific eligibility and avoid pooling chase supply across boxes merely because both are in the release. Do not assume marketplace box inventory is total unopened supply, or that anonymous resealed/repacked products belong to the original pool. Use exact raw-card comparables for newly pulled cards unless a separately defined model accounts for grading outcomes and costs.
+
+When data cannot support current probabilities, report the evidence and limits. Any scenarios must be explicitly hypothetical, show assumptions/ranges and keep unsupported inputs out of canonical fact fields. A formula, value threshold or model's publication requires a separate tested analytics plan; it must not appear just because a comparison screen exists.
 
 ## Manufacturer-ready platform direction
 
@@ -320,33 +371,35 @@ Approved manufacturer-facing direction includes:
 - future aggregate manufacturer analytics only after BoxScout has meaningful traffic;
 - preservation of BoxScout editorial/analytical independence regardless of licensing, affiliate or commercial relationships.
 
-The collector remains the primary user. The strategic manufacturer value proposition is that BoxScout can become a trusted downstream surface where official products are represented accurately at the point collectors are comparing and buying sealed product.
+The collector remains the primary user. The strategic manufacturer value proposition is a trusted downstream surface where official products are represented accurately while collectors compare and buy sealed product. See `MANUFACTURER_INTEGRATIONS.md` for implementation requirements and staging.
 
-Implementation requirements and staging are defined in `MANUFACTURER_INTEGRATIONS.md`.
+## Current implementation exclusions
 
-## Out of scope for Phase 1 unless explicitly approved
+Accounts and account-backed checklists/watchlists are approved end-product intent under D09, but not current Plan 010 implementation. Their timing relative to the first real version must be settled through a later scope decision.
 
-- user accounts
-- authentication
-- payments
-- subscription billing
-- marketplace
-- seller inventory owned by BoxScout
+The following are not authorized by the current plan:
+
+- user accounts/authentication/cloud collection implementation
+- payments or subscription billing
+- marketplace or seller inventory owned by BoxScout
 - social network
-- collection cloud sync
-- native iOS app
-- camera/card scanner
-- public API
-- retailer dashboards
-- affiliate implementation
-- banner-ad-first monetization
-- large automated scraping system
-- microservices
+- native iOS app or camera/card scanner
+- public API or retailer dashboards
+- affiliate implementation or banner-ad-first monetization
+- large automated scraping system or microservices
 - speculative EV/fair-value claims
 - self-service manufacturer portals
 - confidential/embargoed manufacturer data handling before the security model supports it
 
-Manufacturer-readiness foundations such as source attribution, rights metadata and withdrawal semantics are approved direction and may be incorporated when they naturally touch active work. Larger manufacturer portals/analytics/embargo systems require later explicit execution plans.
+Manufacturer-readiness foundations such as source attribution, rights metadata and withdrawal semantics may be incorporated when they naturally touch active work. Larger portals/analytics/embargo systems require later explicit execution plans.
+
+## Operating budget — Decision D03
+
+Justin accepts an ongoing application budget **under approximately $100/month**, and wants BoxScout eventually to at least pay for itself. The currency was not specified; do not assume USD merely because the first shopping market is the US. Clarify currency and the actual total before approving a paid commitment.
+
+This is an aggregate planning ceiling, not a target to spend fully or authorization to sign up for a service. Account for hosting/database, backups/storage, image delivery, licensed market data, refresh processing and eventual authentication/email together, with development subscriptions considered separately. Routine maintenance hours are still open; the earlier one-hour/week suggestion is not a confirmed commitment.
+
+Cost recovery is an objective, not a revenue forecast. Prefer an inexpensive sustainable release and validate monetization rather than relying on projected earnings to justify immediate spending.
 
 ## Long-term strategy — trusted intelligence before revenue
 
@@ -365,7 +418,7 @@ The approved monetization sequence remains:
 5. Retailer / B2B intelligence.
 6. API / data licensing.
 
-See `MONETIZATION.md` and ADR 004. Monetization must never influence factual analysis, rankings or recommendations. Affiliate commission is never a ranking factor.
+See `MONETIZATION.md` and ADR 004. Monetization must never influence factual analysis, rankings, surfaced evidence or recommendations. Affiliate commission is never a ranking factor, and card-sale links do not justify pushing singles over boxes under D10.
 
 ## Approved long-term data direction
 
@@ -377,7 +430,7 @@ Future catalogue identity proceeds:
 ChecklistEntry -> Variant -> FiniteInstance -> SurfaceObservation -> Evidence
 ```
 
-Future market intelligence adds supported card sales/value history and sealed-price history without mixing observations into canonical identity.
+Market history and personal account/checklist/watchlist data reference these stable identities through separate boundaries; neither mutates canonical card identity. Preserve privacy and consent when moving beyond current local-only state.
 
 Scale through a supervised Add Product/import workflow:
 
@@ -391,9 +444,7 @@ identify release/configuration
 -> verify box-decision surfaces
 ```
 
-Reuse ingestion patterns rather than one-off page construction.
-
-Manufacturer-supplied data must use this same review architecture rather than becoming a privileged alternate source of canonical truth.
+Reuse ingestion patterns rather than one-off pages. Manufacturer data uses the same review architecture, not a privileged alternate source of canonical truth.
 
 ## Current recovery roadmap
 
@@ -403,8 +454,8 @@ Manufacturer-supplied data must use this same review architecture rather than be
 4. **Plan 013 — Major chase / finite-instance surfaced tracking**
 5. **Plan 014 — Card sales plus sealed-price market intelligence**
 6. **Plan 015 — Box comparison and first transparent value model**
-7. Product #2 only after Golden Product #1 is genuinely useful as a purchase-decision tool.
+7. Scope remaining Golden Product configurations and first-real-version integration/acceptance through bounded follow-on work; finish the D11 release gate before Product #2. Account timing remains a separate pending scope choice.
 
-Manufacturer-readiness requirements in `MANUFACTURER_INTEGRATIONS.md` are approved future implementation targets. They should be folded into active plans when dependencies are ready rather than used to bypass the current Golden Product sequence.
+Manufacturer-readiness targets should be folded into approved plans as dependencies become ready. New end-product decisions must not bypass source feasibility, identity integrity or security.
 
-Plan 010 remains the current implementation authority. Later product requirements do not authorize skipping the data foundation.
+Plan 010 remains the current implementation authority. The first-real-version target is broader than Plan 010 or the initial Mega slice; neither is a reason to rush all remaining features into the active task.
