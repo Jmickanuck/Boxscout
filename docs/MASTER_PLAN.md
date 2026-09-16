@@ -28,6 +28,8 @@ Coding agents should read this document only for product planning, milestone pre
 
 A useful outcome may be buy, choose another version, wait or skip. Opening a box should not be presented as a reliable financial return. Do not optimize the product solely for getting an outbound purchase click.
 
+**Confirmed audience — D05:** the soccer-card collector who wants to understand what they are buying and whether better options exist before buying. Justin did not limit this audience to beginners, experts, professional breakers or investors. Lead with understandable purchase information and make deeper research available without requiring specialist knowledge.
+
 The collector is the primary user. Checklists, visual card browsing, market observations and manufacturer participation support the buying decision; they do not replace it. The compounding asset is the reviewed dataset and repeatable ingestion/review/publication system, not a growing collection of hand-built product pages.
 
 ## 2. Established boundaries to preserve
@@ -84,6 +86,8 @@ For each new data domain, prove a small real-data path before substantial implem
 
 A source that cannot be accessed reliably is a product constraint. Do not respond by inventing values or quietly bypassing access restrictions.
 
+For card-market work, read [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md). It records the eBay-led research direction, current access/licensing constraints and alternative-source limitations. Source permission must cover storage, display and the intended analysis; do not assume market history can enter the public Git snapshot or an AI workflow.
+
 ### Sustainable review workload
 
 Measure routine review time, exceptions per import, repeat corrections and source failures. Use deterministic code for parsing, joins, counting and exact comparisons; use AI for bounded ambiguity. Present compact review batches rather than asking Justin to inspect thousands of records.
@@ -124,6 +128,8 @@ Only record an answer as decided after Justin actually supplies or accepts that 
 | D02 | First shopper geography | DECIDED — United States first; Canada second; United Kingdom as the next expansion candidate. Confirmed by Justin on 2026-09-15 | Apply to upcoming retailer, pricing, UI and comparison scopes; no current catalogue rewrite |
 | D03 | Ongoing paid source/infrastructure budget | Open. No new spend authorized; distinguish application costs from development subscriptions | Any paid source/service commitment |
 | D04 | Minimum image coverage for a useful visual pilot | Open. Rights-safe infrastructure is not itself the visual acceptance target | Claiming the image-led experience ready for broader use |
+| D05 | Primary collector audience | DECIDED — soccer-card collectors seeking to understand what they are buying and whether better options exist before purchase. Confirmed by Justin on 2026-09-15 | Guide product language, information hierarchy and comparison; do not force a beginner/expert-only persona |
+| D06 | Marketplace-backed card information | CONFIRMED VISION — show eBay or other popular marketplace price/sale information on cards. Source selection, access, licenses, costs and estimation methodology remain unresolved | Plan 014 source feasibility and detail UI; Plan 015 uses only permitted, supportable inputs |
 
 ### D02 — US-first shopping, shared international intelligence
 
@@ -133,7 +139,13 @@ The durable market contract is in [PRODUCT.md](PRODUCT.md#shopper-market-priorit
 
 Canada/UK expansion requires supported seller and delivery coverage, source feasibility and sustainable maintenance. Regional purchase support does not restrict who may browse the site. Do not discard UK/Canadian sightings of the same physical card from global surfaced counts, or assume similarly named regional boxes have the same contents.
 
-D02 is settled. Resolve remaining choices as their dependencies approach; do not re-ask established choices such as shopper priority, the Golden Product, box-first purpose, four-column mobile gallery or local-only Owned/Watching.
+### D05/D06 — Informed collector, inspectable card-market evidence
+
+Justin confirmed the collector's purchase question rather than selecting an expertise level. The interface should explain a supported box and relevant alternatives first, with deeper evidence available on demand. Do not pivot into professional-breaker software, a collection manager or speculative investing tools.
+
+He also made marketplace-backed card information explicit, naming eBay and other popular selling sites. Treat sales, current asking prices and estimates as separate outputs, matched to exact variants and condition/grade. The proposed placement is the variant detail, retaining the approved gallery. A particular vendor, paid plan, formula, new gallery layout or automated ingestion has not been selected. [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md) contains the dated source research and proposed implementation safeguards.
+
+D02 and D05 are settled; D06's user-visible intent is confirmed. Resolve remaining choices as their dependencies approach rather than re-asking them. Plan 010 remains active.
 
 ## 7. First bounded desktop handoff
 
