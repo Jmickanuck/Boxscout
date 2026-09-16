@@ -12,6 +12,14 @@ Cards, checklists, variants, odds, sales and surfaced finite hits are the intell
 
 See `PRODUCT_AUDIT_2026-09-15.md` for the audit that established this box-first direction.
 
+## Primary collector — Decision D05
+
+**Confirmed by Justin on 2026-09-15:** the target user is the soccer-card collector who wants to know more about what they are buying and whether better options exist before buying.
+
+This defines a purchase need, not a beginner-only or expert-only audience. Explain the meaningful differences between boxes in understandable language, with deeper odds, checklist, market and evidence detail available when useful. Do not make specialist vocabulary a prerequisite for making a decision or turn the main interface into a tutorial.
+
+The product should support informed choices including buying, choosing another option, waiting or skipping. This audience decision does not expand current implementation scope into professional-breaker software, investing tools or collection management.
+
 ## Phase 1 goal
 
 Build a V0 that Justin personally uses when evaluating soccer-card sealed products before spending money.
@@ -253,6 +261,18 @@ Eventually distinguish:
 
 Do not let a single absurd asking price define market value. Listing observations and completed sales are separate fact types.
 
+## Marketplace-backed card information — Decision D06
+
+**Confirmed vision from Justin on 2026-09-15:** cards should show price and sold-card information sourced from eBay or other popular card-selling marketplaces. eBay is the first source to investigate, not an exclusive supplier or an already connected feed. This makes the existing sales/valuation direction more explicit; it does not authorize immediate ingestion or spending.
+
+The proposed exact-variant detail experience separates **recent matching sales**, **current listings**, and **any supported estimate/history**. Keep source links, dates, sample coverage and condition/grade context visible. Raw and different grading-company/grade results are distinct comparable groups, not one pooled card price. Thin data should produce a few qualified observations or insufficient-evidence wording, not a fabricated value. The existing four-column gallery remains unchanged until a separate UI decision is made.
+
+Market observations must match the exact card/parallel and preserve their original price basis. An asking price or active bid is not a sold price; an ended listing is not necessarily a sale; a reported sale is not independent proof of payment. Provider estimates remain separate from actual transactions. Duplicate reports of the same transaction count once; later genuine resales remain separate events but must not inflate finite surfaced-copy counts.
+
+Before Plan 014 implementation, establish a source route that supports the Golden Product and permits the intended access, storage, display, images and analytics. Do not assume licensed data may be copied into the public Git snapshot or processed by an external AI tool. Maintain the existing static catalogue architecture while designing any separately governed market-data path through an approved task.
+
+See [MARKET_DATA_STRATEGY.md](MARKET_DATA_STRATEGY.md) for dated primary-source research, access restrictions, alternatives and proposed quality gates. No provider, subscription, estimation formula, new layout or guaranteed coverage has been approved. This work remains sequenced under Plans 013–015 as appropriate; Plan 010 stays active.
+
 ## Chase-adjusted box intelligence
 
 A central long-term differentiator is the relationship between current sealed price and the publicly observed finite chase landscape.
@@ -298,7 +318,7 @@ Approved manufacturer-facing direction includes:
 - a supervised structured manufacturer intake/import format for releases, SKUs, checklists, odds and assets;
 - future private preview / embargo / scheduled-launch capability only after access control and operational maturity are adequate;
 - future aggregate manufacturer analytics only after BoxScout has meaningful traffic;
-- preservation of BoxScout editorial independence regardless of licensing, affiliate or commercial relationships.
+- preservation of BoxScout editorial/analytical independence regardless of licensing, affiliate or commercial relationships.
 
 The collector remains the primary user. The strategic manufacturer value proposition is that BoxScout can become a trusted downstream surface where official products are represented accurately at the point collectors are comparing and buying sealed product.
 
