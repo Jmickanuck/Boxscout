@@ -18,6 +18,34 @@ Build a V0 that Justin personally uses when evaluating soccer-card sealed produc
 
 Phase 1 does not need revenue.
 
+## Shopper market priority — Decision D02
+
+**Approved by Justin on 2026-09-15:** prioritize shopping support for the **United States first, Canada second**, with the **United Kingdom as the next expansion candidate**. This replaces the earlier Canada-first proposal. It does not change the Golden Product or active execution sequence, and is not a sourced claim about comparative market size, manufacturer nationality or proven demand.
+
+### Buying support is regional; card intelligence is shared
+
+- Prioritize credible US-serving retailer offers, supported US configurations and USD presentation when the relevant shopping/market plans are implemented. Country of retailer, shipping destination, box configuration/channel and transaction currency are distinct facts.
+- Preserve one canonical identity for each release, entry, variant and physical finite instance. A verified sighting in Canada, the UK or elsewhere still counts toward the same tracked physical card; do not create separate country-specific surfaced totals for that card.
+- Global sightings and market observations may inform research, but market comparisons must preserve venue, country/currency context and comparability. A foreign asking price is not automatically a US market price.
+- Do not assume identically named regional boxes have identical contents, odds or eligible variants. Retain exact configuration identities and evidence-backed relationships.
+- International visitors may browse shared intelligence. Prioritizing US shopping does not require geoblocking or promise local retailer coverage for every visitor.
+
+### Price and offer contract for upcoming plans
+
+The first fully supported shopping experience should default to the US market and USD, with clear market context. Design later region and currency preferences as separate concerns: changing display currency does not change delivery eligibility or create supported local offers.
+
+Always retain the original amount, currency, observation timestamp and source. Use unambiguous currency labels when observations differ. A future converted display value is a derived estimate with its rate source/time, not a replacement for the original transaction or asking price. Do not invent an exchange rate or silently relabel existing CAD observations as USD.
+
+Where to buy must distinguish the seller's item price from supported shipping, tax and any cross-border costs. Unknown costs or destination availability remain unknown, not zero or assumed. A lowest observed item price is not necessarily the lowest delivered total. Do not claim local store inventory without location-specific evidence.
+
+Canada is the next shopping expansion, reusing shared catalogue/evidence data while adding supported Canadian offers and pricing context. Investigate UK buyer demand, source access and retailer/delivery coverage before committing to a UK launch. Regional completeness and maintenance capacity, not a flag or currency selector alone, determine supported-market claims.
+
+### Implementation boundary
+
+Apply this contract when scoping Plan 011 identity/eligibility, Plan 012 buying UI, Plan 014 market observations and Plan 015 comparison. Plan 010 remains focused on release reconciliation and honest coverage. Existing Canadian pilot listings, CAD observations, IDs and provenance must survive unchanged; they are not obsolete facts merely because the target audience changed.
+
+No new paid service, automatic currency conversion, region selector, regional catalogue expansion or retailer integration is authorized to bypass its appropriate execution plan. See `MASTER_PLAN.md`, decision D02, for the recorded choice.
+
 ## Phase 1 success
 
 The V0 should ultimately allow a user to:
