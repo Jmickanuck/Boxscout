@@ -8,7 +8,7 @@ Baseline reviewed: `ea826fd051591a6b2784f9f89ff2159253f82b70`.
 
 This is the strategic map, not a second execution authority. It connects the product outcome to the existing build sequence and records decisions still needed. It does not claim that planned capabilities are implemented.
 
-- **Established** means already supported by the current approved repository specifications.
+- **Established** means supported by the approved repository specifications or a subsequently recorded explicit product decision from Justin.
 - **Proposed** means a planning recommendation, not a decision attributed to Justin.
 - **Open** means the choice remains unresolved; do not silently select it during implementation.
 
@@ -33,6 +33,7 @@ The collector is the primary user. Checklists, visual card browsing, market obse
 ## 2. Established boundaries to preserve
 
 - Golden Product #1 is **2026 Panini Prizm FIFA World Cup Soccer**, with Mega first. Do not revert to an older proposed benchmark.
+- Shopper support prioritizes the **United States first, Canada second**, with the **United Kingdom as the next expansion candidate**. Global card intelligence remains shared; see decision D02 and the market contract in `PRODUCT.md`.
 - Keep release, box format, exact configuration, retailer offer, checklist entry, variant and physical finite instance distinct. Unknown configuration eligibility is not exclusion or inclusion.
 - Preserve canonical IDs, provenance, claim semantics and browser-local Owned/Watching. Public evidence absence is not proof a card remains sealed.
 - Retain the modular monolith and canonical PostgreSQL -> approved snapshot architecture. Do not require live database requests for ordinary catalogue browsing.
@@ -113,20 +114,26 @@ Record evidence from several real evaluations before expansion: what helped, wha
 
 Manufacturer foundations should strengthen this experience without making a partnership a prerequisite for all progress. Follow the existing M0–M5 sequence. Affiliate experimentation and Pro demand validation retain their existing gates; no revenue or willingness-to-pay claim is established by this plan.
 
-## 6. Open decisions
+## 6. Product decisions
 
-Only record an answer as decided after Justin actually supplies or accepts that specific choice. An unanswered recommendation remains proposed. These questions do not block catalogue reconciliation.
+Only record an answer as decided after Justin actually supplies or accepts that specific choice. An unanswered recommendation remains proposed. Open questions below do not block catalogue reconciliation.
 
-| ID | Decision | Current position | Resolve before |
+| ID | Decision | Current position | Resolve before / application |
 | --- | --- | --- | --- |
 | D01 | Maximum routine weekly review/maintenance | Open. Proposed design target: about one hour; distinguish optional research and development | Setting sustained ingestion breadth/cadence |
-| D02 | First shopper geography | Open. Proposed: Canadian purchase support first, while retaining original currencies and exact US/other configuration identities | Offer discovery, seller coverage and comparison scope |
+| D02 | First shopper geography | DECIDED — United States first; Canada second; United Kingdom as the next expansion candidate. Confirmed by Justin on 2026-09-15 | Apply to upcoming retailer, pricing, UI and comparison scopes; no current catalogue rewrite |
 | D03 | Ongoing paid source/infrastructure budget | Open. No new spend authorized; distinguish application costs from development subscriptions | Any paid source/service commitment |
 | D04 | Minimum image coverage for a useful visual pilot | Open. Rights-safe infrastructure is not itself the visual acceptance target | Claiming the image-led experience ready for broader use |
 
-Canada-first purchase support would not mean deleting US product facts or preventing a US visitor from browsing. A Canada-and-US launch would require separately supported seller availability, currencies and delivery context; it is a larger maintained shopping scope.
+### D02 — US-first shopping, shared international intelligence
 
-Next discussion: D02, followed by the remaining decisions as their dependencies approach. Do not re-ask established choices such as the Golden Product, box-first purpose, four-column mobile gallery or local-only Owned/Watching.
+Justin selected US-first shopping support, replacing the earlier Canada-first recommendation. Canada is the second supported shopping market; the UK is the next candidate to investigate, not an automatically scheduled launch. This is an approved product-priority decision, not independently verified comparative market sizing or proof of demand in any country.
+
+The durable market contract is in [PRODUCT.md](PRODUCT.md#shopper-market-priority--decision-d02). It separates shopper region and display currency from original observations, exact configuration identities and globally sourced evidence. US retailer coverage and USD presentation take priority in the relevant future plans. Existing Canadian pilot facts and prices remain intact; a country change must never silently convert observations or reinterpret box identities.
+
+Canada/UK expansion requires supported seller and delivery coverage, source feasibility and sustainable maintenance. Regional purchase support does not restrict who may browse the site. Do not discard UK/Canadian sightings of the same physical card from global surfaced counts, or assume similarly named regional boxes have the same contents.
+
+D02 is settled. Resolve remaining choices as their dependencies approach; do not re-ask established choices such as shopper priority, the Golden Product, box-first purpose, four-column mobile gallery or local-only Owned/Watching.
 
 ## 7. First bounded desktop handoff
 
@@ -162,4 +169,4 @@ Known documentation cleanup to address when the relevant contract is edited:
 - `DATA_MODEL.md` mixes prospective bootstrap descriptions with later implemented refinements. Label current contracts, future directions and history explicitly.
 - `ASTRA_RUNBOOK.md` retains some bootstrap-era language. Follow the current status and active plan; do not interpret old text as requiring a second backend or undoing persistence.
 
-This master-plan change does not itself rewrite those specifications. When cleaning them, preserve prior decisions/history, document actual semantic changes, and avoid broad application refactoring under a documentation task.
+When cleaning these specifications, preserve prior decisions/history, document actual semantic changes, and avoid broad application refactoring under a documentation task.
